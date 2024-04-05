@@ -14,12 +14,14 @@ public class Associate {
 
     @Id
     private String id;
-    @NotBlank(message = "Associate name can't be empty nor null")
+    @NotBlank(message = "Name can't be empty nor null")
     private String name;
-    @NotBlank(message = "Associate description can't be empty nor null")
+    @NotBlank(message = "Description can't be empty nor null")
     private String description;
     private List<Link> links;
+    @NotBlank(message = "Profile image cannot be empty nor null")
     private String profile_url;
+    @NotBlank(message = "Banner image cannot be empty nor null")
     private String banner_url;
 
     @Setter

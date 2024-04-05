@@ -18,7 +18,7 @@ public class AssociateController {
     private AssociateServiceImpl service;
 
     @GetMapping("")
-    ResponseEntity<Page<Associate>> findAll(@RequestParam Integer page) {
+    ResponseEntity<Page<Associate>> findAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
         return new ResponseEntity<>(service.findAll(page), HttpStatus.OK);
     }
 

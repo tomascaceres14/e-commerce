@@ -12,11 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Article {
     @Id
     private String id;
-    @NotBlank(message = "Article title can't be empty nor null")
+    @NotBlank(message = "Title cannot be empty nor null")
     private String title;
-    @NotBlank(message = "Article content can't be empty nor null")
+    @NotBlank(message = "Content cannot be empty nor null")
     private String content;
-    @NotBlank(message = "Article date can't be empty nor null")
+    @NotBlank(message = "Date cannot be empty nor null")
     private String creation_date;
+    @NotBlank(message = "Image url cannot be empty nor null")
     private String image_url;
 }
