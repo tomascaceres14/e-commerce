@@ -1,8 +1,6 @@
 *** TAREAS ***
 
 *** CODIGO
-- Implementar Validations a entidades.
-- Testear excepciones.
 - Crear tests unitarios.
 
 *** SEGURIDAD
