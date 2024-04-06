@@ -5,38 +5,47 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
+import com.tomasdev.akhanta.utils.SequenceGenerator;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 
 @Service
-@AllArgsConstructor
 public class AmazonS3ServiceImpl implements AmazonS3Service {
-    private final AmazonS3 amazonS3;
+
+    private final AmazonS3 s3Client;
+    @Value("${application.bucket.name}")
+    private String bucketName;
+
+    public AmazonS3ServiceImpl(AmazonS3 s3Client) {
+        this.s3Client = s3Client;
+    }
 
     @Override
     public String upload(MultipartFile image, String folder, String id) {
+        File file = convertMultipartFileToFile(image);
+        String filename = SequenceGenerator.uniqueSequence();
 
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentType("image/jpeg");
-        metadata.setContentDisposition(STR."inline; filename=\{image.getOriginalFilename()}");
+        s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", filename, file));
+        file.delete();
 
-        String path = "ecran" + "/" + "Peliculas";
-        String fileName = image.getOriginalFilename();
+        return "File successfully uploaded.";
+    }
 
-        try {
-            InputStream iStream = image.getInputStream();
-            amazonS3.putObject(path, fileName, iStream, metadata);
-            amazonS3.setObjectAcl(path, fileName, CannedAccessControlList.PublicRead);
-        } catch (AmazonServiceException | IOException e) {
-            throw new ServiceException(e.getMessage());
+    private File convertMultipartFileToFile(MultipartFile file){
+        File convertedFile = new File(file.getOriginalFilename());
+        try (FileOutputStream fos = new FileOutputStream(convertedFile)){
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            throw new ServiceException("Error converting multipart-file to file");
         }
-
-        return STR."https://akhanta.s3.amazonaws.com/\{folder}/\{id}";
+        return convertedFile;
     }
 
 }
