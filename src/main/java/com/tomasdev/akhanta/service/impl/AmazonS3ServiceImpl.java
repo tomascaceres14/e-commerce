@@ -1,15 +1,11 @@
 package com.tomasdev.akhanta.service.impl;
 
-
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
 import com.tomasdev.akhanta.utils.SequenceGenerator;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,14 +24,15 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
     }
 
     @Override
-    public String upload(MultipartFile image, String folder, String id) {
+    public String upload(MultipartFile image, String folder) {
         File file = convertMultipartFileToFile(image);
         String filename = SequenceGenerator.uniqueSequence();
 
         s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", filename, file));
+
         file.delete();
 
-        return "File successfully uploaded.";
+        return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}";
     }
 
     private File convertMultipartFileToFile(MultipartFile file){
@@ -43,7 +40,7 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
         try (FileOutputStream fos = new FileOutputStream(convertedFile)){
             fos.write(file.getBytes());
         } catch (IOException e) {
-            throw new ServiceException("Error converting multipart-file to file");
+            throw new ServiceException("Error converting multipart-file to file.");
         }
         return convertedFile;
     }

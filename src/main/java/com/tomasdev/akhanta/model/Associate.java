@@ -19,9 +19,7 @@ public class Associate {
     @NotBlank(message = "Description can't be empty nor null")
     private String description;
     private List<Link> links;
-    @NotBlank(message = "Profile image cannot be empty nor null")
     private String profile_url;
-    @NotBlank(message = "Banner image cannot be empty nor null")
     private String banner_url;
 
     @Setter

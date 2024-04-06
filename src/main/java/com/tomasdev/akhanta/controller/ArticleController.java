@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.controller;
 
 import com.tomasdev.akhanta.model.Article;
+import com.tomasdev.akhanta.model.Associate;
 import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
 import com.tomasdev.akhanta.service.impl.AmazonS3ServiceImpl;
 import jakarta.validation.Valid;
@@ -30,12 +31,7 @@ public class ArticleController {
     }
 
     @PostMapping("")
-    ResponseEntity<Article> save(@RequestBody @Valid Article article) {
-        return new ResponseEntity<>(service.save(article), HttpStatus.CREATED);
-    }
-
-    @PostMapping("{id}/image")
-    public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file, @PathVariable String id) {
-        return new ResponseEntity<>(s3Service.upload(file, "articulos", id), HttpStatus.CREATED);
+    ResponseEntity<Article> save(@Valid @RequestPart Article article, @RequestPart MultipartFile image) {
+        return new ResponseEntity<>(service.saveWithImage(article, image), HttpStatus.CREATED);
     }
 }

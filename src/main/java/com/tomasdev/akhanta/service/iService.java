@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.service;
 
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface iService<T> {
     T save(T req);

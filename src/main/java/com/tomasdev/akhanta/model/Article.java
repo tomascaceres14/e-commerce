@@ -18,6 +18,5 @@ public class Article {
     private String content;
     @NotBlank(message = "Date cannot be empty nor null")
     private String creation_date;
-    @NotBlank(message = "Image url cannot be empty nor null")
     private String image_url;
 }

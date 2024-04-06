@@ -9,16 +9,25 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @AllArgsConstructor
 public class AssociateServiceImpl implements AssociateService {
 
     private final AssociateRepository repository;
+    private final AmazonS3ServiceImpl s3Service;
     private final ModelMapper mapper;
 
     @Override
     public Associate save(Associate req) {
+        return repository.save(req);
+    }
+
+    @Override
+    public Associate saveWithImages(Associate req, MultipartFile profile, MultipartFile banner) {
+        req.setProfile_url(s3Service.upload(profile, "asociados"));
+        req.setBanner_url(s3Service.upload(banner, "asociados"));
         return repository.save(req);
     }
 

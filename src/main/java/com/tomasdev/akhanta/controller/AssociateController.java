@@ -1,13 +1,17 @@
 package com.tomasdev.akhanta.controller;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.service.impl.AmazonS3ServiceImpl;
 import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -16,10 +20,15 @@ import org.springframework.web.bind.annotation.*;
 public class AssociateController {
 
     private AssociateServiceImpl service;
+    private AmazonS3ServiceImpl s3Service;
 
-    @GetMapping("")
+    @GetMapping
     ResponseEntity<Page<Associate>> findAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
         return new ResponseEntity<>(service.findAll(page), HttpStatus.OK);
+    }
+    @PostMapping
+    ResponseEntity<Associate> save(@Valid @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
+        return new ResponseEntity<>(service.saveWithImages(associate, profile, banner), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -27,8 +36,4 @@ public class AssociateController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("")
-    ResponseEntity<Associate> save(@Valid @RequestBody Associate associate) {
-        return new ResponseEntity<>(service.save(associate), HttpStatus.CREATED);
-    }
 }
