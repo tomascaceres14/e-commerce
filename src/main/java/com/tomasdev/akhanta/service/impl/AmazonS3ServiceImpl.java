@@ -2,7 +2,6 @@ package com.tomasdev.akhanta.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
 import com.tomasdev.akhanta.utils.SequenceGenerator;
