@@ -1,6 +1,7 @@
 *** TAREAS ***
 
 *** CODIGO
+- Verificar update imagenes.
 - Crear tests unitarios.
 
 *** SEGURIDAD
