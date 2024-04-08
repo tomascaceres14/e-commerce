@@ -3,6 +3,7 @@
 *** CODIGO
 - Verificar update imagenes.
 - Crear tests unitarios.
+- Implementar respuesta api grilla horarios /activities/schedule
 
 *** SEGURIDAD
 - Vale la pena Spring Security? Analizar otras formas.
