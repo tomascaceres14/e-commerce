@@ -9,19 +9,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
 @AllArgsConstructor
 @RequestMapping("/activities")
 public class ActivityController {
 
     private ActivityServiceImpl service;
 
-    @GetMapping
+    @GetMapping("")
     ResponseEntity<Page<Activity>> findAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
         return new ResponseEntity<>(service.findAll(page), HttpStatus.OK);
     }
 
     @PostMapping
-    ResponseEntity<Activity> save(@Valid @RequestPart Activity activity) {
+    ResponseEntity<Activity> save(@Valid @RequestBody Activity activity) {
         return new ResponseEntity<>(service.save(activity), HttpStatus.CREATED);
     }
 
