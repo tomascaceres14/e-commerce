@@ -32,6 +32,20 @@ public class AssociateServiceImpl implements AssociateService {
     }
 
     @Override
+    public Associate updateWithImages(String id, Associate req, MultipartFile profile, MultipartFile banner) {
+        Associate associateDB = findById(id);
+
+        String profileName = associateDB.getProfile_url().split("/")[4];
+        String bannerName = associateDB.getBanner_url().split("/")[4];
+        req.setProfile_url(s3Service.update(profile, "asociados", profileName));
+        req.setBanner_url(s3Service.update(banner, "asociados", bannerName));
+
+        mapper.map(req, associateDB);
+        associateDB.setId(id);
+        return repository.save(associateDB);
+    }
+
+    @Override
     public Page<Associate> findAll(int page) {
         PageRequest pageable = PageRequest.of(page, 10);
         return repository.findAll(pageable);

@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AssociateController {
 
     private AssociateServiceImpl service;
-    private AmazonS3ServiceImpl s3Service;
 
     @GetMapping
     ResponseEntity<Page<Associate>> findAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
@@ -34,6 +33,11 @@ public class AssociateController {
     @GetMapping("/{id}")
     ResponseEntity<Associate> findById(@PathVariable String id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<Associate> updateById(@PathVariable String id, @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
+        return new ResponseEntity<>(service.updateWithImages(id, associate, profile, banner), HttpStatus.CREATED);
     }
 
 }

@@ -34,6 +34,14 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
         return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}";
     }
 
+    @Override
+    public String update(MultipartFile image, String folder, String originalName) {
+        File file = convertMultipartFileToFile(image);
+        s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", originalName, file));
+        file.delete();
+        return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{originalName}";
+    }
+
     private File convertMultipartFileToFile(MultipartFile file){
         File convertedFile = new File(file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(convertedFile)){
