@@ -8,11 +8,15 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +24,7 @@ public class ActivityServiceImpl implements ActivityService {
 
     ActivityRepository repository;
     private final ModelMapper mapper;
+    private final MongoTemplate mongoTemplate;
 
     @Override
     public Activity save(Activity req) {
@@ -51,38 +56,5 @@ public class ActivityServiceImpl implements ActivityService {
             throw new ResourceNotFoundException(STR."Activity id \{id} doesn't exists");
         }
         repository.deleteById(id);
-    }
-
-    @Override
-    public List<List<String>> generateMtx() {
-        List<List<String>> matrix = new ArrayList<>();
-        List<String> headers = new ArrayList<>(Arrays.asList("Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"));
-        matrix.add(headers);
-
-        List<Activity> activities = repository.findAll();
-
-        for (Activity activity : activities) {
-
-            List<Activity.dayHour> dayHours = activity.getDayHourList();
-
-            for (Activity.dayHour dayHour : dayHours) {
-
-                List<String> line = new ArrayList<>(Arrays.asList(dayHour.getHour(), "", "", "", "", ""));
-
-                for (String day : dayHour.getDays()) {
-                    switch (day) {
-                        case "Lunes" -> line.set(1, activity.getName());
-                        case "Martes" -> line.set(2, activity.getName());
-                        case "Miercoles" -> line.set(3, activity.getName());
-                        case "Jueves" -> line.set(4, activity.getName());
-                        case "Viernes" -> line.set(5, activity.getName());
-                    }
-                }
-
-                matrix.add(line);
-            }
-        }
-
-        return matrix;
     }
 }

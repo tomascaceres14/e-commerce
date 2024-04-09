@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -32,11 +33,4 @@ public class ActivityController {
     ResponseEntity<Activity> findById(@PathVariable String id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
-
-
-    @GetMapping("/schedule")
-    ResponseEntity<List<List<String>>> schedule(){
-        return new ResponseEntity<>(service.generateMtx(), HttpStatus.OK);
-    }
-
 }

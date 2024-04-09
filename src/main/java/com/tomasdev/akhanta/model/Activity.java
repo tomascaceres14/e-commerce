@@ -15,13 +15,13 @@ public class Activity {
     @NotBlank(message = "Class name cannot be null or empty")
     private String name;
     private List<String> professors;
-    private List<dayHour> dayHourList;
+    private List<DayHour> dayHourList;
 
     @Getter
     @Setter
     @ToString
     @NoArgsConstructor
-    public static class dayHour {
+    public static class DayHour {
         private List<String> days;
         private String hour;
     }
