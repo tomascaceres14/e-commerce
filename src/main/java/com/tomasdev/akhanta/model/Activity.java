@@ -1,8 +1,7 @@
 package com.tomasdev.akhanta.model;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,11 +15,13 @@ public class Activity {
     @NotBlank(message = "Class name cannot be null or empty")
     private String name;
     private List<String> professors;
-    private List<daysHoursList> daysHoursList;
+    private List<dayHour> dayHourList;
 
-    @Data
+    @Getter
+    @Setter
+    @ToString
     @NoArgsConstructor
-    static class daysHoursList {
+    public static class dayHour {
         private List<String> days;
         private String hour;
     }

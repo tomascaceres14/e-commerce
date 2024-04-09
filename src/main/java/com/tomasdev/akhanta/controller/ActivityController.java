@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/activities")
@@ -29,6 +31,12 @@ public class ActivityController {
     @GetMapping("/{id}")
     ResponseEntity<Activity> findById(@PathVariable String id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/schedule")
+    ResponseEntity<List<List<String>>> schedule(){
+        return new ResponseEntity<>(service.generateMtx(), HttpStatus.OK);
     }
 
 }
