@@ -38,7 +38,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Article id \{id} doesn't exists"));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Articulo"));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException(STR."Article id \{id} doesn't exists");
+            throw new ResourceNotFoundException("Articulo");
         }
         repository.deleteById(id);
     }

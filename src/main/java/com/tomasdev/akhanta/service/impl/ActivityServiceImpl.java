@@ -30,7 +30,7 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public Activity findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Activity id \{id} doesn't exists"));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Actividad"));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException(STR."Activity id \{id} doesn't exists");
+            throw new ResourceNotFoundException("Actividad");
         }
         repository.deleteById(id);
     }

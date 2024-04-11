@@ -53,7 +53,7 @@ public class AssociateServiceImpl implements AssociateService {
 
     @Override
     public Associate findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Associate id \{id} doesn't exists"));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Asociado"));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class AssociateServiceImpl implements AssociateService {
     @Override
     public void deleteById(String id) {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException(STR."Associate id \{id} doesn't exists");
+            throw new ResourceNotFoundException("Asociado");
         }
         repository.deleteById(id);
     }
