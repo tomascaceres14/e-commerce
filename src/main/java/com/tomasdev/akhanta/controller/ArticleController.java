@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/posts")
+@RequestMapping("/home/posts")
 public class ArticleController {
 
     private ArticleServiceImpl service;

@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ResponseCustomerDTO {
+public class AuthUserDTO {
+
     private String email;
-    private String active;
+    private String password;
 }

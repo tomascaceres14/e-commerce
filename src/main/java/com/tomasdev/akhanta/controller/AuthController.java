@@ -1,7 +1,11 @@
 package com.tomasdev.akhanta.controller;
 
+import com.tomasdev.akhanta.model.dto.AuthUserDTO;
+import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
-import com.tomasdev.akhanta.model.dto.ResponseCustomerDTO;
+import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
+import com.tomasdev.akhanta.service.AuthService;
+import com.tomasdev.akhanta.service.impl.AuthServiceImpl;
 import com.tomasdev.akhanta.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,11 +22,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final UserServiceImpl service;
-    private ModelMapper mapper;
+    private final AuthService authService;
+    private final ModelMapper mapper;
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseCustomerDTO> save(@RequestBody UserDTO customer) {
+    public ResponseEntity<ResponseUserDTO> save(@RequestBody UserDTO customer) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.map(service.save(customer), ResponseCustomerDTO.class));
+                .body(mapper.map(service.registerUser(customer), ResponseUserDTO.class));
+    }
+
+    @PostMapping(path = "/sign-in")
+    public ResponseEntity<JwtResponseDTO> signIn(@RequestBody AuthUserDTO authUserDTO) {
+        return ResponseEntity.ok(authService.signIn(authUserDTO));
     }
 }

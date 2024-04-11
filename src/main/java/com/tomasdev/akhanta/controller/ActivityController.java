@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/activities")
+@RequestMapping("/home/activities")
 public class ActivityController {
 
     private ActivityServiceImpl service;

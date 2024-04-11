@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/associates")
+@RequestMapping("/home/associates")
 public class AssociateController {
 
     private AssociateServiceImpl service;
