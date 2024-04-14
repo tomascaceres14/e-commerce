@@ -17,4 +17,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
+    @ExceptionHandler({PasswordIncorrectException.class})
+    public ProblemDetail passwordIncorrectException(RuntimeException exception) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.PasswordIncorrectException;
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.AuthUserDTO;
 import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
@@ -15,30 +16,42 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+/**
+ * Servicio encargado del logueo de un usuario
+ */
 @RequiredArgsConstructor
+@Service
 public class AuthServiceImpl implements AuthService {
 
-    private final UserServiceImpl userService;
+    private final UserRepository userRepository;
 
+    /**
+     * Clase que administra los JWTs
+     */
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
+    /**
+     * Clase que encripta contraseñas
+     */
     private final PasswordEncoder passwordEncoder;
 
     private final ModelMapper mapper;
 
     /**
      * Devuelve un dto con el jwt del usuario dadas unas credenciales
-     * @param authUserDto Credenciales de acceso
+     * @param authCustomerDto Credenciales de acceso
      * @return Dto con el jwt del usuario si las credenciales son validas
      */
-    public JwtResponseDTO signIn(AuthUserDTO authUserDto) {
 
-        User user = userService.findByEmail(authUserDto.getEmail());
+    @Override
+    public JwtResponseDTO signIn(AuthUserDTO authCustomerDto) {
 
-        if (!passwordEncoder.matches(authUserDto.getPassword(), user.getPassword())) {
+        User user = userRepository.findByEmail(authCustomerDto.getEmail()).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
+
+        if (!passwordEncoder.matches(authCustomerDto.getPassword(), user.getPassword())) {
             throw new PasswordIncorrectException();
         }
+
 
         return new JwtResponseDTO(jwtAuthenticationProvider.createToken(mapper.map(user, UserDTO.class)));
     }
@@ -53,4 +66,5 @@ public class AuthServiceImpl implements AuthService {
         String[] authElements = token.split(" ");
         return new JwtResponseDTO(jwtAuthenticationProvider.deleteToken(authElements[1]));
     }
+
 }

@@ -5,8 +5,7 @@ import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
 import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
 import com.tomasdev.akhanta.service.AuthService;
-import com.tomasdev.akhanta.service.impl.AuthServiceImpl;
-import com.tomasdev.akhanta.service.impl.UserServiceImpl;
+import com.tomasdev.akhanta.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserServiceImpl service;
+    private final UserService service;
     private final AuthService authService;
     private final ModelMapper mapper;
 

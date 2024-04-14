@@ -26,6 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article saveWithImage(Article req, MultipartFile image) {
+        System.out.println("Hasta aca llegue");
         req.setImage_url(s3Service.upload(image, "articulos"));
         return repository.save(req);
     }

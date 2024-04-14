@@ -32,6 +32,12 @@ public class WebSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
 
+    /**
+     * Configura la seguridad de las peticiones HTTP
+     * @param http Peticion a configurar
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -44,13 +50,16 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers(HttpMethod.GET, "/auth/**", "/", "/home/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/home/*" ).hasRole(Roles.ADMIN)
-                                .requestMatchers(HttpMethod.PUT, "/home/*" ).hasRole(Roles.ADMIN)
-                                .requestMatchers(HttpMethod.DELETE, "/home/*" ).hasRole(Roles.ADMIN)
+                                .requestMatchers("/auth/**", "/home/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.DELETE, "/admin/**").hasRole(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.POST, "/admin/**").hasRole(Roles.ADMIN)
                                 .anyRequest().authenticated()
 
                 );
+
+
         return http.build();
     }
 

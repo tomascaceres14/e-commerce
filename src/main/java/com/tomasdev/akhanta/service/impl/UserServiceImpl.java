@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        user.setRole(Roles.CUSTOMER);
+        user.setRole(Roles.ADMIN);
 
         return mapper.map(repository.save(user), ResponseUserDTO.class);
     }
