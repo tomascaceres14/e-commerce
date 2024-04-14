@@ -57,7 +57,7 @@ public class JwtAuthenticationProvider {
         }
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
-        rolesAndAuthorities.add(new SimpleGrantedAuthority("ROLE_"+exists.getRole())); //rol
+        rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{exists.getRole()}")); //rol
 
 
         return new UsernamePasswordAuthenticationToken(exists, token, rolesAndAuthorities);

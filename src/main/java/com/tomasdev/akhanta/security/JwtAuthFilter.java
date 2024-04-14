@@ -22,7 +22,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth", "/", "/home/associates", "/home/posts", "/home/activities");
+    private List<String> urlsToSkip = List.of("/", "/home/*", "/auth");
 
 
     /**

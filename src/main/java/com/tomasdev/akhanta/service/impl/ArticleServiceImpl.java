@@ -31,6 +31,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article updateWithImage(String id, Article article, MultipartFile image) {
+        return null;
+    }
+
+    @Override
     public Page<Article> findAll(int page) {
         PageRequest pageable = PageRequest.of(page, 10);
         return repository.findAll(pageable);

@@ -44,11 +44,10 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers("/auth/**", "/", "/home/**", "/v3/api-docs/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.DELETE, "/customers/**").hasRole(Roles.ADMIN)
-                                .requestMatchers(HttpMethod.GET,"/cars/**").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.POST, "/home/associates", "/home/posts", "/home/activities" ).hasRole(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.GET, "/auth/**", "/", "/home/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/home/*" ).hasRole(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.PUT, "/home/*" ).hasRole(Roles.ADMIN)
+                                .requestMatchers(HttpMethod.DELETE, "/home/*" ).hasRole(Roles.ADMIN)
                                 .anyRequest().authenticated()
 
                 );
