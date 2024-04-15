@@ -2,6 +2,7 @@ package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.model.Associate;
 import com.tomasdev.akhanta.repository.AssociateRepository;
 import com.tomasdev.akhanta.service.AssociateService;
 import lombok.AllArgsConstructor;
@@ -36,13 +37,21 @@ public class AssociateServiceImpl implements AssociateService {
     public Associate updateWithImages(String id, Associate req, MultipartFile profile, MultipartFile banner) {
         Associate associateDB = findById(id);
 
-        String profileName =  s3Service.getImageKeyFromUrl(associateDB.getProfile_url());
-        String bannerName = s3Service.getImageKeyFromUrl(associateDB.getBanner_url());
-        req.setProfile_url(s3Service.update(profile, s3Folder, profileName));
-        req.setBanner_url(s3Service.update(banner, s3Folder, bannerName));
 
-        mapper.map(req, associateDB);
-        associateDB.setId(id);
+        if (!(profile == null)) {
+            String imageName =  s3Service.getImageKeyFromUrl(associateDB.getProfile_url());
+            associateDB.setProfile_url(s3Service.update(profile, s3Folder, imageName));
+        }
+
+        if (!(banner == null)) {
+            String imageName =  s3Service.getImageKeyFromUrl(associateDB.getBanner_url());
+            associateDB.setBanner_url(s3Service.update(banner, s3Folder, imageName));
+        }
+
+        if (!(req == null)) {
+            mapper.map(req, associateDB);
+        }
+
         return repository.save(associateDB);
     }
 

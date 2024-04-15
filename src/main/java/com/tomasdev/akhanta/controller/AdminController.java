@@ -24,42 +24,46 @@ public class AdminController {
 
     @PostMapping("/articles")
     ResponseEntity<Article> saveArticle(@Valid @RequestPart Article article, @RequestPart MultipartFile image) {
-        return new ResponseEntity<>(articleService.saveWithImage(article, image), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveWithImage(article, image));
     }
 
     @PutMapping("/articles/{id}")
-    ResponseEntity<Article> updateArticleById(@PathVariable String id, @RequestPart(required = false) Article article, @RequestPart MultipartFile image) {
+    ResponseEntity<Article> updateArticleById(@PathVariable String id,
+                                              @RequestPart(required = false) Article article,
+                                              @RequestPart(required = false) MultipartFile image) {
         return ResponseEntity.status(HttpStatus.CREATED).body(articleService.updateWithImage(id, article, image));
     }
 
     @DeleteMapping("/articles/{id}")
     ResponseEntity<String> deleteArticleById(@PathVariable String id) {
         articleService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(STR."Articulo id \{id} eliminado.");
+        return ResponseEntity.ok(STR."Articulo id \{id} eliminado.");
     }
 
     @PostMapping("/associates")
-    ResponseEntity<Associate> saveAssociate(@Valid @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
-        return new ResponseEntity<>(associateService.saveWithImages(associate, profile, banner), HttpStatus.CREATED);
+    ResponseEntity<Associate> saveAssociate(@Valid @RequestPart Associate associate,
+                                            @RequestPart MultipartFile profile,
+                                            @RequestPart MultipartFile banner) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(associateService.saveWithImages(associate, profile, banner));
     }
 
     @PutMapping("/associates/{id}")
-    ResponseEntity<Associate> updateAssociateById(@PathVariable String id, @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
-        return new ResponseEntity<>(associateService.updateWithImages(id, associate, profile, banner), HttpStatus.CREATED);
+    ResponseEntity<Associate> updateAssociateById(@PathVariable String id,
+                                                  @RequestPart(required = false) Associate associate,
+                                                  @RequestPart(required = false) MultipartFile profile,
+                                                  @RequestPart(required = false) MultipartFile banner) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(associateService.updateWithImages(id, associate, profile, banner));
     }
 
     @DeleteMapping("/associates/{id}")
     ResponseEntity<String> deleteAssociatesById(@PathVariable String id) {
         associateService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(STR."Asociado id \{id} eliminado.");
+        return ResponseEntity.ok(STR."Asociado id \{id} eliminado.");
     }
 
     @PostMapping("/activities")
     ResponseEntity<Activity> saveActivity(@Valid @RequestBody Activity activity) {
         return new ResponseEntity<>(activityService.save(activity), HttpStatus.CREATED);
     }
-
-
-
 
 }
