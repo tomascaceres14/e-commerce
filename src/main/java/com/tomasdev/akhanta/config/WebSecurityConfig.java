@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -16,7 +17,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -28,33 +29,25 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private final AccessDeniedHandlerException accessDeniedHandlerException;
-
     private final JwtAuthFilter jwtAuthFilter;
+    AccessDeniedHandlerException accessDeniedHandlerException;
 
     /**
      * Configura la seguridad de las peticiones HTTP
-     * @param http Peticion a configurar
-     * @return
-     * @throws Exception
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(withDefaults())
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandlerException)
-                .and()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandlerException))
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
                                 .requestMatchers("/auth/**", "/home/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.DELETE, "/admin/**").hasRole(Roles.ADMIN)
-                                .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.POST, "/admin/**").hasRole(Roles.ADMIN)
+                                .requestMatchers("/admin/**").hasRole(Roles.ADMIN)
                                 .anyRequest().authenticated()
 
                 );
@@ -67,9 +60,9 @@ public class WebSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(CorsConfiguration.ALL));
-        configuration.setAllowedMethods(Arrays.asList(CorsConfiguration.ALL));
-        configuration.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
+        configuration.setAllowedOrigins(List.of(CorsConfiguration.ALL));
+        configuration.setAllowedMethods(List.of(CorsConfiguration.ALL));
+        configuration.setAllowedHeaders(List.of(CorsConfiguration.ALL));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

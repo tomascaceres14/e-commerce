@@ -8,4 +8,6 @@ public interface AmazonS3Service {
 
     String update(MultipartFile image, String folder, String name);
 
+    void delete(String folder, String name);
+
 }

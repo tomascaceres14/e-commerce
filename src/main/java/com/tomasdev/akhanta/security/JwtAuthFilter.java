@@ -25,17 +25,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth", "/swagger-ui.html", "/swagger-ui", "/api-docs");
+    private List<String> urlsToSkip = List.of("/auth", "/home");
 
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
-     * @param request current HTTP request Petición a validar
      * @return True la URI existe en la lista blanca, false de lo contrario
-     * @throws ServletException
      */
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         System.out.println("en esta peticion se rompe");
         System.out.println(request.getRequestURI());
         return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
@@ -56,21 +54,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        /*
-        System.out.println("headers");
-        System.out.println(header);
-        System.out.println(request);
-
-
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String headerName = headerNames.nextElement();
-            String headerValue = request.getHeader(headerName);
-            System.out.println("header and value");
-            System.out.println(headerName);
-            System.out.println(headerValue);
-            }
-          */
 
         if (header == null) {
             throw new UnauthorizedException();

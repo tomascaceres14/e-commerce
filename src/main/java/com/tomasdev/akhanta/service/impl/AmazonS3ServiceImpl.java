@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
@@ -42,6 +43,11 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
         return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{originalName}";
     }
 
+    @Override
+    public void delete(String folder, String name) {
+        s3Client.deleteObject(new DeleteObjectRequest(bucketName, STR."\{folder}/\{name}"));
+    }
+
     private File convertMultipartFileToFile(MultipartFile file){
         File convertedFile = new File(file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(convertedFile)){
@@ -50,6 +56,10 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
             throw new ServiceException("Error converting multipart-file to file.");
         }
         return convertedFile;
+    }
+
+    public String getImageKeyFromUrl(String url) {
+        return url.split("/")[4];
     }
 
 }

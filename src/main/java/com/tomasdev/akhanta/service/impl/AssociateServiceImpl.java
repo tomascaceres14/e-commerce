@@ -18,6 +18,7 @@ public class AssociateServiceImpl implements AssociateService {
     private final AssociateRepository repository;
     private final AmazonS3ServiceImpl s3Service;
     private final ModelMapper mapper;
+    private final String s3Folder = "asociados";
 
     @Override
     public Associate save(Associate req) {
@@ -26,8 +27,8 @@ public class AssociateServiceImpl implements AssociateService {
 
     @Override
     public Associate saveWithImages(Associate req, MultipartFile profile, MultipartFile banner) {
-        req.setProfile_url(s3Service.upload(profile, "asociados"));
-        req.setBanner_url(s3Service.upload(banner, "asociados"));
+        req.setProfile_url(s3Service.upload(profile, s3Folder));
+        req.setBanner_url(s3Service.upload(banner, s3Folder));
         return repository.save(req);
     }
 
@@ -35,10 +36,10 @@ public class AssociateServiceImpl implements AssociateService {
     public Associate updateWithImages(String id, Associate req, MultipartFile profile, MultipartFile banner) {
         Associate associateDB = findById(id);
 
-        String profileName = associateDB.getProfile_url().split("/")[4];
-        String bannerName = associateDB.getBanner_url().split("/")[4];
-        req.setProfile_url(s3Service.update(profile, "asociados", profileName));
-        req.setBanner_url(s3Service.update(banner, "asociados", bannerName));
+        String profileName =  s3Service.getImageKeyFromUrl(associateDB.getProfile_url());
+        String bannerName = s3Service.getImageKeyFromUrl(associateDB.getBanner_url());
+        req.setProfile_url(s3Service.update(profile, s3Folder, profileName));
+        req.setBanner_url(s3Service.update(banner, s3Folder, bannerName));
 
         mapper.map(req, associateDB);
         associateDB.setId(id);
@@ -66,9 +67,9 @@ public class AssociateServiceImpl implements AssociateService {
 
     @Override
     public void deleteById(String id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Asociado");
-        }
+        Associate associate = findById(id);
+        s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getBanner_url()));
+        s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getProfile_url()));
         repository.deleteById(id);
     }
 }

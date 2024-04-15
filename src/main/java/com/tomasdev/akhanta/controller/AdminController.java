@@ -32,6 +32,12 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(articleService.updateWithImage(id, article, image));
     }
 
+    @DeleteMapping("/articles/{id}")
+    ResponseEntity<String> deleteArticleById(@PathVariable String id) {
+        articleService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(STR."Articulo id \{id} eliminado.");
+    }
+
     @PostMapping("/associates")
     ResponseEntity<Associate> saveAssociate(@Valid @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
         return new ResponseEntity<>(associateService.saveWithImages(associate, profile, banner), HttpStatus.CREATED);

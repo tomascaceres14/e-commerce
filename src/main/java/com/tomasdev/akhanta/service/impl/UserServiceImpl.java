@@ -1,6 +1,6 @@
 package com.tomasdev.akhanta.service.impl;
 
-import com.tomasdev.akhanta.exceptions.CustomerExistsException;
+import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.EmailValidationException;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.User;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         User user = mapper.map(req, User.class);
 
         if ((user.getId() != null && repository.existsById(user.getId())) || repository.findByEmail(user.getEmail()).isPresent()) {
-           throw new CustomerExistsException();
+           throw new UserExistsException();
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

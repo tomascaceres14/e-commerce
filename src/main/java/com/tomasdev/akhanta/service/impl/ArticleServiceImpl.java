@@ -16,31 +16,29 @@ import org.springframework.web.multipart.MultipartFile;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository repository;
-    private AmazonS3ServiceImpl s3Service;
     private ModelMapper mapper;
-
-    @Override
-    public Article save(Article req) {
-        return repository.save(req);
-    }
-
-    @Override
-    public Article saveWithImage(Article req, MultipartFile image) {
-        System.out.println("Hasta aca llegue");
-        req.setImage_url(s3Service.upload(image, "articulos"));
-        return repository.save(req);
-    }
-
-    @Override
-    public Article updateWithImage(String id, Article article, MultipartFile image) {
-        return null;
-    }
+    private AmazonS3ServiceImpl s3Service;
+    private final String s3Folder = "articulos";
 
     @Override
     public Page<Article> findAll(int page) {
         PageRequest pageable = PageRequest.of(page, 10);
         return repository.findAll(pageable);
     }
+
+    @Override
+    public Article save(Article req) {
+        return repository.save(req);
+    }
+
+
+    @Override
+    public Article saveWithImage(Article req, MultipartFile image) {
+        System.out.println("Hasta aca llegue");
+        req.setImage_url(s3Service.upload(image, s3Folder));
+        return repository.save(req);
+    }
+
 
     @Override
     public Article findById(String id) {
@@ -56,10 +54,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article updateWithImage(String id, Article req, MultipartFile image) {
+        Article articleDB = findById(id);
+
+        String imageName =  s3Service.getImageKeyFromUrl(articleDB.getImage_url());
+        req.setImage_url(s3Service.update(image, s3Folder, imageName));
+
+        mapper.map(req, articleDB);
+        articleDB.setId(id);
+        return repository.save(articleDB);
+    }
+
+    @Override
     public void deleteById(String id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Articulo");
-        }
+        Article article = findById(id);
+        s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(article.getImage_url()));
         repository.deleteById(id);
     }
 }
