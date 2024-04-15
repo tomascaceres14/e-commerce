@@ -57,11 +57,17 @@ public class ArticleServiceImpl implements ArticleService {
     public Article updateWithImage(String id, Article req, MultipartFile image) {
         Article articleDB = findById(id);
 
-        String imageName =  s3Service.getImageKeyFromUrl(articleDB.getImage_url());
-        req.setImage_url(s3Service.update(image, s3Folder, imageName));
 
-        mapper.map(req, articleDB);
-        articleDB.setId(id);
+        if (!(image == null)) {
+            String imageName =  s3Service.getImageKeyFromUrl(articleDB.getImage_url());
+            req.setImage_url(s3Service.update(image, s3Folder, imageName));
+        }
+
+        if (!(req == null)) {
+            mapper.map(req, articleDB);
+        }
+
+        System.out.println(articleDB);
         return repository.save(articleDB);
     }
 

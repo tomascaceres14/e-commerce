@@ -28,14 +28,14 @@ public class AdminController {
     }
 
     @PutMapping("/articles/{id}")
-    ResponseEntity<Article> updateArticleById(@PathVariable String id, @RequestPart Article article, @RequestPart MultipartFile image) {
+    ResponseEntity<Article> updateArticleById(@PathVariable String id, @RequestPart(required = false) Article article, @RequestPart MultipartFile image) {
         return ResponseEntity.status(HttpStatus.CREATED).body(articleService.updateWithImage(id, article, image));
     }
 
     @DeleteMapping("/articles/{id}")
     ResponseEntity<String> deleteArticleById(@PathVariable String id) {
         articleService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body(STR."Articulo id \{id} eliminado.");
+        return ResponseEntity.status(HttpStatus.OK).body(STR."Articulo id \{id} eliminado.");
     }
 
     @PostMapping("/associates")
@@ -46,6 +46,12 @@ public class AdminController {
     @PutMapping("/associates/{id}")
     ResponseEntity<Associate> updateAssociateById(@PathVariable String id, @RequestPart Associate associate, @RequestPart MultipartFile profile, @RequestPart MultipartFile banner) {
         return new ResponseEntity<>(associateService.updateWithImages(id, associate, profile, banner), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/associates/{id}")
+    ResponseEntity<String> deleteAssociatesById(@PathVariable String id) {
+        associateService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(STR."Asociado id \{id} eliminado.");
     }
 
     @PostMapping("/activities")
