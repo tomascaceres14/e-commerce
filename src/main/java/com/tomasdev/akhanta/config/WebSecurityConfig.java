@@ -1,13 +1,13 @@
 package com.tomasdev.akhanta.config;
 
 import com.tomasdev.akhanta.exceptions.AccessDeniedHandlerException;
+import com.tomasdev.akhanta.exceptions.RestAuthenticationEntryPoint;
 import com.tomasdev.akhanta.security.JwtAuthFilter;
 import com.tomasdev.akhanta.security.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,6 +32,7 @@ public class WebSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
     AccessDeniedHandlerException accessDeniedHandlerException;
+    RestAuthenticationEntryPoint authEntryPoint;
 
     /**
      * Configura la seguridad de las peticiones HTTP
@@ -40,7 +41,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(withDefaults())
-                .exceptionHandling(Customizer.withDefaults())
+                .exceptionHandling((exception) -> exception.accessDeniedHandler(accessDeniedHandlerException)
+                                .authenticationEntryPoint(authEntryPoint))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -52,7 +54,6 @@ public class WebSecurityConfig {
                                 .anyRequest().authenticated()
 
                 );
-
 
         return http.build();
     }

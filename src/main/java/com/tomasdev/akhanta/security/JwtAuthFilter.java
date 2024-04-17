@@ -27,59 +27,37 @@ public class JwtAuthFilter extends OncePerRequestFilter {
      */
     private List<String> urlsToSkip = List.of("/auth", "/home");
 
-
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
      * @return True la URI existe en la lista blanca, false de lo contrario
      */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        System.out.println("en esta peticion se rompe");
         System.out.println(request.getRequestURI());
         return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
     }
 
-
-    /**
-     * Valida si la petición contiene la cabezera de authorization con el bearer token
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
-     * @throws UnauthorizedException - Si no tiene la cabezera HttpHeaders.AUTHORIZATION
-     *                               - Si tiene más de dos elementos en al cabezera o no tiene 'Bearer'
-     *                               - Si el token no es valido
-     */
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("Error validando la sesión. Cabecera no incluida");
         }
 
         String[] authElements = header.split(" ");
 
         if (authElements.length != 2 || !"Bearer".equals(authElements[0])) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("Mal formato del token.");
         }
 
         try {
             Authentication auth = jwtAuthenticationProvider.validateToken(authElements[1]);
             SecurityContextHolder.getContext().setAuthentication(auth);
-
-            System.out.println("voy a imprimir el context");
-            System.out.println(SecurityContextHolder.getContext());
-            System.out.println("voy a imprimir la autenticacion");
-            System.out.println(SecurityContextHolder.getContext().getAuthentication());
         } catch (RuntimeException e) {
             SecurityContextHolder.clearContext();
-            System.out.println("se estalló");
-            System.out.println(e);
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
-        System.out.println("llegué aqui");
 
         filterChain.doFilter(request, response);
     }

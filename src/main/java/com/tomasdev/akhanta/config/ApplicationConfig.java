@@ -3,10 +3,14 @@ package com.tomasdev.akhanta.config;
 import com.tomasdev.akhanta.security.JwtAuthFilter;
 import com.tomasdev.akhanta.security.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 /**
  * Clase de configuración para la creación de Beans a utilizar
@@ -34,5 +38,4 @@ public class ApplicationConfig {
     public JwtAuthFilter jwtAuthFilter() {
         return new JwtAuthFilter(jwtAuthenticationProvider);
     }
-
 }

@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.UserExistsException;
-import com.tomasdev.akhanta.exceptions.EmailValidationException;
+import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
+        return repository.findByEmail(email).orElseThrow(WrongCredentialsException::new);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public ResponseUserDTO registerUser(UserDTO req) {
         if (!req.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
-            throw new EmailValidationException();
+            throw new WrongCredentialsException();
         }
 
         User user = mapper.map(req, User.class);

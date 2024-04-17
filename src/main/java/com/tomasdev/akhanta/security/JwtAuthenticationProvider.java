@@ -74,12 +74,8 @@ public class JwtAuthenticationProvider {
      */
     public Authentication validateToken(String token) throws AuthenticationException {
 
-        System.out.println("entre tambien aqui");
-        System.out.println(token);
-
         //verifica el token como su firma y expiración, lanza una excepcion si algo falla
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(token);
-
 
         UserDTO exists = listToken.get(token);
         if (exists == null) {
@@ -87,7 +83,7 @@ public class JwtAuthenticationProvider {
         }
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
-        rolesAndAuthorities.add(new SimpleGrantedAuthority("ROLE_"+exists.getRole())); //rol
+        rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{exists.getRole()}")); //rol
 
         return new UsernamePasswordAuthenticationToken(exists, token, rolesAndAuthorities);
     }

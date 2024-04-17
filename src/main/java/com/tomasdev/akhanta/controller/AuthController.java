@@ -34,4 +34,9 @@ public class AuthController {
     public ResponseEntity<JwtResponseDTO> signIn(@RequestBody AuthUserDTO authUserDTO) {
         return ResponseEntity.ok(authService.signIn(authUserDTO));
     }
+
+    @PostMapping(path = "/sign-out")
+    public ResponseEntity<JwtResponseDTO> signOut(@RequestBody AuthUserDTO authUserDTO) {
+        return ResponseEntity.ok(authService.signIn(authUserDTO));
+    }
 }
