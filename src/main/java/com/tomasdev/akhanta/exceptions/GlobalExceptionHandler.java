@@ -7,9 +7,11 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ResourceNotFoundException.class, ServiceException.class, WrongCredentialsException.class, UserExistsException.class})
@@ -21,13 +23,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "multipart/form-data missing. Check entity attached.");
     }
 
-    @ExceptionHandler({UnauthorizedException.class, AuthenticationException.class})
+    @ExceptionHandler({UnauthorizedException.class, AuthenticationException.class, JWTVerificationException.class})
     public ProblemDetail unauthorizedException(RuntimeException exception) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
-    }
-
-    @ExceptionHandler({JWTVerificationException.class})
-    public ProblemDetail jwtException(JWTVerificationException exception) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
     }
 

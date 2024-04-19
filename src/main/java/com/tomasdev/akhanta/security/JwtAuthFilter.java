@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -42,7 +43,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null) {
-            throw new UnauthorizedException("Error validando la sesión. Cabecera no incluida");
+            response.sendError(404, "Cabecera invalida");
         }
 
         String[] authElements = header.split(" ");
@@ -54,8 +55,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         try {
             Authentication auth = jwtAuthenticationProvider.validateToken(authElements[1]);
             SecurityContextHolder.getContext().setAuthentication(auth);
-        } catch (RuntimeException e) {
+        } catch (AuthenticationException e) {
             SecurityContextHolder.clearContext();
+            response.sendError(405, "error login token");
             throw new RuntimeException(e.getMessage());
         }
 

@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.config;
 
-import com.tomasdev.akhanta.exceptions.AccessDeniedHandlerException;
-import com.tomasdev.akhanta.exceptions.RestAuthenticationEntryPoint;
+import com.tomasdev.akhanta.exceptions.CustomAccessDeniedHandler;
+import com.tomasdev.akhanta.exceptions.AuthEntryPoint;
 import com.tomasdev.akhanta.security.JwtAuthFilter;
 import com.tomasdev.akhanta.security.Roles;
 import lombok.RequiredArgsConstructor;
@@ -25,26 +25,26 @@ import static org.springframework.security.config.Customizer.withDefaults;
 /**
  * Clase que configura lo relacionado a las peticiones HTTP
  */
-@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
-    AccessDeniedHandlerException accessDeniedHandlerException;
-    RestAuthenticationEntryPoint authEntryPoint;
+    private final AuthEntryPoint authEntryPoint;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
     /**
      * Configura la seguridad de las peticiones HTTP
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(withDefaults())
-                .exceptionHandling((exception) -> exception.accessDeniedHandler(accessDeniedHandlerException)
-                                .authenticationEntryPoint(authEntryPoint))
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler)
+                                .authenticationEntryPoint(authEntryPoint))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
@@ -52,7 +52,6 @@ public class WebSecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
                                 .requestMatchers("/admin/**").hasRole(Roles.ADMIN)
                                 .anyRequest().authenticated()
-
                 );
 
         return http.build();
@@ -60,7 +59,7 @@ public class WebSecurityConfig {
 
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfig() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(CorsConfiguration.ALL));
         configuration.setAllowedMethods(List.of(CorsConfiguration.ALL));
@@ -70,5 +69,13 @@ public class WebSecurityConfig {
         return source;
     }
 
+    @Bean
+    public CustomAccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
 
+    @Bean
+    public AuthEntryPoint authEntryPoint() {
+        return new AuthEntryPoint();
+    }
 }
