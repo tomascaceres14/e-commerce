@@ -6,11 +6,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,15 +20,20 @@ import java.util.List;
 /**
  * Filtro que valida si la peticion tiene la cabezera de Autorizacion
  */
-@RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final HandlerExceptionResolver resolver;
+
+    public JwtAuthFilter(JwtAuthenticationProvider jwtAuthenticationProvider, @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
+        this.resolver = resolver;
+    }
 
     /**
      * Lista blanca de URIs
      */
-    private List<String> urlsToSkip = List.of("/auth", "/home");
+    private final List<String> urlsToSkip = List.of("/auth", "/home", "/favicon.ico");
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
@@ -40,27 +47,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
+
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (header == null) {
-            response.sendError(404, "Cabecera invalida");
+        if (header == null || !header.startsWith("Bearer ")) {
+            resolver.resolveException(request, response, null, new UnauthorizedException("Bad token"));
+            return;
         }
 
         String[] authElements = header.split(" ");
 
-        if (authElements.length != 2 || !"Bearer".equals(authElements[0])) {
-            throw new UnauthorizedException("Mal formato del token.");
-        }
-
         try {
             Authentication auth = jwtAuthenticationProvider.validateToken(authElements[1]);
             SecurityContextHolder.getContext().setAuthentication(auth);
-        } catch (AuthenticationException e) {
-            SecurityContextHolder.clearContext();
-            response.sendError(405, "error login token");
-            throw new RuntimeException(e.getMessage());
+            filterChain.doFilter(request, response);
+        } catch (RuntimeException e) {
+            resolver.resolveException(request, response, null, e);
         }
 
-        filterChain.doFilter(request, response);
     }
 }

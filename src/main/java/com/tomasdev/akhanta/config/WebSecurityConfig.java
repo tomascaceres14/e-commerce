@@ -68,14 +68,4 @@ public class WebSecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
-    @Bean
-    public CustomAccessDeniedHandler accessDeniedHandler() {
-        return new CustomAccessDeniedHandler();
-    }
-
-    @Bean
-    public AuthEntryPoint authEntryPoint() {
-        return new AuthEntryPoint();
-    }
 }

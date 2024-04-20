@@ -15,11 +15,16 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
 /**
  * Clase de configuración para la creación de Beans a utilizar
  */
-@RequiredArgsConstructor
 @Configuration
 public class ApplicationConfig {
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final HandlerExceptionResolver resolver;
+
+    public ApplicationConfig(JwtAuthenticationProvider jwtAuthenticationProvider, @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
+        this.resolver = resolver;
+    }
 
     /**
      * Bean de Password Encoder para inyeccion
@@ -36,6 +41,6 @@ public class ApplicationConfig {
      */
     @Bean
     public JwtAuthFilter jwtAuthFilter() {
-        return new JwtAuthFilter(jwtAuthenticationProvider);
+        return new JwtAuthFilter(jwtAuthenticationProvider, resolver);
     }
 }
