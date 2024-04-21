@@ -37,7 +37,7 @@ public class ActivityServiceImpl implements ActivityService {
     public Activity updateById(String id, Activity req) {
         Activity activityDB = findById(id);
         mapper.map(req, activityDB);
-        activityDB.setId(id);
+        activityDB.setActivityId(id);
         return repository.save(activityDB);
     }
 

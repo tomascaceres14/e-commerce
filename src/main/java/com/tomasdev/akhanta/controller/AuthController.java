@@ -6,6 +6,7 @@ import com.tomasdev.akhanta.model.dto.UserDTO;
 import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
 import com.tomasdev.akhanta.service.AuthService;
 import com.tomasdev.akhanta.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/sign-in")
-    public ResponseEntity<JwtResponseDTO> signIn(@RequestBody AuthUserDTO authUserDTO) {
+    public ResponseEntity<JwtResponseDTO> signIn(@RequestBody @Valid AuthUserDTO authUserDTO) {
         return ResponseEntity.ok(authService.signIn(authUserDTO));
     }
 

@@ -2,7 +2,7 @@ package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.Associate;
-import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.model.dto.AssociateRequestDTO;
 import com.tomasdev.akhanta.repository.AssociateRepository;
 import com.tomasdev.akhanta.service.AssociateService;
 import lombok.AllArgsConstructor;
@@ -27,29 +27,30 @@ public class AssociateServiceImpl implements AssociateService {
     }
 
     @Override
-    public Associate saveWithImages(Associate req, MultipartFile profile, MultipartFile banner) {
-        req.setProfile_url(s3Service.upload(profile, s3Folder));
-        req.setBanner_url(s3Service.upload(banner, s3Folder));
-        return repository.save(req);
+    public Associate saveWithImages(AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
+        Associate associate = mapper.map(associateDTO, Associate.class);
+        associate.setProfile_url(s3Service.upload(profile, s3Folder));
+        associate.setBanner_url(s3Service.upload(banner, s3Folder));
+        return repository.save(associate);
     }
 
     @Override
-    public Associate updateWithImages(String id, Associate req, MultipartFile profile, MultipartFile banner) {
+    public Associate updateWithImages(String id, AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
         Associate associateDB = findById(id);
 
-
-        if (!(profile == null)) {
+        if (profile != null) {
             String imageName =  s3Service.getImageKeyFromUrl(associateDB.getProfile_url());
             associateDB.setProfile_url(s3Service.update(profile, s3Folder, imageName));
         }
 
-        if (!(banner == null)) {
+        if (banner != null) {
             String imageName =  s3Service.getImageKeyFromUrl(associateDB.getBanner_url());
             associateDB.setBanner_url(s3Service.update(banner, s3Folder, imageName));
         }
 
-        if (!(req == null)) {
-            mapper.map(req, associateDB);
+        if (associateDTO != null) {
+            mapper.map(associateDTO, associateDB);
+            associateDB.setAssociateId(id);
         }
 
         return repository.save(associateDB);
@@ -70,7 +71,7 @@ public class AssociateServiceImpl implements AssociateService {
     public Associate updateById(String id, Associate req) {
         Associate associateDB = findById(id);
         mapper.map(req, associateDB);
-        associateDB.setId(id);
+        associateDB.setAssociateId(id);
         return repository.save(associateDB);
     }
 

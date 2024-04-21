@@ -1,6 +1,5 @@
 package com.tomasdev.akhanta.model;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,10 +12,8 @@ import java.util.List;
 public class Associate {
 
     @Id
-    private String id;
-    @NotBlank(message = "Name can't be empty nor null")
+    private String associateId;
     private String name;
-    @NotBlank(message = "Description can't be empty nor null")
     private String description;
     private List<Link> links;
     private String profile_url;

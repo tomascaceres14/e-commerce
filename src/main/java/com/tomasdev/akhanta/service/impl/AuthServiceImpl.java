@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.service.impl;
 
+import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.AuthUserDTO;
 import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
@@ -35,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(authCustomerDto.getEmail());
 
         if (!passwordEncoder.matches(authCustomerDto.getPassword(), user.getPassword())) {
-            throw new WrongThreadException();
+            throw new WrongCredentialsException();
         }
 
         return new JwtResponseDTO(jwtAuthenticationProvider.createToken(mapper.map(user, UserDTO.class)));

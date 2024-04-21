@@ -2,6 +2,7 @@ package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.Article;
+import com.tomasdev.akhanta.model.dto.ArticleRequestDTO;
 import com.tomasdev.akhanta.repository.ArticleRepository;
 import com.tomasdev.akhanta.service.ArticleService;
 import lombok.AllArgsConstructor;
@@ -31,14 +32,12 @@ public class ArticleServiceImpl implements ArticleService {
         return repository.save(req);
     }
 
-
     @Override
-    public Article saveWithImage(Article req, MultipartFile image) {
-        System.out.println("Hasta aca llegue");
-        req.setImage_url(s3Service.upload(image, s3Folder));
-        return repository.save(req);
+    public Article saveWithImage(ArticleRequestDTO req, MultipartFile image) {
+        Article article = mapper.map(req, Article.class);
+        article.setImage_url(s3Service.upload(image, s3Folder));
+        return repository.save(article);
     }
-
 
     @Override
     public Article findById(String id) {
@@ -49,22 +48,22 @@ public class ArticleServiceImpl implements ArticleService {
     public Article updateById(String id, Article req) {
         Article articleDB = findById(id);
         mapper.map(req, articleDB);
-        articleDB.setId(id);
+        articleDB.setArticleId(id);
         return repository.save(articleDB);
     }
 
     @Override
-    public Article updateWithImage(String id, Article req, MultipartFile image) {
+    public Article updateWithImage(String id, ArticleRequestDTO articleDTO, MultipartFile image) {
         Article articleDB = findById(id);
 
-
-        if (!(image == null)) {
+        if (image != null) {
             String imageName =  s3Service.getImageKeyFromUrl(articleDB.getImage_url());
             articleDB.setImage_url(s3Service.update(image, s3Folder, imageName));
         }
 
-        if (!(req == null)) {
-            mapper.map(req, articleDB);
+        if (!(articleDTO == null)) {
+            mapper.map(articleDTO, articleDB);
+            articleDB.setArticleId(id);
         }
 
         return repository.save(articleDB);

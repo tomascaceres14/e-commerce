@@ -3,6 +3,8 @@ package com.tomasdev.akhanta.controller;
 import com.tomasdev.akhanta.model.Activity;
 import com.tomasdev.akhanta.model.Article;
 import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.model.dto.ArticleRequestDTO;
+import com.tomasdev.akhanta.model.dto.AssociateRequestDTO;
 import com.tomasdev.akhanta.service.impl.ActivityServiceImpl;
 import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
 import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
@@ -23,15 +25,20 @@ public class AdminController {
     private AssociateServiceImpl associateService;
 
     @PostMapping("/articles")
-    ResponseEntity<Article> saveArticle(@Valid @RequestPart Article article, @RequestPart MultipartFile image) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveWithImage(article, image));
+    ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
+                                        @RequestPart MultipartFile image) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(articleService.saveWithImage(article, image));
     }
 
     @PutMapping("/articles/{id}")
     ResponseEntity<Article> updateArticleById(@PathVariable String id,
-                                              @RequestPart(required = false) Article article,
+                                              @RequestPart(required = false) ArticleRequestDTO article,
                                               @RequestPart(required = false) MultipartFile image) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(articleService.updateWithImage(id, article, image));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(articleService.updateWithImage(id, article, image));
     }
 
     @DeleteMapping("/articles/{id}")
@@ -41,18 +48,21 @@ public class AdminController {
     }
 
     @PostMapping("/associates")
-    ResponseEntity<Associate> saveAssociate(@Valid @RequestPart Associate associate,
+    ResponseEntity<Associate> saveAssociate(@Valid @RequestPart AssociateRequestDTO associate,
                                             @RequestPart MultipartFile profile,
                                             @RequestPart MultipartFile banner) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(associateService.saveWithImages(associate, profile, banner));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(associateService.saveWithImages(associate, profile, banner));
     }
 
     @PutMapping("/associates/{id}")
     ResponseEntity<Associate> updateAssociateById(@PathVariable String id,
-                                                  @RequestPart(required = false) Associate associate,
+                                                  @RequestPart(required = false) AssociateRequestDTO associate,
                                                   @RequestPart(required = false) MultipartFile profile,
                                                   @RequestPart(required = false) MultipartFile banner) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(associateService.updateWithImages(id, associate, profile, banner));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(associateService.updateWithImages(id, associate, profile, banner));
     }
 
     @DeleteMapping("/associates/{id}")

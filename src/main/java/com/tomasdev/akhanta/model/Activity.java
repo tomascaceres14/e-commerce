@@ -11,7 +11,7 @@ import java.util.List;
 @Document(collection = "activities")
 public class Activity {
     @Id
-    private String id;
+    private String activityId;
     @NotBlank(message = "Class name cannot be null or empty")
     private String name;
     private List<String> professors;

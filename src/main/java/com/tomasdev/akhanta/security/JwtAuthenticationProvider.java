@@ -79,7 +79,7 @@ public class JwtAuthenticationProvider {
 
         UserDTO exists = listToken.get(token);
         if (exists == null) {
-            throw new BadCredentialsException("Usuario no registrado.");
+            throw new BadCredentialsException("Inicie sesión e intente nuevamente.");
         }
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
