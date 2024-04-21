@@ -7,6 +7,6 @@ public interface AuthService {
 
     JwtResponseDTO signIn(AuthUserDTO authUserDTO);
 
-    String signOut(String jwt);
+    void signOut(String jwt);
 
 }

@@ -49,7 +49,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null || !header.startsWith("Bearer ")) {
-            resolver.resolveException(request, response, null, new UnauthorizedException("Debes iniciar sesión antes de continuar."));
+            resolver.resolveException(request, response, null, new UnauthorizedException("Inicie sesión e intente nuevamente."));
             return;
         }
 

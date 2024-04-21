@@ -88,14 +88,10 @@ public class JwtAuthenticationProvider {
         return new UsernamePasswordAuthenticationToken(exists, token, rolesAndAuthorities);
     }
 
-    public String deleteToken(String jwt) {
-
-        if (!listToken.containsKey(jwt)) {
-            return "No existe token";
-        }
-
+    public void deleteToken(String jwt) {
+        System.out.println("borrando token: " + jwt);
         listToken.remove(jwt);
-        return "Sesión cerrada exitosamente";
+        System.out.println("lista nueva: " + listToken);
     }
 
 }

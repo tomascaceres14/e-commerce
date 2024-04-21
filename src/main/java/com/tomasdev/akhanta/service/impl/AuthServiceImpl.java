@@ -44,14 +44,12 @@ public class AuthServiceImpl implements AuthService {
 
     /**
      * Cierra la sesión eliminando de la lista blanca el token ingresado
+     *
      * @param token Token a eliminar
-     * @return
      */
-    public String signOut(String token) {
-
+    public void signOut(String token) {
         String[] authElements = token.split(" ");
         jwtAuthenticationProvider.deleteToken(authElements[1]);
-        return "Sesión cerrada correctamente.";
     }
 
 }
