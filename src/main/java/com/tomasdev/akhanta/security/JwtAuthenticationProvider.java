@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.model.dto.UserDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
@@ -23,6 +24,7 @@ import java.util.HashSet;
 /**
  * Clase encargada de la creacion y validacion de jwt para el inicio de sesion de un Usuario
  */
+@Slf4j
 @Component
 public class JwtAuthenticationProvider {
 
@@ -60,6 +62,7 @@ public class JwtAuthenticationProvider {
                 .withExpiresAt(validity)
                 .sign(algorithm);
 
+        log.info("Sesion iniciada. Nuevo token creado");
         listToken.put(tokenCreated, customerJwt);
         return tokenCreated;
     }
@@ -75,10 +78,15 @@ public class JwtAuthenticationProvider {
     public Authentication validateToken(String token) throws AuthenticationException {
 
         //verifica el token como su firma y expiración, lanza una excepcion si algo falla
-        JWT.require(Algorithm.HMAC256(secretKey)).build().verify(token);
+        try {
+            JWT.require(Algorithm.HMAC256(secretKey)).build().verify(token);
+        }catch (Exception e) {
+            log.error("Error validating token {}", e.getMessage());
+        }
 
         UserDTO exists = listToken.get(token);
         if (exists == null) {
+            log.warn("Missing token in whitelist");
             throw new BadCredentialsException("Inicie sesión e intente nuevamente.");
         }
 
@@ -89,9 +97,7 @@ public class JwtAuthenticationProvider {
     }
 
     public void deleteToken(String jwt) {
-        System.out.println("borrando token: " + jwt);
         listToken.remove(jwt);
-        System.out.println("lista nueva: " + listToken);
     }
 
 }

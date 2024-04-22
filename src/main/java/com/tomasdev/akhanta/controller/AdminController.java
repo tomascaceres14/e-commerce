@@ -10,11 +10,13 @@ import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
 import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/admin")
@@ -27,6 +29,7 @@ public class AdminController {
     @PostMapping("/articles")
     ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
                                         @RequestPart MultipartFile image) {
+        log.info("[ /admin/articles - POST ]");
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(articleService.saveWithImage(article, image));
@@ -36,6 +39,7 @@ public class AdminController {
     ResponseEntity<Article> updateArticleById(@PathVariable String id,
                                               @RequestPart(required = false) ArticleRequestDTO article,
                                               @RequestPart(required = false) MultipartFile image) {
+        log.info("[ /admin/articles/id - PUT ]");
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(articleService.updateWithImage(id, article, image));
@@ -43,6 +47,7 @@ public class AdminController {
 
     @DeleteMapping("/articles/{id}")
     ResponseEntity<String> deleteArticleById(@PathVariable String id) {
+        log.info("[ /admin/articles/id - DELETE ]");
         articleService.deleteById(id);
         return ResponseEntity.ok(STR."Articulo id \{id} eliminado.");
     }
@@ -51,6 +56,7 @@ public class AdminController {
     ResponseEntity<Associate> saveAssociate(@Valid @RequestPart AssociateRequestDTO associate,
                                             @RequestPart MultipartFile profile,
                                             @RequestPart MultipartFile banner) {
+        log.info("[ /admin/associates - POST ]");
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(associateService.saveWithImages(associate, profile, banner));
@@ -61,12 +67,14 @@ public class AdminController {
                                                   @RequestPart(required = false) AssociateRequestDTO associate,
                                                   @RequestPart(required = false) MultipartFile profile,
                                                   @RequestPart(required = false) MultipartFile banner) {
+        log.info("[ /admin/associates/id - PUT ]");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(associateService.updateWithImages(id, associate, profile, banner));
     }
 
     @DeleteMapping("/associates/{id}")
     ResponseEntity<String> deleteAssociatesById(@PathVariable String id) {
+        log.info("[ /admin/associates/id - DELETE ]");
         associateService.deleteById(id);
         return ResponseEntity.ok(STR."Asociado id \{id} eliminado.");
     }

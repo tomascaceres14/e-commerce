@@ -5,6 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * Filtro que valida si la peticion tiene la cabezera de Autorizacion
  */
+@Slf4j
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
@@ -31,7 +33,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private final List<String> urlsToSkip = List.of("/auth", "/home", "/favicon.ico");
+    private final List<String> urlsToSkip = List.of("/auth", "/home", "/favicon.ico", "/");
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
@@ -39,7 +41,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
      */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        System.out.println(request.getRequestURI());
         return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
     }
 
@@ -60,6 +61,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (RuntimeException e) {
+            log.error("Es aca {}", e.getMessage());
             resolver.resolveException(request, response, null, e);
         }
 
