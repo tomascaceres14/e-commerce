@@ -37,8 +37,10 @@ public class AssociateServiceImpl implements AssociateService {
         associate.setProfile_url(s3Service.upload(profile, s3Folder));
         associate.setBanner_url(s3Service.upload(banner, s3Folder));
 
-        log.info("[ Creating new associate it a{} ]", new Date());
-        return repository.save(associate);
+        Associate associateDB = repository.save(associate);
+
+        log.info("[ Creating new associate id: {} ]", associateDB);
+        return associateDB;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class AssociateServiceImpl implements AssociateService {
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getBanner_url()));
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getProfile_url()));
 
-        log.info("[ Deleting associate id: {} - {} ]", id, new Date());
+        log.info("[ Deleting associate id: {} ]", id);
         repository.deleteById(id);
     }
 }

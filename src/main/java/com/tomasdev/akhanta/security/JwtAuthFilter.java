@@ -46,10 +46,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
+        log.info("Applying internal jwt filter to {}", request.getRequestURI());
+
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null || !header.startsWith("Bearer ")) {
-            log.info("Inicie sesión e intente nuevamente.");
             resolver.resolveException(request, response, null, new UnauthorizedException("Inicie sesión e intente nuevamente."));
             return;
         }
@@ -61,7 +62,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (RuntimeException e) {
-            log.error("{} - {}", e.getClass().getSimpleName(), e.getMessage());
             resolver.resolveException(request, response, null, e);
         }
 

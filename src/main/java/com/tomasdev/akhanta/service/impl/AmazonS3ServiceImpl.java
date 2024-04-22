@@ -6,12 +6,14 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
 import com.tomasdev.akhanta.utils.SequenceGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
+@Slf4j
 @Service
 public class AmazonS3ServiceImpl implements AmazonS3Service {
 
@@ -32,20 +34,24 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
 
         file.delete();
 
+        log.info("[ New S3 resource created at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
         return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}";
     }
 
     @Override
-    public String update(MultipartFile image, String folder, String originalName) {
+    public String update(MultipartFile image, String folder, String filename) {
         File file = convertMultipartFileToFile(image);
-        s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", originalName, file));
+        s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", filename, file));
         file.delete();
-        return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{originalName}";
+
+        log.info("[ New S3 resource updated at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
+        return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}";
     }
 
     @Override
-    public void delete(String folder, String name) {
-        s3Client.deleteObject(new DeleteObjectRequest(bucketName, STR."\{folder}/\{name}"));
+    public void delete(String folder, String filename) {
+        log.info("[ New S3 deleted at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
+        s3Client.deleteObject(new DeleteObjectRequest(bucketName, STR."\{folder}/\{filename}"));
     }
 
     private File convertMultipartFileToFile(MultipartFile file){

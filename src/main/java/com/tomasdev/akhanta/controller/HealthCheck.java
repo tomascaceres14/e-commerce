@@ -17,9 +17,6 @@ public class HealthCheck {
 
     @GetMapping("/")
     public String healthCheck() {
-        log.info("this is info");
-        log.warn("this is a warning");
-        log.error("this is a error");
         return SequenceGenerator.uniqueSequence();
     }
 }

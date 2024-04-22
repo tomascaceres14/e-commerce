@@ -41,9 +41,10 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = mapper.map(req, Article.class);
 
         article.setImage_url(s3Service.upload(image, s3Folder));
+        article = repository.save(article);
 
-        log.info("[ Creating new article - {} ]", new Date());
-        return repository.save(article);
+        log.info("[ Creating new article id: {} ]", article.getArticleId());
+        return article;
     }
 
     @Override
@@ -75,7 +76,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleDB.setArticleId(id);
         }
 
-        log.info("[ Updating article id: {} - {} ]", id, new Date());
+        log.info("[ Updating article id: {} ]", id);
         return repository.save(articleDB);
     }
 
@@ -84,7 +85,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = findById(id);
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(article.getImage_url()));
 
-        log.info("[ Deleting article id: {} - {} ]", id, new Date());
+        log.info("[ Deleting article id: {}  ]", id);
         repository.deleteById(id);
     }
 }

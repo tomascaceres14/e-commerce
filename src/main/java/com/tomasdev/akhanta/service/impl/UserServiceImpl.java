@@ -10,6 +10,7 @@ import com.tomasdev.akhanta.repository.UserRepository;
 import com.tomasdev.akhanta.security.Roles;
 import com.tomasdev.akhanta.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -51,9 +53,12 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        user.setRole(Roles.ADMIN);
+        user.setRole(Roles.CUSTOMER);
 
-        return mapper.map(repository.save(user), ResponseUserDTO.class);
+        User userDB = repository.save(user);
+
+        log.info("Registering user id: {}", userDB.getId());
+        return mapper.map(userDB, ResponseUserDTO.class);
     }
 
     @Override
