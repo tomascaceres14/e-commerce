@@ -25,7 +25,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ResourceNotFoundException.class, ServiceException.class, WrongCredentialsException.class, UserExistsException.class})
     public ProblemDetail badRequestException(RuntimeException exception) {
-        log.error("Error {}", exception.getMessage());
+
+        log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
@@ -33,25 +34,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<String> errors = new ArrayList<>();
         ex.getBindingResult().getFieldErrors().forEach(error -> errors.add(error.getDefaultMessage()));
-        log.error("Error {}", ex.getMessage());
+
+        log.error("{} - {}", ex.getClass().getSimpleName(), ex.getMessage());
         return new ResponseEntity<>(new ErrorResponseDTO(errors), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({InvalidContentTypeException.class})
     public ProblemDetail multipartMissingException(InvalidContentTypeException exception) {
-        log.error("Error {}", exception.getMessage());
+        log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "multipart/form-data missing. Check entity attached.");
     }
 
     @ExceptionHandler({UnauthorizedException.class, AuthenticationException.class, JWTVerificationException.class})
     public ProblemDetail unauthorizedException(RuntimeException exception) {
-        log.error("Error {}", exception.getMessage());
+        log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
     }
 
     @ExceptionHandler({AccessDeniedException.class})
     public ProblemDetail accessDeniedException(RuntimeException exception) {
-        log.error("Error {}", exception.getMessage());
+        log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
     }
 }

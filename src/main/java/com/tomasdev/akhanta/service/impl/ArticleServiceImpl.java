@@ -42,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         article.setImage_url(s3Service.upload(image, s3Folder));
 
-        log.info("[ Creating new article in db - {} ]", new Date());
+        log.info("[ Creating new article - {} ]", new Date());
         return repository.save(article);
     }
 

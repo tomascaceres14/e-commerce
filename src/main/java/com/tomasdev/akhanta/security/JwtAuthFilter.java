@@ -33,23 +33,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private final List<String> urlsToSkip = List.of("/auth", "/home", "/favicon.ico", "/");
+    private final List<String> urlsToSkip = List.of("/auth", "/home", "/favicon.ico");
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
-     * @return True la URI existe en la lista blanca, false de lo contrario
      */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
+        if (request.getRequestURI().equals("/")) return true;
         return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
-
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null || !header.startsWith("Bearer ")) {
+            log.info("Inicie sesión e intente nuevamente.");
             resolver.resolveException(request, response, null, new UnauthorizedException("Inicie sesión e intente nuevamente."));
             return;
         }
@@ -61,7 +61,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (RuntimeException e) {
-            log.error("Es aca {}", e.getMessage());
+            log.error("{} - {}", e.getClass().getSimpleName(), e.getMessage());
             resolver.resolveException(request, response, null, e);
         }
 

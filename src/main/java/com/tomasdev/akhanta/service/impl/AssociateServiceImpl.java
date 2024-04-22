@@ -37,7 +37,7 @@ public class AssociateServiceImpl implements AssociateService {
         associate.setProfile_url(s3Service.upload(profile, s3Folder));
         associate.setBanner_url(s3Service.upload(banner, s3Folder));
 
-        log.info("[ Creating new associate in db - {} ]", new Date());
+        log.info("[ Creating new associate it a{} ]", new Date());
         return repository.save(associate);
     }
 
