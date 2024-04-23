@@ -12,9 +12,6 @@ import com.tomasdev.akhanta.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +24,9 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
-
     @Override
     public User findByEmail(String email) {
         return repository.findByEmail(email).orElseThrow(WrongCredentialsException::new);
-    }
-
-    @Override
-    public User save(User req){
-        return repository.save(req);
     }
 
     @Override
@@ -57,34 +48,8 @@ public class UserServiceImpl implements UserService {
 
         User userDB = repository.save(user);
 
-        log.info("Registering user id: {}", userDB.getId());
+        log.info("[ Registering user id: {} ]", userDB.getId());
         return mapper.map(userDB, ResponseUserDTO.class);
     }
 
-    @Override
-    public Page<User> findAll(int page) {
-        PageRequest pageable = PageRequest.of(page, 10);
-        return repository.findAll(pageable);
-    }
-
-    @Override
-    public User findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
-    }
-
-    @Override
-    public User updateById(String id, User req) {
-        User userDB = findById(id);
-        mapper.map(req, userDB);
-        userDB.setId(id);
-        return repository.save(userDB);
-    }
-
-    @Override
-    public void deleteById(String id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Usuario");
-        }
-        repository.deleteById(id);
-    }
 }

@@ -4,8 +4,9 @@ import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
 
-public interface UserService extends iService<User> {
+public interface UserService {
 
-    User findByEmail(String email);
     ResponseUserDTO registerUser(UserDTO req);
+    User findByEmail(String email);
+
 }

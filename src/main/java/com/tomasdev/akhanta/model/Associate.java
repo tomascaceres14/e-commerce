@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "associates")
 public class Associate {
 
@@ -22,7 +23,7 @@ public class Associate {
     @Setter
     @Getter
     @AllArgsConstructor
-    static class Link {
+    public static class Link {
         private String url;
         private String tag;
     }

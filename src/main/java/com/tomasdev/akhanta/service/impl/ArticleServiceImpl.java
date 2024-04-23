@@ -13,8 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
-
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -26,19 +24,14 @@ public class ArticleServiceImpl implements ArticleService {
     private final String s3Folder = "articulos";
 
     @Override
-    public Page<Article> findAll(int page) {
+    public Page<Article> findAllArticles(int page) {
         PageRequest pageable = PageRequest.of(page, 10);
         return repository.findAll(pageable);
     }
 
     @Override
-    public Article save(Article req) {
-        return repository.save(req);
-    }
-
-    @Override
-    public Article saveWithImage(ArticleRequestDTO req, MultipartFile image) {
-        Article article = mapper.map(req, Article.class);
+    public Article saveArticle(ArticleRequestDTO articleDTO, MultipartFile image) {
+        Article article = mapper.map(articleDTO, Article.class);
 
         article.setImage_url(s3Service.upload(image, s3Folder));
         article = repository.save(article);
@@ -48,23 +41,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findById(String id) {
+    public Article findArticleById(String id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Articulo"));
     }
 
     @Override
-    public Article updateById(String id, Article req) {
-        Article articleDB = findById(id);
-
-        mapper.map(req, articleDB);
-        articleDB.setArticleId(id);
-
-        return repository.save(articleDB);
-    }
-
-    @Override
-    public Article updateWithImage(String id, ArticleRequestDTO articleDTO, MultipartFile image) {
-        Article articleDB = findById(id);
+    public Article updateArticleById(String id, ArticleRequestDTO articleDTO, MultipartFile image) {
+        Article articleDB = findArticleById(id);
 
         if (image != null) {
             String imageName =  s3Service.getImageKeyFromUrl(articleDB.getImage_url());
@@ -81,8 +64,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void deleteById(String id) {
-        Article article = findById(id);
+    public void deleteArticleById(String id) {
+        Article article = findArticleById(id);
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(article.getImage_url()));
 
         log.info("[ Deleting article id: {}  ]", id);

@@ -35,8 +35,8 @@ public class AuthController {
     }
 
     @PostMapping(path = "/sign-out")
-    public ResponseEntity signOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+    public ResponseEntity<String> signOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         authService.signOut(jwt);
-        return ResponseEntity.status(HttpStatus.RESET_CONTENT).build();
+        return ResponseEntity.status(HttpStatus.RESET_CONTENT).body("Signed out");
     }
 }

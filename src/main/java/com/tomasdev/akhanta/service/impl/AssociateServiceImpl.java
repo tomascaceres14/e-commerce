@@ -20,18 +20,21 @@ import java.util.Date;
 @AllArgsConstructor
 public class AssociateServiceImpl implements AssociateService {
 
-    private final AssociateRepository repository;
-    private final AmazonS3ServiceImpl s3Service;
     private final ModelMapper mapper;
     private final String s3Folder = "asociados";
+    private final AmazonS3ServiceImpl s3Service;
+    private final AssociateRepository repository;
+
 
     @Override
-    public Associate save(Associate req) {
-        return repository.save(req);
+    public Page<Associate> findAllAssociates(int page) {
+        PageRequest pageable = PageRequest.of(page, 10);
+        return repository.findAll(pageable);
     }
 
+
     @Override
-    public Associate saveWithImages(AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
+    public Associate saveAssociate(AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
         Associate associate = mapper.map(associateDTO, Associate.class);
 
         associate.setProfile_url(s3Service.upload(profile, s3Folder));
@@ -44,8 +47,13 @@ public class AssociateServiceImpl implements AssociateService {
     }
 
     @Override
-    public Associate updateWithImages(String id, AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
-        Associate associateDB = findById(id);
+    public Associate findAssociateById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Asociado"));
+    }
+
+    @Override
+    public Associate updateAssociateById(String id, AssociateRequestDTO associateDTO, MultipartFile profile, MultipartFile banner) {
+        Associate associateDB = findAssociateById(id);
 
         if (profile != null) {
             String imageName =  s3Service.getImageKeyFromUrl(associateDB.getProfile_url());
@@ -67,27 +75,9 @@ public class AssociateServiceImpl implements AssociateService {
     }
 
     @Override
-    public Page<Associate> findAll(int page) {
-        PageRequest pageable = PageRequest.of(page, 10);
-        return repository.findAll(pageable);
-    }
+    public void deleteAssociateById(String id) {
+        Associate associate = findAssociateById(id);
 
-    @Override
-    public Associate findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Asociado"));
-    }
-
-    @Override
-    public Associate updateById(String id, Associate req) {
-        Associate associateDB = findById(id);
-        mapper.map(req, associateDB);
-        associateDB.setAssociateId(id);
-        return repository.save(associateDB);
-    }
-
-    @Override
-    public void deleteById(String id) {
-        Associate associate = findById(id);
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getBanner_url()));
         s3Service.delete(s3Folder, s3Service.getImageKeyFromUrl(associate.getProfile_url()));
 

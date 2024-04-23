@@ -22,7 +22,7 @@ public class AssociateRequestDTO {
     @Setter
     @Getter
     @AllArgsConstructor
-    static class Link {
+    public static class Link {
         @NotBlank(message = "Ingrese una url.")
         private String url;
         @NotBlank(message = "Ingrese un tag correspondiente.\nOpciones validas: [INSTAGRAM, TELEGRAM, WHATSAPP, FACEBOOK]")
