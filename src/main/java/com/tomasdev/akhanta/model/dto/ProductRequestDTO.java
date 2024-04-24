@@ -1,15 +1,15 @@
-package com.tomasdev.akhanta.model;
+package com.tomasdev.akhanta.model.dto;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-@Data
-@Document(value = "products")
-public class Product {
+@Getter @Setter
+@AllArgsConstructor
+public class ProductRequestDTO {
 
-    @Id
     private String productId;
     private String title;
     private String description;

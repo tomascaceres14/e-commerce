@@ -25,9 +25,9 @@ Etapas del desarrollo:
 
     a) Productos: CRUD de productos, categorías y funcionalidad de asociar productos y usuarios (carrito). Compras userless?
 
-    b) Pasarela de pago: Definir y desarrollar: Pagos directamente dentro de la app o generar reservas de productos y derivar pagos por fuera?
+    c) Notificaciones: Implementar bases para notificaciones por correo electrónico.
 
-    c) Mensajería: Confirmaciones de cuentas, compras, actualización de estado de pedido.
+    b) Pasarela de pago: Definir y desarrollar: Pagos directamente dentro de la app o generar reservas de productos y derivar pagos por fuera?
 
     d) Inventario: Gestión de productos y stock, registro de transacciones y generación de informes semanales/mensuales.
 

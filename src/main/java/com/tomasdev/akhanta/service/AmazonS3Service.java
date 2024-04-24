@@ -10,4 +10,6 @@ public interface AmazonS3Service {
 
     void delete(String folder, String filename);
 
+    String getImageKeyFromUrl(String url);
+
 }

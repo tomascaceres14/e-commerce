@@ -2,10 +2,16 @@ package com.tomasdev.akhanta.controller;
 
 import com.tomasdev.akhanta.model.Article;
 import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.model.Product;
 import com.tomasdev.akhanta.model.dto.ArticleRequestDTO;
 import com.tomasdev.akhanta.model.dto.AssociateRequestDTO;
+import com.tomasdev.akhanta.model.dto.ProductRequestDTO;
+import com.tomasdev.akhanta.service.ArticleService;
+import com.tomasdev.akhanta.service.AssociateService;
+import com.tomasdev.akhanta.service.ProductService;
 import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
 import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
+import com.tomasdev.akhanta.service.impl.ProductServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,14 +20,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
 
-    private ArticleServiceImpl articleService;
-    private AssociateServiceImpl associateService;
+    private ArticleService articleService;
+    private AssociateService associateService;
+    private ProductService productService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -74,5 +83,29 @@ public class AdminController {
         log.info("[ /admin/associates/id - DELETE ]");
         associateService.deleteAssociateById(id);
         return ResponseEntity.ok(STR."Asociado id \{id} eliminado.");
+    }
+
+    @PostMapping("/products")
+    public ResponseEntity<Product> saveProducts(@Valid @RequestPart ProductRequestDTO product,
+                                                @RequestPart(required = false) List<MultipartFile> images) {
+        log.info("[ /admin/products - POST ]");
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(productService.saveProduct(product, images));
+    }
+
+    @PutMapping("/products/{id}")
+    public ResponseEntity<Product> updateProductById(@PathVariable String id,
+                                                         @RequestPart(required = false) ProductRequestDTO product) {
+        log.info("[ /admin/products/id - PUT ]");
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(productService.updateProductById(id, product));
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<String> deleteProductById(@PathVariable String id) {
+        log.info("[ /admin/products/id - DELETE ]");
+        productService.deleteProductById(id);
+        return ResponseEntity.ok(STR."Producto id \{id} eliminado.");
     }
 }

@@ -44,13 +44,13 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
         s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", filename, file));
         file.delete();
 
-        log.info("[ New S3 resource updated at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
+        log.info("[ S3 resource updated at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
         return STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}";
     }
 
     @Override
     public void delete(String folder, String filename) {
-        log.info("[ New S3 deleted at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
+        log.info("[ S3 resource deleted at {} ]", STR."https://\{bucketName}.s3.amazonaws.com/\{folder}/\{filename}");
         s3Client.deleteObject(new DeleteObjectRequest(bucketName, STR."\{folder}/\{filename}"));
     }
 
