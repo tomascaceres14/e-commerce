@@ -20,23 +20,22 @@ public class HomeController {
 
     @GetMapping("/articles")
     public ResponseEntity<Page<Article>> findAllArticles(@RequestParam(required = false, defaultValue = "0") Integer page) {
-        return new ResponseEntity<>(articleService.findAllArticles(page), HttpStatus.OK);
+        return ResponseEntity.ok().body(articleService.findAllArticles(page));
     }
 
     @GetMapping("/articles/{id}")
     public ResponseEntity<Article> findArticleById(@PathVariable String id) {
-        return new ResponseEntity<>(articleService.findArticleById(id), HttpStatus.OK);
+        return ResponseEntity.ok().body(articleService.findArticleById(id));
     }
 
     @GetMapping("/associates")
     public ResponseEntity<Page<Associate>> findAllAssociates(@RequestParam(required = false, defaultValue = "0") Integer page) {
-        return new ResponseEntity<>(associateService.findAllAssociates(page), HttpStatus.OK);
+        return ResponseEntity.ok().body(associateService.findAllAssociates(page));
     }
-
 
     @GetMapping("/associates/{id}")
     ResponseEntity<Associate> findAssociateById(@PathVariable String id) {
-        return new ResponseEntity<>(associateService.findAssociateById(id), HttpStatus.OK);
+        return ResponseEntity.ok().body(associateService.findAssociateById(id));
     }
 
 }
