@@ -5,7 +5,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.service.AmazonS3Service;
-import com.tomasdev.akhanta.utils.SequenceGenerator;
+import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class AmazonS3ServiceImpl implements AmazonS3Service {
     @Override
     public String upload(MultipartFile image, String folder) {
         File file = convertMultipartFileToFile(image);
-        String filename = SequenceGenerator.uniqueSequence();
+        String filename = StringUtils.uniqueSequence();
 
         s3Client.putObject(new PutObjectRequest(STR."\{bucketName}/\{folder}", filename, file));
 

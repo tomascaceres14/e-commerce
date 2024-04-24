@@ -5,6 +5,7 @@ import com.tomasdev.akhanta.model.Article;
 import com.tomasdev.akhanta.model.dto.ArticleRequestDTO;
 import com.tomasdev.akhanta.repository.ArticleRepository;
 import com.tomasdev.akhanta.service.ArticleService;
+import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -12,6 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 @Service
@@ -34,6 +38,8 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = mapper.map(articleDTO, Article.class);
 
         article.setImage_url(s3Service.upload(image, s3Folder));
+        article.setSeTitle(StringUtils.normalizeToSearch(article.getTitle()));
+        article.setCreation_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
         article = repository.save(article);
 
         log.info("[ Creating new article id: {} ]", article.getArticleId());

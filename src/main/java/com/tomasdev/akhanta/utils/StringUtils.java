@@ -10,9 +10,9 @@ import java.util.Random;
 @Setter
 @Getter
 @NoArgsConstructor
-public class SequenceGenerator {
+public class StringUtils {
 
-    public static String randomLetterSequence() {
+    private static String randomLetterSequence() {
         Random rand = new Random();
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String sequence = "";
@@ -34,5 +34,9 @@ public class SequenceGenerator {
             sequence += STR."\{Character.toString(date.charAt(i))}\{randomLetterSequence()}";
         }
         return sequence;
+    }
+
+    public static String normalizeToSearch(String text) {
+        return text.toLowerCase().replace(" ", "-");
     }
 }

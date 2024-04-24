@@ -42,7 +42,7 @@ public class AssociateServiceImpl implements AssociateService {
 
         Associate associateDB = repository.save(associate);
 
-        log.info("[ Creating new associate id: {} ]", associateDB);
+        log.info("[ Creating new associate id: {} ]", associateDB.getAssociateId());
         return associateDB;
     }
 

@@ -14,7 +14,5 @@ public class ArticleRequestDTO {
     private String title;
     @NotBlank(message = "Ingrese un contenido.")
     private String content;
-    @NotBlank(message = "Ingrese una fecha de creación.")
-    private String creation_date;
 
 }
