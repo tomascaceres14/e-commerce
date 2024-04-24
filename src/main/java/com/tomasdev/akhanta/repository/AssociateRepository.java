@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AssociateRepository extends MongoRepository<Associate, String>, PagingAndSortingRepository<Associate, String> {
-
     Associate findByName(String name);
 }

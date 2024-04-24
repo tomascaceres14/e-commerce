@@ -2,7 +2,6 @@ package com.tomasdev.akhanta.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.tomasdev.akhanta.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -47,7 +46,7 @@ public class JwtAuthenticationProvider {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         String tokenCreated = JWT.create()
-                .withClaim("userId", customerJwt.getId())
+                .withClaim("userId", customerJwt.getUserId())
                 .withClaim("lastname", customerJwt.getLastName())
                 .withClaim("numberCellPhone", String.valueOf(customerJwt.getCellphone_number()))
                 .withClaim("email", customerJwt.getEmail())

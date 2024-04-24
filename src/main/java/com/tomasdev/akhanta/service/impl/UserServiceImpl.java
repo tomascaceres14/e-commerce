@@ -2,7 +2,6 @@ package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
-import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.ResponseUserDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
@@ -33,12 +32,12 @@ public class UserServiceImpl implements UserService {
     public ResponseUserDTO registerUser(UserDTO req) {
         if (!req.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
-            throw new WrongCredentialsException();
+            throw new WrongCredentialsException("Ingrese una dirección de correo válida");
         }
 
         User user = mapper.map(req, User.class);
 
-        if ((user.getId() != null && repository.existsById(user.getId())) || repository.findByEmail(user.getEmail()).isPresent()) {
+        if (user.getUserId() != null || repository.findByEmail(user.getEmail()).isPresent()) {
            throw new UserExistsException();
         }
 
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
         User userDB = repository.save(user);
 
-        log.info("[ Registering user id: {} ]", userDB.getId());
+        log.info("[ Registering user id: {} ]", userDB.getUserId());
         return mapper.map(userDB, ResponseUserDTO.class);
     }
 

@@ -713,3 +713,235 @@ This generated password is for development use only. Your security configuration
 2024-04-24 11:21:44 - [INFO] - com.tomasdev.akhanta.controller.AdminController - [ /admin/articles - POST ]
 2024-04-24 11:21:45 - [INFO] - com.tomasdev.akhanta.service.impl.AmazonS3ServiceImpl - [ New S3 resource created at https://akhanta.s3.amazonaws.com/articulos/2CBX0WtI2qro4uFy0whO4iGe2wkG4RFa1bfC1ICf2iKr1HvK4jOu4Gyd ]
 2024-04-24 11:21:45 - [INFO] - com.tomasdev.akhanta.service.impl.ArticleServiceImpl - [ Creating new article id: 6628cf29262c364bf522c703 ]
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-04-24 12:13:03 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-04-24 12:13:13 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: ac-yehvzqq-shard-00-02.a3hcche.mongodb.net
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: ac-yehvzqq-shard-00-02.a3hcche.mongodb.net
+	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:998)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-04-24 12:13:13 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: ac-yehvzqq-shard-00-01.a3hcche.mongodb.net
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: ac-yehvzqq-shard-00-01.a3hcche.mongodb.net
+	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:998)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-04-24 12:13:13 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=87928000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=46, topologyVersion=TopologyVersion{processId=66282e67f4afb96863a50838, counter=4}, lastWriteDate=Wed Apr 24 12:13:13 CEST 2024, lastUpdateTimeNanos=619697977251000}
+2024-04-24 12:13:23 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=48705400, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=46, topologyVersion=TopologyVersion{processId=66282f9a1dcdbc11e54943ca, counter=3}, lastWriteDate=Wed Apr 24 12:13:23 CEST 2024, lastUpdateTimeNanos=619707941060700}
+2024-04-24 12:13:23 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=49584800, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000251, setVersion=46, topologyVersion=TopologyVersion{processId=66282d4d0995425972b2188e, counter=6}, lastWriteDate=Wed Apr 24 12:13:23 CEST 2024, lastUpdateTimeNanos=619707941943300}
+2024-04-24 12:13:23 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000251 and max set version 46
+2024-04-24 12:14:53 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 16212 (C:\Users\tomia\Desktop\code\akhanta-backend-2\target\classes started by tomia in C:\Users\tomia\Desktop\code\akhanta-backend-2)
+2024-04-24 12:14:53 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-24 12:14:54 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-24 12:14:54 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 109 ms. Found 5 MongoDB repository interfaces.
+2024-04-24 12:14:55 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-24 12:14:55 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-24 12:14:55 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-24 12:14:55 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-24 12:14:55 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1867 ms
+2024-04-24 12:14:55 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@24876a7e, com.mongodb.Jep395RecordCodecProvider@1625789b, com.mongodb.KotlinCodecProvider@5a1dddba]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=403772100, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000251, setVersion=46, topologyVersion=TopologyVersion{processId=66282d4d0995425972b2188e, counter=6}, lastWriteDate=Wed Apr 24 12:14:56 CEST 2024, lastUpdateTimeNanos=619801369051700}
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=403311900, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=46, topologyVersion=TopologyVersion{processId=66282e67f4afb96863a50838, counter=4}, lastWriteDate=Wed Apr 24 12:14:56 CEST 2024, lastUpdateTimeNanos=619801368598600}
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=402105200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=46, topologyVersion=TopologyVersion{processId=66282f9a1dcdbc11e54943ca, counter=3}, lastWriteDate=Wed Apr 24 12:14:56 CEST 2024, lastUpdateTimeNanos=619801367400400}
+2024-04-24 12:14:56 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000251 and max set version 46
+2024-04-24 12:14:57 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 06020966-81c0-4030-b11f-eb6dfd9fd45e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-04-24 12:14:57 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6edd4fe2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53918b5e, org.springframework.security.web.context.SecurityContextHolderFilter@4805069b, org.springframework.security.web.header.HeaderWriterFilter@74bfdd66, org.springframework.web.filter.CorsFilter@5366575d, org.springframework.security.web.authentication.logout.LogoutFilter@76f9e000, com.tomasdev.akhanta.security.JwtAuthFilter@1dad01fe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f01fc6d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@85cd413, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b6cad77, org.springframework.security.web.session.SessionManagementFilter@68f69ca3, org.springframework.security.web.access.ExceptionTranslationFilter@7747cc1b, org.springframework.security.web.access.intercept.AuthorizationFilter@2773504f]
+2024-04-24 12:14:57 - [WARN] - o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderStatusRepository' defined in com.tomasdev.akhanta.repository.OrderStatusRepository defined in @EnableMongoRepositories declared on MongoRepositoriesRegistrar.EnableMongoRepositoriesConfiguration: Couldn't find PersistentEntity for type class com.tomasdev.akhanta.enums.OrderStatus
+2024-04-24 12:14:57 - [INFO] - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2024-04-24 12:14:57 - [INFO] - o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-04-24 12:14:58 - [ERROR] - org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderStatusRepository' defined in com.tomasdev.akhanta.repository.OrderStatusRepository defined in @EnableMongoRepositories declared on MongoRepositoriesRegistrar.EnableMongoRepositoriesConfiguration: Couldn't find PersistentEntity for type class com.tomasdev.akhanta.enums.OrderStatus
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:969)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.tomasdev.akhanta.RestApiApplication.main(RestApiApplication.java:12)
+Caused by: org.springframework.data.mapping.MappingException: Couldn't find PersistentEntity for type class com.tomasdev.akhanta.enums.OrderStatus
+	at org.springframework.data.mapping.context.MappingContext.getRequiredPersistentEntity(MappingContext.java:80)
+	at org.springframework.data.mongodb.repository.support.MongoRepositoryFactory.getEntityInformation(MongoRepositoryFactory.java:162)
+	at org.springframework.data.mongodb.repository.support.MongoRepositoryFactory.getTargetRepository(MongoRepositoryFactory.java:138)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:317)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
+	at org.springframework.data.util.Lazy.get(Lazy.java:113)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
+	at org.springframework.data.mongodb.repository.support.MongoRepositoryFactoryBean.afterPropertiesSet(MongoRepositoryFactoryBean.java:101)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 16 common frames omitted
