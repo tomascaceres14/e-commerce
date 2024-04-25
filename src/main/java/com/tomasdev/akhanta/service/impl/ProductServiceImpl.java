@@ -8,12 +8,13 @@ import com.tomasdev.akhanta.service.AmazonS3Service;
 import com.tomasdev.akhanta.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private final ModelMapper mapper;
     private final AmazonS3Service s3Service;
     private final ProductRepository repository;
+    private final MongoTemplate template;
 
     @Override
     public Page<Product> findAllProducts(int page) {
@@ -49,27 +51,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product findProductById(String id) {return null;}
+
+    @Override
     public Product updateProductById(String id, ProductRequestDTO product) {
-        return null;
-    }
-
-    @Override
-    public Product findProductById() {
-        return null;
-    }
-    @Override
-    public Product findProductByName() {
-        return null;
-    }
-
-    @Override
-    public Page<Product> findAllProductsByName(String name, int page) {
-        PageRequest pageable = PageRequest.of(page, 10);
-        return repository.findAllProductsByName(name, pageable);
-    }
-
-    @Override
-    public Product findAllProductsByCategory() {
         return null;
     }
 
@@ -84,4 +69,11 @@ public class ProductServiceImpl implements ProductService {
         repository.deleteById(id);
         return STR."Producto id \{id} eliminado.";
     }
+
+    @Override
+    public Page<Product> filterProducts(String name, int page) {
+        PageRequest pageable = PageRequest.of(page, 10);
+        return repository.findAllProductsByName(name, pageable);
+    }
+
 }

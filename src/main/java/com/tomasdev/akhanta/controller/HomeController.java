@@ -48,12 +48,11 @@ public class HomeController {
         return ResponseEntity.ok().body(productService.findAllProducts(page));
     }
 
-
     @GetMapping("/products/search")
     public ResponseEntity<Page<Product>> findAllProductsFiltered(
             @RequestParam(required = false, defaultValue = "0") Integer page,
             @RequestParam(required = false, defaultValue = "") String name) {
-        return ResponseEntity.ok().body(productService.findAllProductsByName(name, page));
+        return ResponseEntity.ok().body(productService.filterProducts(name, page));
     }
 
 }

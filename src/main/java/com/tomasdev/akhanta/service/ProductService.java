@@ -13,10 +13,7 @@ public interface ProductService {
     Page<Product> findAllProducts(int page);
     Product saveProduct(ProductRequestDTO productDTO, List<MultipartFile> images);
     Product updateProductById(String id, ProductRequestDTO product);
-    Product findProductById();
-    Product findProductByName();
-    Page<Product> findAllProductsByName(String name, int page);
-    Product findAllProductsByCategory();
-
+    Product findProductById(String id);
+    Page<Product> filterProducts(String name, int page);
     String deleteProductById(String id);
 }
