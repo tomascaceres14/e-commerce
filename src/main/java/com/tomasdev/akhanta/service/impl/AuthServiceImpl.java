@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.service.impl;
 
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
+import com.tomasdev.akhanta.model.Token;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.AuthUserDTO;
 import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
@@ -39,7 +40,9 @@ public class AuthServiceImpl implements AuthService {
             throw new WrongCredentialsException();
         }
 
-        return new JwtResponseDTO(jwtAuthenticationProvider.createToken(mapper.map(user, UserDTO.class)));
+        Token token = jwtAuthenticationProvider.createToken(mapper.map(user, UserDTO.class));
+
+        return new JwtResponseDTO(token.getToken());
     }
 
     /**

@@ -55,15 +55,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        String[] authElements = header.split(" ");
+        String jwt = header.substring(7);
 
         try {
-            Authentication auth = jwtAuthenticationProvider.validateToken(authElements[1]);
+            Authentication auth = jwtAuthenticationProvider.validateToken(jwt).orElseThrow(() -> new UnauthorizedException("Error de autenticación."));
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (RuntimeException e) {
             resolver.resolveException(request, response, null, e);
         }
+
 
     }
 }

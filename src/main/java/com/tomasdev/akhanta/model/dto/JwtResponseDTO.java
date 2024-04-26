@@ -7,6 +7,5 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 public class JwtResponseDTO {
-
     private String jwt;
 }

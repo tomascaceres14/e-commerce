@@ -2,50 +2,52 @@ package com.tomasdev.akhanta.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.tomasdev.akhanta.model.Token;
+import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.UserDTO;
+import com.tomasdev.akhanta.repository.JwtRepository;
+import com.tomasdev.akhanta.repository.UserRepository;
+import com.tomasdev.akhanta.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Optional;
 
 /**
  * Clase encargada de la creacion y validacion de jwt para el inicio de sesion de un Usuario
  */
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationProvider {
 
-    /**
-     * Llave para cifrar el jwt
-     */
     @Value("${jwt.secret.key}")
     private String secretKey;
+    private final JwtRepository tokenRepository;
+    private final UserRepository userService;
 
-    /**
-     * Lista blanca con los jwt creados
-     */
-    private HashMap<String, UserDTO> listToken = new HashMap<>();
+    public String extractUsername(String jwt) {
+        return JWT.decode(jwt).getClaim("email").asString();
+    }
 
+    private boolean isTokenExpired(String jwt) {
+        return JWT.decode(jwt).getExpiresAt().before(new Date());
+    }
 
-    /**
-     * Crea un nuevo jwt en base al cliente recibido por parametro y lo agrega a la lista blanca
-     * @param customerJwt Cliente a utilizar en la creacion del jwt
-     * @return Jwt creado
-     */
-    public String createToken(UserDTO customerJwt) {
+    public Token createToken(UserDTO customerJwt) {
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000); // 1 hora en milisegundos
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        String tokenCreated = JWT.create()
+        String token = JWT.create()
                 .withClaim("userId", customerJwt.getUserId())
                 .withClaim("lastname", customerJwt.getLastName())
                 .withClaim("numberCellPhone", String.valueOf(customerJwt.getCellphone_number()))
@@ -55,36 +57,43 @@ public class JwtAuthenticationProvider {
                 .withExpiresAt(validity)
                 .sign(algorithm);
 
-        listToken.put(tokenCreated, customerJwt);
-        return tokenCreated;
+        return tokenRepository.save(new Token(null, token, customerJwt.getUserId(), false, false));
     }
 
+    public Optional<Authentication> validateToken(String jwt) throws AuthenticationException {
 
-    /**
-     * Valida si el token es valido y retorna una sesión del usuario
-     * @param token Token a validar
-     * @return Sesion del usuario
-     * @throws CredentialsExpiredException Si el token ya expiró
-     * @throws BadCredentialsException Si el token no existe en la lista blanca
-     */
-    public Authentication validateToken(String token) throws AuthenticationException {
+        Optional<Authentication> auth = null;
 
-        //verifica el token como su firma y expiración, lanza una excepcion si algo falla
-        JWT.require(Algorithm.HMAC256(secretKey)).build().verify(token);
+        // valida firma y expiración
+        JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
+        // extraigo correo de usuario por Claims de jwt
+        String userEmail = extractUsername(jwt);
 
-        UserDTO exists = listToken.get(token);
-        if (exists == null) {
-            throw new BadCredentialsException("Inicie sesión e intente nuevamente.");
+        // si el correo es nulo y el contexto esta vacío retorno nada)
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+            // Busco el usuario
+            User user = userService.findByEmail(userEmail).orElseThrow();
+
+            // valida si el token no expiro y no esta revocado. Sino, devuelve false
+            var isTokenValid = tokenRepository.findByToken(jwt)
+                    .map(t -> !t.isExpired() && !t.isRevoked())
+                    .orElse(false);
+
+            // validamos y damos acceso
+            if (userEmail.equals(user.getEmail()) && !isTokenExpired(jwt) && isTokenValid) {
+                HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
+                rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
+
+                auth = Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
+            }
         }
 
-        HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
-        rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{exists.getRole()}")); //rol
-
-        return new UsernamePasswordAuthenticationToken(exists, token, rolesAndAuthorities);
+        return auth;
     }
 
     public void deleteToken(String jwt) {
-        listToken.remove(jwt);
+        tokenRepository.deleteByToken(jwt);
     }
 
 }
