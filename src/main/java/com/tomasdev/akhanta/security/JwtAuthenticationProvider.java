@@ -5,10 +5,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.model.Token;
 import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.UserDTO;
-import com.tomasdev.akhanta.repository.JwtRepository;
 import com.tomasdev.akhanta.repository.UserRepository;
-import com.tomasdev.akhanta.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,8 +29,8 @@ public class JwtAuthenticationProvider {
 
     @Value("${jwt.secret.key}")
     private String secretKey;
-    private final JwtRepository tokenRepository;
-    private final UserRepository userService;
+    private final UserRepository userRepository;
+    private final ModelMapper mapper;
 
     public String extractUsername(String jwt) {
         return JWT.decode(jwt).getClaim("email").asString();
@@ -41,31 +40,36 @@ public class JwtAuthenticationProvider {
         return JWT.decode(jwt).getExpiresAt().before(new Date());
     }
 
-    public Token createToken(UserDTO customerJwt) {
+    public Token createToken(UserDTO userDTO) {
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000); // 1 hora en milisegundos
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         String token = JWT.create()
-                .withClaim("userId", customerJwt.getUserId())
-                .withClaim("lastname", customerJwt.getLastName())
-                .withClaim("numberCellPhone", String.valueOf(customerJwt.getCellphone_number()))
-                .withClaim("email", customerJwt.getEmail())
-                .withClaim("role", customerJwt.getRole())
+                .withClaim("userId", userDTO.getUserId())
+                .withClaim("lastname", userDTO.getLastName())
+                .withClaim("numberCellPhone", String.valueOf(userDTO.getCellphone_number()))
+                .withClaim("email", userDTO.getEmail())
+                .withClaim("role", userDTO.getRole())
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
                 .sign(algorithm);
 
-        return tokenRepository.save(new Token(null, token, customerJwt.getUserId(), false, false));
+        Token jwt = new Token(null, token, false, false);
+        userDTO.getTokensList().add(jwt);
+        userRepository.save(mapper.map(userDTO, User.class));
+
+        return jwt;
     }
 
     public Optional<Authentication> validateToken(String jwt) throws AuthenticationException {
 
-        Optional<Authentication> auth = null;
+        Optional<Authentication> auth = Optional.empty();
 
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
+
         // extraigo correo de usuario por Claims de jwt
         String userEmail = extractUsername(jwt);
 
@@ -73,10 +77,10 @@ public class JwtAuthenticationProvider {
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // Busco el usuario
-            User user = userService.findByEmail(userEmail).orElseThrow();
+            User user = userRepository.findByEmail(userEmail).orElseThrow();
 
             // valida si el token no expiro y no esta revocado. Sino, devuelve false
-            var isTokenValid = tokenRepository.findByToken(jwt)
+            var isTokenValid = user.getToken(jwt)
                     .map(t -> !t.isExpired() && !t.isRevoked())
                     .orElse(false);
 
@@ -93,7 +97,15 @@ public class JwtAuthenticationProvider {
     }
 
     public void deleteToken(String jwt) {
-        tokenRepository.deleteByToken(jwt);
+
+        User user = userRepository.findByEmail(extractUsername(jwt)).orElseThrow();
+
+        user.getToken(jwt).get().setExpired(true);
+        user.getToken(jwt).get().setRevoked(true);
+
+        userRepository.save(user);
+
+        SecurityContextHolder.clearContext();
     }
 
 }

@@ -16,8 +16,6 @@ public class Token {
 
     public String token;
 
-    private String userId;
-
     public boolean revoked;
 
     public boolean expired;

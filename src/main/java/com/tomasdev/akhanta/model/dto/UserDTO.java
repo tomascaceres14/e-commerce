@@ -1,9 +1,12 @@
 package com.tomasdev.akhanta.model.dto;
 
+import com.tomasdev.akhanta.model.Token;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Getter @Setter @ToString
 public class UserDTO {
@@ -20,4 +23,5 @@ public class UserDTO {
     private String cellphone_number;
     private Integer active;
     private String role;
+    private List<Token> tokensList;
 }
