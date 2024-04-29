@@ -22,11 +22,11 @@ import java.util.List;
 @Slf4j
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final JwtService jwtService;
     private final HandlerExceptionResolver resolver;
 
-    public JwtAuthFilter(JwtAuthenticationProvider jwtAuthenticationProvider, @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
-        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
+    public JwtAuthFilter(JwtService jwtService, @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+        this.jwtService = jwtService;
         this.resolver = resolver;
     }
 
@@ -46,7 +46,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
-        log.info("Applying internal jwt filter to {}", request.getRequestURI());
+        log.info("Applying internal jwt filter to {} {}", request.getRequestURI(), request.getMethod());
 
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
@@ -58,7 +58,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String jwt = header.substring(7);
 
         try {
-            Authentication auth = jwtAuthenticationProvider.validateToken(jwt).orElseThrow(() -> new UnauthorizedException("Error de autenticación."));
+            Authentication auth = jwtService.authorizeToken(jwt).orElseThrow(() -> new UnauthorizedException("Error de autenticación."));
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (RuntimeException e) {

@@ -1,15 +1,18 @@
 package com.tomasdev.akhanta.service.impl;
 
+import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.model.Token;
 import com.tomasdev.akhanta.model.User;
-import com.tomasdev.akhanta.model.dto.AuthUserDTO;
+import com.tomasdev.akhanta.model.dto.UserCredentialsDTO;
 import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
-import com.tomasdev.akhanta.security.JwtAuthenticationProvider;
+import com.tomasdev.akhanta.security.JwtService;
 import com.tomasdev.akhanta.service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,39 +23,73 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final UserServiceImpl userRepository;
-    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final UserServiceImpl userService;
+    private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    private final ModelMapper mapper;
+    public JwtResponseDTO register(UserDTO userDTO) {
+
+        User user = userService.registerUser(userDTO);
+
+        Token accessToken = jwtService.generateAccessToken(user);
+        Token refreshToken = jwtService.generateRefreshToken(user);
+
+        return new JwtResponseDTO(accessToken.getToken(), refreshToken.getToken());
+    }
+
 
     /**
-     * Devuelve un dto con el jwt del usuario dadas unas credenciales
-     * @param authCustomerDto Credenciales de acceso
+     * Devuelve un dto con el jwt de acceso y de refresco del usuario dadas unas credenciales
+     * @param credentials Credenciales de acceso
      * @return Dto con el jwt del usuario si las credenciales son validas
      */
     @Override
-    public JwtResponseDTO signIn(AuthUserDTO authCustomerDto) {
+    public JwtResponseDTO logIn(UserCredentialsDTO credentials) {
 
-        User user = userRepository.findByEmail(authCustomerDto.getEmail());
+        User user = userService.findByEmail(credentials.getEmail());
 
-        if (!passwordEncoder.matches(authCustomerDto.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
             throw new WrongCredentialsException();
         }
 
-        Token token = jwtAuthenticationProvider.createToken(mapper.map(user, UserDTO.class));
+        Token accessToken = jwtService.generateAccessToken(user);
+        Token refreshToken = jwtService.generateRefreshToken(user);
 
-        return new JwtResponseDTO(token.getToken());
+        return new JwtResponseDTO(accessToken.getToken(), refreshToken.getToken());
     }
 
     /**
      * Cierra la sesión eliminando de la lista blanca el token ingresado
-     *
      * @param token Token a eliminar
      */
     public void signOut(String token) {
         String[] authElements = token.split(" ");
-        jwtAuthenticationProvider.deleteToken(authElements[1]);
+        jwtService.deleteToken(authElements[1]);
+    }
+
+    @Override
+    public JwtResponseDTO refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        if (header == null || !header.startsWith("Bearer ")) {
+            return null;
+        }
+
+        String refreshToken = header.substring(7);
+        String userEmail = jwtService.extractUsername(refreshToken);
+
+        if (userEmail == null) throw new ServiceException("Bad token. No email present");
+
+        User user = userService.findByEmail(userEmail);
+
+        if (!jwtService.isTokenValid(refreshToken, user)) throw new ServiceException("Invalid token.");
+
+        Token accessToken = jwtService.generateAccessToken(user);
+        //TODO revoke/delete tokens
+        //TODO save token
+
+        return new JwtResponseDTO(accessToken.getToken(), refreshToken);
+
     }
 
 }
