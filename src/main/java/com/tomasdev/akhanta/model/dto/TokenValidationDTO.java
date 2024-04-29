@@ -1,30 +1,26 @@
-package com.tomasdev.akhanta.model;
+package com.tomasdev.akhanta.model.dto;
 
+import com.tomasdev.akhanta.model.User;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Data
-@NoArgsConstructor
+@Getter @Setter
 @AllArgsConstructor
-@Document(collection = "tokens")
-public class Token {
-
-    @Id
-    private String id;
+@NoArgsConstructor
+public class TokenValidationDTO {
 
     @Indexed(unique = true)
     private String token;
 
-    private String userId;
+    private User user;
 
     private boolean revoked;
 
