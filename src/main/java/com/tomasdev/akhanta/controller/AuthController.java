@@ -26,9 +26,9 @@ public class AuthController {
     private final ModelMapper mapper;
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseUserDTO> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<JwtResponseDTO> register(@RequestBody UserDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.map(service.register(userDTO), ResponseUserDTO.class));
+                .body(service.register(userDTO));
     }
 
     @PostMapping(path = "/login")

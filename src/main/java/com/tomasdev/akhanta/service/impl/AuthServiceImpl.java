@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 /**
  * Servicio encargado del logueo de un usuario
  */
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserServiceImpl userService;

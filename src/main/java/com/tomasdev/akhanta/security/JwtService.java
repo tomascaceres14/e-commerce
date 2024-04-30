@@ -86,7 +86,6 @@ public class JwtService {
 
     public Optional<Authentication> authorizeToken(String jwt) throws AuthenticationException {
         log.info("Authorizing token {}", jwt);
-        Optional<Authentication> auth = Optional.empty();
 
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
@@ -111,9 +110,8 @@ public class JwtService {
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
         rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
-        auth = Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
 
-        return auth;
+        return Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
     }
 
     public TokenUserQuery findByTokenWithUser(String token) {
