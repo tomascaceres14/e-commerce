@@ -2,16 +2,22 @@ package com.tomasdev.akhanta.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
+import com.tomasdev.akhanta.exceptions.UnauthorizedException;
 import com.tomasdev.akhanta.model.Token;
 import com.tomasdev.akhanta.model.User;
-import com.tomasdev.akhanta.model.dto.TokenValidationDTO;
+import com.tomasdev.akhanta.service.dto.TokenUserQuery;
 import com.tomasdev.akhanta.model.dto.UserDTO;
 import com.tomasdev.akhanta.repository.TokenRepository;
 import com.tomasdev.akhanta.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.*;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -23,14 +29,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 
-/**
- * Clase encargada de la creacion y validacion de jwt para el inicio de sesion de un Usuario
- */
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JwtService {
-
     private final UserRepository userRepository;
+
     private final TokenRepository repository;
     private final ModelMapper mapper;
     @Value("${application.security.jwt.secret-key}")
@@ -39,13 +45,14 @@ public class JwtService {
     private long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshTokenExpiration;
+    private final MongoTemplate mongoTemplate;
 
-    public String extractUsername(String jwt) {
+    public String extractUserEmail(String jwt) {
         return JWT.decode(jwt).getClaim("email").asString();
     }
 
     public boolean isTokenValid(String token, User user) {
-        final String username = extractUsername(token);
+        final String username = extractUserEmail(token);
         return username.equals(user.getEmail()) && !isTokenExpired(token);
     }
 
@@ -74,48 +81,72 @@ public class JwtService {
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
                 .sign(algorithm);
 
-        return repository.save(new Token(null, token, userDTO.getUserId(), false, false));
+        return repository.save(new Token(null, token, new ObjectId(userDTO.getUserId()), false, false));
     }
 
     public Optional<Authentication> authorizeToken(String jwt) throws AuthenticationException {
-
+        log.info("Authorizing token {}", jwt);
         Optional<Authentication> auth = Optional.empty();
 
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
 
-        String userEmail = extractUsername(jwt);
+        String userEmail = extractUserEmail(jwt);
 
-        // si el correo es nulo y el contexto esta vacío retorno nada)
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            TokenValidationDTO token = repository.findActiveTokenWithUserByToken(jwt);
-            User user = token.getUser();
-
-            // valida si el token no expiro y no esta revocado. Sino, devuelve false
-            var isTokenValid = !token.isExpired() && !token.isRevoked();
-
-            // validamos y damos acceso
-            if (userEmail.equals(user.getEmail()) && !isTokenExpired(jwt) && isTokenValid) {
-                HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
-                rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
-
-                auth = Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
-            }
+        // si el correo es nulo y el contexto tiene algo retorno nada
+        if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() != null) {
+            throw new UnauthorizedException("Autorización rechazada.");
         }
+
+        TokenUserQuery token = findByTokenWithUser(jwt);
+        TokenUserQuery.UserInToken user = token.getUser();
+
+        log.info("token {}", token);
+        log.info("user {} {}", user.getRole(), user.getEmail());
+
+        // valida si el token no expiro y no esta revocado
+        if ((token.isExpired() || token.isRevoked())) {
+            throw new UnauthorizedException("Token expirado.");
+        }
+
+        HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
+        rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
+        auth = Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
 
         return auth;
     }
 
-    public void deleteToken(String jwt) {
+    public TokenUserQuery findByTokenWithUser(String token) {
+        LookupOperation lookupOperation = LookupOperation.newLookup()
+                .from("users") // Nombre de la colección de usuarios
+                .localField("userId")
+                .foreignField("_id")
+                .as("user");
 
-        User user = userRepository.findByEmail(extractUsername(jwt)).orElseThrow();
+        Aggregation aggregation = newAggregation(
+                match(Criteria.where("token").is(token)),
+                lookupOperation,
+                unwind("user")
+        );
 
-        user.getToken(jwt).get().setExpired(true);
-        user.getToken(jwt).get().setRevoked(true);
+        ProjectionOperation projectStage = Aggregation.project()
+                .and("token").as("token")
+                .and("user.username").as("username")
+                .and("user.email").as("email")
+                .and("expired").as("expired")
+                .and("revoked").as("revoked");
 
-        userRepository.save(user);
+        AggregationResults<TokenUserQuery> results = mongoTemplate.aggregate(aggregation, "tokens", TokenUserQuery.class);
 
+        if (results.getMappedResults().isEmpty()) {
+            throw new ResourceNotFoundException("Token no existente."); // No se encontraron resultados
+        }
+
+        return results.getMappedResults().getFirst(); // Devuelve el primer resultado
+    }
+
+    public void deleteToken(String token) {
+        repository.deleteByToken(token);
         SecurityContextHolder.clearContext();
     }
 

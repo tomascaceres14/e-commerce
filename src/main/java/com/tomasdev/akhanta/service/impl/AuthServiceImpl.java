@@ -63,8 +63,8 @@ public class AuthServiceImpl implements AuthService {
      * @param token Token a eliminar
      */
     public void signOut(String token) {
-        String[] authElements = token.split(" ");
-        jwtService.deleteToken(authElements[1]);
+        String jwt = token.substring(7);
+        jwtService.deleteToken(jwt);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         String refreshToken = header.substring(7);
-        String userEmail = jwtService.extractUsername(refreshToken);
+        String userEmail = jwtService.extractUserEmail(refreshToken);
 
         if (userEmail == null) throw new ServiceException("Bad token. No email present");
 

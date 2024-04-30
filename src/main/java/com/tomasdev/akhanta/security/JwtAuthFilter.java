@@ -52,19 +52,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if (header == null || !header.startsWith("Bearer ")) {
             resolver.resolveException(request, response, null, new UnauthorizedException("Inicie sesión e intente nuevamente."));
-            return;
         }
 
         String jwt = header.substring(7);
 
-        try {
-            Authentication auth = jwtService.authorizeToken(jwt).orElseThrow(() -> new UnauthorizedException("Error de autenticación."));
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            filterChain.doFilter(request, response);
-        } catch (RuntimeException e) {
-            resolver.resolveException(request, response, null, e);
-        }
+        Authentication auth = jwtService.authorizeToken(jwt).orElseThrow();
 
-
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        filterChain.doFilter(request, response);
     }
 }

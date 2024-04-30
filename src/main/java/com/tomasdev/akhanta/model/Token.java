@@ -3,6 +3,7 @@ package com.tomasdev.akhanta.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,7 +25,7 @@ public class Token {
     @Indexed(unique = true)
     private String token;
 
-    private String userId;
+    private ObjectId userId;
 
     private boolean revoked;
 
