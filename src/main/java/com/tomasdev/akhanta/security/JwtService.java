@@ -143,8 +143,17 @@ public class JwtService {
         return results.getMappedResults().getFirst(); // Devuelve el primer resultado
     }
 
-    public void deleteToken(String token) {
-        repository.deleteByToken(token);
+    public void deleteToken(String jwt) {
+        Token token = repository.findTokenByToken(jwt);
+
+        if (token == null) {
+            throw new ResourceNotFoundException("Token no existente.");
+        }
+
+        token.setRevoked(true);
+        token.setExpired(true);
+
+        repository.save(token);
         SecurityContextHolder.clearContext();
     }
 
