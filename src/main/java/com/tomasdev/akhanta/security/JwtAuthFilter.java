@@ -48,15 +48,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, UnauthorizedException {
         log.info("Applying internal jwt filter to {} {}", request.getRequestURI(), request.getMethod());
 
+        Authentication auth;
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (header == null || !header.startsWith("Bearer ")) {
-            resolver.resolveException(request, response, null, new UnauthorizedException("Inicie sesión e intente nuevamente."));
+            resolver.resolveException(request, response, null, new UnauthorizedException("Cabecera no válida. Inicie sesión e intente nuevamente."));
+            return;
         }
 
         String jwt = header.substring(7);
 
-        Authentication auth = jwtService.authorizeToken(jwt).orElseThrow();
+        try {
+            auth = jwtService.authorizeToken(jwt).orElseThrow();
+        }catch (Exception e) {
+            resolver.resolveException(request, response, null, new UnauthorizedException(e.getMessage()));
+            return;
+        }
 
         SecurityContextHolder.getContext().setAuthentication(auth);
         filterChain.doFilter(request, response);

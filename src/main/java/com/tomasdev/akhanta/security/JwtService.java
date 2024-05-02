@@ -105,7 +105,7 @@ public class JwtService {
 
         // valida si el token no expiro y no esta revocado
         if ((token.isExpired() || token.isRevoked())) {
-            throw new UnauthorizedException("Token expirado.");
+            throw new UnauthorizedException("Token no válido. Inicie sesión nuevamente.");
         }
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
