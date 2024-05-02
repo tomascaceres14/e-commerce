@@ -23,15 +23,8 @@ public class User {
     private Integer active;
     private String password;
     private String role;
-    private List<Token> tokensList;
+    private Address address;
     private List<String> cart;
     private List<ShoppingOrder> ordersList;
-
-    public Optional<Token> getToken(String token) {
-        return getTokensList().stream().filter(jwt -> token.equals(jwt.getToken())).findAny();
-    }
-
-    public void deleteToken(String token) {
-        getTokensList().remove(getToken(token).orElse(null));
-    }
 }
+

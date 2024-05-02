@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.service.impl;
 
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.model.Token;
@@ -7,6 +8,7 @@ import com.tomasdev.akhanta.model.User;
 import com.tomasdev.akhanta.model.dto.UserCredentialsDTO;
 import com.tomasdev.akhanta.model.dto.JwtResponseDTO;
 import com.tomasdev.akhanta.model.dto.UserDTO;
+import com.tomasdev.akhanta.repository.TokenRepository;
 import com.tomasdev.akhanta.security.JwtService;
 import com.tomasdev.akhanta.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Servicio encargado del logueo de un usuario
@@ -26,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserServiceImpl userService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenRepository tokenRepository;
 
     public JwtResponseDTO register(UserDTO userDTO) {
 
@@ -85,11 +90,24 @@ public class AuthServiceImpl implements AuthService {
         if (!jwtService.isTokenValid(refreshToken, user)) throw new ServiceException("Invalid token.");
 
         Token accessToken = jwtService.generateAccessToken(user);
-        //TODO revoke/delete tokens
-        //TODO save token
+
+        revokeAllUserTokens(user.getUserId());
+
+        tokenRepository.save(accessToken);
 
         return new JwtResponseDTO(accessToken.getToken(), refreshToken);
+    }
 
+    public void revokeAllUserTokens(String userId) {
+        List<Token> userTokens = tokenRepository.findActiveTokensByUserId(userId);
+        if (userTokens.isEmpty()) return;
+
+        userTokens.forEach(token -> {
+            token.setRevoked(true);
+            token.setExpired(true);
+        });
+
+        tokenRepository.saveAll(userTokens);
     }
 
 }

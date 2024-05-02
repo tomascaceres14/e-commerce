@@ -21,9 +21,8 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         this.resolver = resolver;
     }
 
-
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) {
         resolver.resolveException(request, response, null, accessDeniedException);
     }
 

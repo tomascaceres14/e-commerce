@@ -100,9 +100,6 @@ public class JwtService {
         TokenUserQuery token = findByTokenWithUser(jwt);
         TokenUserQuery.UserInToken user = token.getUser();
 
-        log.info("token {}", token);
-        log.info("user {} {}", user.getRole(), user.getEmail());
-
         // valida si el token no expiro y no esta revocado
         if ((token.isExpired() || token.isRevoked())) {
             throw new UnauthorizedException("Token no válido. Inicie sesión nuevamente.");

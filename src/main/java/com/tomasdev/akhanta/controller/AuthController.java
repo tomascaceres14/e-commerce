@@ -46,4 +46,9 @@ public class AuthController {
     public ResponseEntity<JwtResponseDTO> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         return ResponseEntity.ok(service.refreshToken(request, response));
     }
+
+    @PatchMapping("/change-password")
+    public ResponseEntity<JwtResponseDTO> changePassword(HttpServletRequest request, HttpServletResponse response) {
+        return ResponseEntity.ok(service.refreshToken(request, response));
+    }
 }
