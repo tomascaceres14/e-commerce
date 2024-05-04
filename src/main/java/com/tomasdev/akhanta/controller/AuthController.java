@@ -23,7 +23,6 @@ import java.io.IOException;
 public class AuthController {
 
     private final AuthService service;
-    private final ModelMapper mapper;
 
     @PostMapping("/register")
     public ResponseEntity<JwtResponseDTO> register(@RequestBody UserDTO userDTO) {
@@ -44,11 +43,6 @@ public class AuthController {
 
     @PostMapping("/refresh-token")
     public ResponseEntity<JwtResponseDTO> refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        return ResponseEntity.ok(service.refreshToken(request, response));
-    }
-
-    @PatchMapping("/change-password")
-    public ResponseEntity<JwtResponseDTO> changePassword(HttpServletRequest request, HttpServletResponse response) {
         return ResponseEntity.ok(service.refreshToken(request, response));
     }
 }

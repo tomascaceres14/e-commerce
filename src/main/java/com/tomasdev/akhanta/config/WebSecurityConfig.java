@@ -50,6 +50,7 @@ public class WebSecurityConfig {
                         requests
                                 .requestMatchers("/auth/**", "/home/**", "/").permitAll()
                                 .requestMatchers("/admin/**").hasRole(Roles.ADMIN)
+                                .requestMatchers("/user/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
                                 .anyRequest().authenticated()
                 );
 

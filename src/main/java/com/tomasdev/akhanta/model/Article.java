@@ -15,6 +15,6 @@ public class Article {
     private String title;
     private String seTitle;
     private String content;
-    private String creation_date;
+    private Date creation_date;
     private String image_url;
 }

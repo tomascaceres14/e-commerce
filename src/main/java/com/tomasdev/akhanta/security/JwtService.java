@@ -47,7 +47,7 @@ public class JwtService {
     private long refreshTokenExpiration;
     private final MongoTemplate mongoTemplate;
 
-    public String extractUserEmail(String jwt) {
+    public static String extractUserEmail(String jwt) {
         return JWT.decode(jwt).getClaim("email").asString();
     }
 

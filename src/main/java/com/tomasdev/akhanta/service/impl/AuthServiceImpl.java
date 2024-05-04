@@ -42,7 +42,6 @@ public class AuthServiceImpl implements AuthService {
         return new JwtResponseDTO(accessToken.getToken(), refreshToken.getToken());
     }
 
-
     /**
      * Devuelve un dto con el jwt de acceso y de refresco del usuario dadas unas credenciales
      * @param credentials Credenciales de acceso
@@ -81,7 +80,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         String refreshToken = header.substring(7);
-        String userEmail = jwtService.extractUserEmail(refreshToken);
+        String userEmail = JwtService.extractUserEmail(refreshToken);
 
         if (userEmail == null) throw new ServiceException("Bad token. No email present");
 

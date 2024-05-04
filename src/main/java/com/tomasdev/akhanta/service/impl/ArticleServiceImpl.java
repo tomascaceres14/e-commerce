@@ -39,7 +39,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         article.setImage_url(s3Service.upload(image, s3Folder));
         article.setSeTitle(StringUtils.normalizeToSearch(article.getTitle()));
-        article.setCreation_date(new SimpleDateFormat("yyy-MM-dd").format(new Date()));
+        article.setCreation_date(new Date());
         article = repository.save(article);
 
         log.info("[ Creating new article id: {} ]", article.getArticleId());
@@ -60,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleDB.setImage_url(s3Service.update(image, s3Folder, imageName));
         }
 
-        if (!(articleDTO == null)) {
+        if (articleDTO != null) {
             mapper.map(articleDTO, articleDB);
             articleDB.setArticleId(id);
         }
