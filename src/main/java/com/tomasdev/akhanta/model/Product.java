@@ -15,7 +15,8 @@ public class Product {
     private String description;
     private Integer quantity;
     private Float price;
-    private List<String> categories;
+    private List<ProductCategory> categories;
+    private List<ProductAttribute> attributes;
     private List<String> images;
 
 }

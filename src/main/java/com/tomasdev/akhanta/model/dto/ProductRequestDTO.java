@@ -1,5 +1,7 @@
 package com.tomasdev.akhanta.model.dto;
 
+import com.tomasdev.akhanta.model.ProductAttribute;
+import com.tomasdev.akhanta.model.ProductCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +17,8 @@ public class ProductRequestDTO {
     private String description;
     private Integer quantity;
     private Float price;
-    private List<String> categories;
+    private List<ProductCategory> categories;
+    private List<ProductAttribute> attributes;
     private List<String> images;
 
 }

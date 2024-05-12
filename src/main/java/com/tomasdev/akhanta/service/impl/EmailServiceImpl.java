@@ -22,13 +22,13 @@ public class EmailServiceImpl implements EmailService {
     private final ResourceLoader resourceLoader;
 
     @Override
-    public void sendEmail(String to, String subject) throws MessagingException, IOException {
+    public void sendEmail(String recipient, String subject) throws MessagingException, IOException {
         MimeMessage message = mailSender.createMimeMessage();
         message.setFrom(new InternetAddress("tomialegriacaceres@gmail.com"));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress("tomialegriacaceres@gmail.com"));
         message.setSubject(subject);
 
-        String template = loadTemplateAsString("classpath:templates/template.html");
+        String template = loadTemplateAsString("classpath:templates/verify-account.html");
 
         template = template.replace("${username}", "Isabela");
 
@@ -37,6 +37,9 @@ public class EmailServiceImpl implements EmailService {
 
         mailSender.send(message);
     }
+
+    public void sendAccountValidationEmail(){}
+    public void sendChangePasswordEmail(){}
 
     private String loadTemplateAsString(String templatePath) throws IOException {
         Resource resource = resourceLoader.getResource(templatePath);
