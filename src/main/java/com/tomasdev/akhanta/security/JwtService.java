@@ -35,8 +35,6 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtService {
-    private final UserRepository userRepository;
-
     private final TokenRepository repository;
     private final ModelMapper mapper;
     @Value("${application.security.jwt.secret-key}")
@@ -49,6 +47,9 @@ public class JwtService {
 
     public static String extractUserEmail(String jwt) {
         return JWT.decode(jwt).getClaim("email").asString();
+    }
+    public static String extractClaim(String jwt, String claim) {
+        return JWT.decode(jwt).getClaim(claim).asString();
     }
 
     public boolean isTokenValid(String token, User user) {
@@ -77,6 +78,7 @@ public class JwtService {
                 .withClaim("numberCellPhone", String.valueOf(userDTO.getCellphone_number()))
                 .withClaim("email", userDTO.getEmail())
                 .withClaim("role", userDTO.getRole())
+                .withClaim("cart", userDTO.getCartId().toString())
                 .withIssuedAt(new Date(System.currentTimeMillis()))
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
                 .sign(algorithm);

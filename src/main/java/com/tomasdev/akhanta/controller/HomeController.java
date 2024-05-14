@@ -48,6 +48,11 @@ public class HomeController {
         return ResponseEntity.ok().body(productService.findAllProducts(page));
     }
 
+    @GetMapping("/products/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable String id) {
+        return ResponseEntity.ok().body(productService.findProductById(id));
+    }
+
     @GetMapping("/products/search")
     public ResponseEntity<Page<Product>> findAllProductsFiltered(
             @RequestParam(required = false, defaultValue = "0") Integer page,

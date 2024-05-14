@@ -2,11 +2,9 @@ package com.tomasdev.akhanta.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.List;
-import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -24,7 +22,6 @@ public class User {
     private String password;
     private String role;
     private Address address;
-    private List<String> cart;
-    private List<ShoppingOrder> ordersList;
+    private ObjectId cartId;
 }
 

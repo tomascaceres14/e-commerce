@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.service.impl;
 
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.model.Product;
 import com.tomasdev.akhanta.model.dto.ProductRequestDTO;
@@ -51,16 +52,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(String id) {return null;}
+    public Product findProductById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Producto id \{id} no encontrado"));
+    }
 
     @Override
     public Product updateProductById(String id, ProductRequestDTO product) {
-        return null;
+        Product productDB = findProductById(id);
+
+        mapper.map(product, productDB);
+
+       return repository.save(productDB);
     }
 
     @Override
     public String deleteProductById(String id) {
-        Product product = mapper.map(repository.findById(id), Product.class);
+        Product product = mapper.map(findProductById(id), Product.class);
 
         product.getImages().forEach(image -> {
             s3Service.delete("productos", s3Service.getImageKeyFromUrl(image));

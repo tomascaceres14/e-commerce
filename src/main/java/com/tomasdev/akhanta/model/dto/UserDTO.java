@@ -1,10 +1,12 @@
 package com.tomasdev.akhanta.model.dto;
 
+import com.tomasdev.akhanta.model.CartItem;
 import com.tomasdev.akhanta.model.Token;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -23,5 +25,6 @@ public class UserDTO {
     private String cellphone_number;
     private Integer active;
     private String role;
+    private ObjectId cartId;
     private List<Token> tokensList;
 }
