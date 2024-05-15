@@ -6,11 +6,8 @@ import com.tomasdev.akhanta.model.Product;
 import com.tomasdev.akhanta.service.ArticleService;
 import com.tomasdev.akhanta.service.AssociateService;
 import com.tomasdev.akhanta.service.ProductService;
-import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
-import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,9 +52,9 @@ public class HomeController {
 
     @GetMapping("/products/search")
     public ResponseEntity<Page<Product>> findAllProductsFiltered(
-            @RequestParam(required = false, defaultValue = "0") Integer page,
             @RequestParam(required = false, defaultValue = "") String categoryId,
-            @RequestParam(required = false, defaultValue = "") String name) {
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "0") Integer page) {
         return ResponseEntity.ok().body(productService.filterProducts(name, categoryId, page));
     }
 

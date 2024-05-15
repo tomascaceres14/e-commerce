@@ -46,23 +46,26 @@ public class CartServiceImpl implements CartService {
                 new ResourceNotFoundException(STR."Carrito id \{cartId} no encontrado"));
 
         CartItem item = mapper.map(cartItemDTO, CartItem.class);
-
-        Product product = productService.findProductById(item.getProductId());
+        Product product = productService.findProductById(cartItemDTO.getProductId());
 
         item.setPrice(product.getPrice());
+        item.setQuantity(1);
 
-        boolean isPresent = false;
+        cart.addItemToCart(item);
 
-        for (CartItem i: cart.getItems()) {
-            if (i.getProductId() == item.getProductId()) {
-                i.setQuantity(i.getQuantity()+1);
-                break;
-            }
-        }
-
-        if (!isPresent) {
-            cart.addItemToCart(item);
-        }
         repository.save(cart);
+    }
+
+    @Override
+    public void deleteItemFromCart(String productId, HttpServletRequest request) {
+        String cartId = JwtService.extractClaim(
+                request.getHeader(HttpHeaders.AUTHORIZATION)
+                        .substring(7), "cart");
+
+        Cart cart = repository.findById(cartId).orElseThrow(() ->
+                new ResourceNotFoundException(STR."Carrito id \{cartId} no encontrado"));
+
+       cart.deleteItemFromCart(productId);
+       repository.save(cart);
     }
 }

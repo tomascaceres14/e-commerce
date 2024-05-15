@@ -36,4 +36,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
+    @DeleteMapping("/cart")
+    public ResponseEntity<?> addItemToCart(@RequestHeader String productId, HttpServletRequest request) {
+        cartService.deleteItemFromCart(productId, request);
+        return ResponseEntity.status(HttpStatus.SC_OK).build();
+    }
+
 }

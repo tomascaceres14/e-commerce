@@ -9,11 +9,9 @@ import com.tomasdev.akhanta.service.AmazonS3Service;
 import com.tomasdev.akhanta.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
@@ -80,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> filterProducts(String name, String categoryId, int page) {
         PageRequest pageable = PageRequest.of(page, 10);
-        return repository.findAllProductsByName(name, categoryId, pageable);
+        return repository.filterAllProducts(name, categoryId, pageable);
     }
 
 }

@@ -29,8 +29,33 @@ public class Cart {
     }
 
     public void addItemToCart(CartItem item) {
-        items.add(item);
+        boolean isPresent = false;
+
+        for (CartItem i: items) {
+            if (i.getProductId().equals(item.getProductId())) {
+                i.setQuantity(i.getQuantity()+1);
+                isPresent = true;
+                break;
+            }
+        }
+
+        if (!isPresent) {
+            items.add(item);
+        }
+
         payAmount += item.getPrice();
     }
 
+    public void deleteItemFromCart(String productId) {
+        for (int i = 0; i < items.size(); i++) {
+
+            CartItem item = items.get(i);
+
+            if (item.getProductId().equals(productId)) {
+                payAmount -= (item.getPrice() * item.getQuantity());
+                items.remove(i);
+                break;
+            }
+        }
+    }
 }

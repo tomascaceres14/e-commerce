@@ -9,5 +9,4 @@ import lombok.Setter;
 public class CartItemDTO {
     private String productId;
     private String name;
-    private Integer quantity;
 }
