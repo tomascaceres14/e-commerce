@@ -78,9 +78,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> filterProducts(String name, int page) {
+    public Page<Product> filterProducts(String name, String categoryId, int page) {
         PageRequest pageable = PageRequest.of(page, 10);
-        return repository.findAllProductsByName(name, pageable);
+        return repository.findAllProductsByName(name, categoryId, pageable);
     }
 
 }

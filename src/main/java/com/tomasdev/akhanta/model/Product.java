@@ -17,8 +17,7 @@ public class Product {
     private String description;
     private Integer stock;
     private Double price;
-    @DocumentReference(lazy = true)
-    private List<ProductCategory> categories;
+    private String categoryId;
     private List<ProductAttribute> attributes;
     private List<String> images;
 

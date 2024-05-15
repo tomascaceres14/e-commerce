@@ -2,12 +2,14 @@ package com.tomasdev.akhanta.controller;
 
 import com.tomasdev.akhanta.model.Article;
 import com.tomasdev.akhanta.model.Associate;
+import com.tomasdev.akhanta.model.CategoryTag;
 import com.tomasdev.akhanta.model.Product;
 import com.tomasdev.akhanta.model.dto.ArticleRequestDTO;
 import com.tomasdev.akhanta.model.dto.AssociateRequestDTO;
 import com.tomasdev.akhanta.model.dto.ProductRequestDTO;
 import com.tomasdev.akhanta.service.ArticleService;
 import com.tomasdev.akhanta.service.AssociateService;
+import com.tomasdev.akhanta.service.CategoryTagsService;
 import com.tomasdev.akhanta.service.ProductService;
 import com.tomasdev.akhanta.service.impl.ArticleServiceImpl;
 import com.tomasdev.akhanta.service.impl.AssociateServiceImpl;
@@ -31,6 +33,7 @@ public class AdminController {
     private ArticleService articleService;
     private AssociateService associateService;
     private ProductService productService;
+    private CategoryTagsService categoryTagsService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -107,5 +110,30 @@ public class AdminController {
         log.info("[ /admin/products/id - DELETE ]");
         productService.deleteProductById(id);
         return ResponseEntity.ok(STR."Producto id \{id} eliminado.");
+    }
+
+    @PostMapping("/products/categories")
+    public ResponseEntity<CategoryTag> saveCategoryTag(@RequestBody CategoryTag tag) {
+        log.info("[ /admin/products/tags - POST ]");
+        categoryTagsService.saveTag(tag);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
+    }
+
+    @GetMapping("/products/categories")
+    public ResponseEntity<List<CategoryTag>> findAllCategoryTags() {
+        log.info("[ /admin/products/tags - GET ]");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(categoryTagsService.findAllTags());
+    }
+
+    @GetMapping("/products/categories/{id}")
+    public ResponseEntity<CategoryTag> findCategoryTagById(@RequestParam String id) {
+        log.info("[ /admin/products/tags - GET ]");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(categoryTagsService.findTagById(id));
     }
 }

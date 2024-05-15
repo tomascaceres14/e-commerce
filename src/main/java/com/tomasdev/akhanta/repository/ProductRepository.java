@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String>, PagingAndSortingRepository<Product, String> {
 
-    @Query("{title: {'$regex':?0,'$options':'i'}}")
-    Page<Product> findAllProductsByName(String title, Pageable page);
+    @Query("{title: {'$regex':?0,'$options':'i'}, categoryId: ?1}")
+    Page<Product> findAllProductsByName(String title, String categoryId, Pageable page);
 
 }
