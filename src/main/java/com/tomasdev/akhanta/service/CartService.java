@@ -9,7 +9,9 @@ public interface CartService {
     String createNewCart(String userId);
 
     void addItemToCart(CartItemDTO cartItem, HttpServletRequest request);
-    void deleteItemFromCart(String productId, HttpServletRequest request);
+    void removeItemFromCart(String productId, boolean unit, HttpServletRequest request);
+
+    void clearCart(HttpServletRequest request);
 
     Cart findCartById(HttpServletRequest request);
 }

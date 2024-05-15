@@ -57,7 +57,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteItemFromCart(String productId, HttpServletRequest request) {
+    public void removeItemFromCart(String productId, boolean unit, HttpServletRequest request) {
         String cartId = JwtService.extractClaim(
                 request.getHeader(HttpHeaders.AUTHORIZATION)
                         .substring(7), "cart");
@@ -65,7 +65,20 @@ public class CartServiceImpl implements CartService {
         Cart cart = repository.findById(cartId).orElseThrow(() ->
                 new ResourceNotFoundException(STR."Carrito id \{cartId} no encontrado"));
 
-       cart.deleteItemFromCart(productId);
+       cart.deleteItemFromCart(productId, unit);
        repository.save(cart);
+    }
+
+    @Override
+    public void clearCart(HttpServletRequest request) {
+        String cartId = JwtService.extractClaim(
+                request.getHeader(HttpHeaders.AUTHORIZATION)
+                        .substring(7), "cart");
+
+        Cart cart = repository.findById(cartId).orElseThrow(() ->
+                new ResourceNotFoundException(STR."Carrito id \{cartId} no encontrado"));
+
+        cart.clearCart();
+        repository.save(cart);
     }
 }

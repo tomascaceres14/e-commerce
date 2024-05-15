@@ -14,7 +14,7 @@ public class Cart {
 
     @Id
     private String cartId;
-    private Date orderedAt;
+    private Date lastUpdate;
     private List<CartItem> items;
     private Double payAmount;
     private Double discountAmount;
@@ -23,7 +23,7 @@ public class Cart {
     public Cart(String userId) {
         this.payAmount = 0.0;
         this.discountAmount = 0.0;
-        this.orderedAt = new Date();
+        this.lastUpdate = new Date();
         this.items = new ArrayList<>();
         this.userId = userId;
     }
@@ -44,18 +44,36 @@ public class Cart {
         }
 
         payAmount += item.getPrice();
+        lastUpdate = new Date();
     }
 
-    public void deleteItemFromCart(String productId) {
+    public void deleteItemFromCart(String productId, boolean unit) {
+
         for (int i = 0; i < items.size(); i++) {
 
             CartItem item = items.get(i);
 
             if (item.getProductId().equals(productId)) {
-                payAmount -= (item.getPrice() * item.getQuantity());
-                items.remove(i);
+
+                if (unit && item.getQuantity() > 1) {
+                    payAmount -= item.getPrice();
+                    item.setQuantity(item.getQuantity()-1);
+                } else {
+                    payAmount -= (item.getPrice() * item.getQuantity());
+                    items.remove(i);
+                }
                 break;
+
             }
         }
+
+        lastUpdate = new Date();
+    }
+
+    public void clearCart() {
+        items.clear();
+        payAmount = 0.0;
+        discountAmount = 0.0;
+        lastUpdate = new Date();
     }
 }

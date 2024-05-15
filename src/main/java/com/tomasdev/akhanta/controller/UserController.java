@@ -37,8 +37,14 @@ public class UserController {
     }
 
     @DeleteMapping("/cart")
-    public ResponseEntity<?> addItemToCart(@RequestHeader String productId, HttpServletRequest request) {
-        cartService.deleteItemFromCart(productId, request);
+    public ResponseEntity<?> clearCart(HttpServletRequest request) {
+        cartService.clearCart(request);
+        return ResponseEntity.status(HttpStatus.SC_OK).build();
+    }
+
+    @DeleteMapping("/cart/{productId}")
+    public ResponseEntity<?> removeItemFromCart(@PathVariable String productId, @RequestParam boolean unit, HttpServletRequest request) {
+        cartService.removeItemFromCart(productId, unit, request);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
