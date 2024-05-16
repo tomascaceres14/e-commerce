@@ -94,7 +94,7 @@ public class JwtService {
 
         String userEmail = extractUserEmail(jwt);
 
-        // si el correo es nulo y el contexto tiene algo retorno nada
+        // si el correo es nulo o el contexto tiene algo retorno nada
         if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() != null) {
             throw new UnauthorizedException("Autorización rechazada.");
         }
@@ -104,7 +104,7 @@ public class JwtService {
 
         // valida si el token no expiro y no esta revocado
         if ((token.isExpired() || token.isRevoked())) {
-            throw new UnauthorizedException("Token no válido. Inicie sesión nuevamente.");
+            throw new UnauthorizedException("Token expirado/revocado.");
         }
 
         HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
