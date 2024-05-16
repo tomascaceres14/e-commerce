@@ -11,6 +11,7 @@ import com.tomasdev.akhanta.model.dto.UserDTO;
 import com.tomasdev.akhanta.repository.TokenRepository;
 import com.tomasdev.akhanta.security.JwtService;
 import com.tomasdev.akhanta.service.AuthService;
+import com.tomasdev.akhanta.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final TokenRepository tokenRepository;

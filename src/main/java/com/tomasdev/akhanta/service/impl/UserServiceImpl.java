@@ -57,14 +57,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerUser(UserDTO req) {
+    public User registerUser(UserDTO userDTO) {
 
-        if (!req.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+        if (!userDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             throw new WrongCredentialsException("Ingrese una dirección de correo válida");
         }
 
-        User user = mapper.map(req, User.class);
+        User user = mapper.map(userDTO, User.class);
 
         if (user.getUserId() != null || repository.findByEmail(user.getEmail()).isPresent()) {
            throw new UserExistsException();
