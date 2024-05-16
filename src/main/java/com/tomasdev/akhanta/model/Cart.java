@@ -33,7 +33,7 @@ public class Cart {
 
         for (CartItem i: items) {
             if (i.getProductId().equals(item.getProductId())) {
-                i.setQuantity(i.getQuantity()+1);
+                i.setQuantity(i.getQuantity() + item.getQuantity());
                 isPresent = true;
                 break;
             }
@@ -43,7 +43,7 @@ public class Cart {
             items.add(item);
         }
 
-        payAmount += item.getPrice();
+        payAmount += item.getPrice() * item.getQuantity();
         lastUpdate = new Date();
     }
 
@@ -54,7 +54,6 @@ public class Cart {
             CartItem item = items.get(i);
 
             if (item.getProductId().equals(productId)) {
-
                 if (unit && item.getQuantity() > 1) {
                     payAmount -= item.getPrice();
                     item.setQuantity(item.getQuantity()-1);

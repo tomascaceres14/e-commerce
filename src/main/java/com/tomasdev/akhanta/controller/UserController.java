@@ -43,7 +43,9 @@ public class UserController {
     }
 
     @DeleteMapping("/cart/{productId}")
-    public ResponseEntity<?> removeItemFromCart(@PathVariable String productId, @RequestParam boolean unit, HttpServletRequest request) {
+    public ResponseEntity<?> removeItemFromCart(@PathVariable String productId,
+                                                @RequestParam(defaultValue = "false") boolean unit,
+                                                HttpServletRequest request) {
         cartService.removeItemFromCart(productId, unit, request);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }

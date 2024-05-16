@@ -49,7 +49,7 @@ public class CartServiceImpl implements CartService {
         Product product = productService.findProductById(cartItemDTO.getProductId());
 
         item.setPrice(product.getPrice());
-        item.setQuantity(1);
+        item.setName(product.getTitle());
 
         cart.addItemToCart(item);
 

@@ -8,5 +8,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CartItemDTO {
     private String productId;
-    private String name;
+    private Integer quantity;
 }
