@@ -9,8 +9,8 @@ const ProductCard = () => {
         justifyContent: "space-between",
         alignItems: "center",
         border: "1px solid black",
-        width: "17rem",
-        height: "22rem",
+        width: "15rem",
+        height: "20rem",
       }}
     >
       <img src="" alt="product" />
@@ -27,7 +27,7 @@ const ProductCard = () => {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "1rem"
+            gap: "1rem",
           }}
         >
           <button>+Cart</button>

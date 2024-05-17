@@ -1,24 +1,35 @@
 import React from "react";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <header style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "1rem 2.5rem", background: "aquamarine"}}>
+    <header className="home-header">
       <img src="" alt="logo" />
-      <nav >
-        <ul style={{display: "flex", flexDirection: "row", listStyle: "none", gap: "3rem"}}>
-          <li>Home</li>
-          <li>Products</li>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-          <li>Blog</li>
+      <nav>
+        <ul className="navbar-ul">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Products</a>
+          </li>
+          {/* <ul>
+            <li><a href="#"></</a>li>
+            <li><a href="#"></</a>li>
+            <li><a href="#"></</a>li>
+          </ul> */}
+          <li>
+            <a href="#">Blog</a>
+          </li>
         </ul>
       </nav>
-      <ul style={{display: "flex", flexDirection: "row", listStyle: "none", gap: "3rem"}}>
-        <li>Cart</li>
-        <li>Login/User</li>
+      <ul className="navbar-ul">
+        <li>
+          <a href="#">Cart</a>
+        </li>
+        <li>
+          <a href="#">Login</a>/User
+        </li>
       </ul>
     </header>
   );
