@@ -3,6 +3,8 @@ import Header from "../../components/ui/Header";
 import Hero from "./Hero";
 import CategoryCarousel from "./CategoryCarousel";
 import Suggestions from "./Suggestions";
+import ArticlesSection from "./ArticlesSection";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -12,6 +14,8 @@ const Home = () => {
       <CategoryCarousel />
       <Suggestions />
       <Suggestions />
+      <ArticlesSection />
+      <Footer />
     </div>
   );
 };

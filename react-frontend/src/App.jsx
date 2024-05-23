@@ -1,9 +1,13 @@
 import Home from "./pages/Home/index";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <div className="">
-      <Home />
+      {/* <Home /> */}
+      {/* <Login /> */}
+      <Register />
     </div>
   );
 }
