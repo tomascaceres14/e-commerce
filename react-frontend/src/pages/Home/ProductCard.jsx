@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   return (
     <div
       style={{
@@ -13,7 +13,7 @@ const ProductCard = () => {
         height: "20rem",
       }}
     >
-      <img src="" alt="product" />
+      <img src={product.imageUrl} alt="product" />
       <div
         style={{
           display: "flex",
@@ -21,8 +21,10 @@ const ProductCard = () => {
           alignItems: "center",
         }}
       >
-        <p style={{ color: "lightgreen", fontWeight: "bold" }}>ARS$999</p>
-        <p>Product Title</p>
+        <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+          ARS${product.price}
+        </p>
+        <p>{product.title}</p>
         <div
           style={{
             display: "flex",

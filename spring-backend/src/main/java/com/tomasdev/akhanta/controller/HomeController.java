@@ -58,4 +58,9 @@ public class HomeController {
         return ResponseEntity.ok().body(productService.filterProducts(name, categoryId, page));
     }
 
+    @GetMapping("/categories")
+    public ResponseEntity<?> findAllCategories(@RequestParam(required = false, defaultValue = "0") Integer page) {
+        return ResponseEntity.ok().build();
+    }
+
 }

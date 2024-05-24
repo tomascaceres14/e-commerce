@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const Suggestions = () => {
+const Suggestions = ({ products }) => {
   return (
     <div style={{ textAlign: "center" }}>
       <h3>Mas vendidos esta semana</h3>
@@ -11,7 +11,10 @@ const Suggestions = () => {
           justifyContent: "space-around",
         }}
       >
-        <ProductCard />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+
         <ProductCard />
         <ProductCard />
         <ProductCard />
