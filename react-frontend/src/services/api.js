@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8080/home";
 export const fetchProducts = async () => {
   try {
     const response = await axios.get(`${API_URL}/products`);
-    return response.data;
+    return response.data.content;
   } catch (error) {
     throw new Error("Error fetching products");
   }

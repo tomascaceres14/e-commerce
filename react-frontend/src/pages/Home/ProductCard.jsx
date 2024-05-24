@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProductCard = ({ product }) => {
+  useEffect(() => {
+    console.log(product);
+  });
+
   return (
     <div
       style={{
@@ -13,7 +17,7 @@ const ProductCard = ({ product }) => {
         height: "20rem",
       }}
     >
-      <img src={product.imageUrl} alt="product" />
+      <img src={""} alt="product" />
       <div
         style={{
           display: "flex",

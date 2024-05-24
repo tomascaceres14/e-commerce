@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 
 const Suggestions = ({ products }) => {
@@ -12,13 +12,8 @@ const Suggestions = ({ products }) => {
         }}
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard product={product} />
         ))}
-
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
       </div>
     </div>
   );
