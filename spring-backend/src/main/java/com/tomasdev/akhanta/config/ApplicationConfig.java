@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.config;
 
-import com.tomasdev.akhanta.security.JwtAuthFilter;
-import com.tomasdev.akhanta.security.JwtService;
+import com.tomasdev.akhanta.security.jwt.JwtAuthFilter;
+import com.tomasdev.akhanta.security.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

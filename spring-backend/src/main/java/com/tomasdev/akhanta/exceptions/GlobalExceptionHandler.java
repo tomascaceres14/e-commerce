@@ -1,7 +1,6 @@
 package com.tomasdev.akhanta.exceptions;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.tomasdev.akhanta.model.dto.ErrorResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.impl.InvalidContentTypeException;
 import org.springframework.http.*;
@@ -15,7 +14,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Slf4j

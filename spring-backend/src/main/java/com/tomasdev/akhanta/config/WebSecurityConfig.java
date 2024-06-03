@@ -2,12 +2,11 @@ package com.tomasdev.akhanta.config;
 
 import com.tomasdev.akhanta.exceptions.CustomAccessDeniedHandler;
 import com.tomasdev.akhanta.exceptions.AuthEntryPoint;
-import com.tomasdev.akhanta.security.JwtAuthFilter;
+import com.tomasdev.akhanta.security.jwt.JwtAuthFilter;
 import com.tomasdev.akhanta.security.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,13 +14,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.List;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
  * Clase que configura lo relacionado a las peticiones HTTP
