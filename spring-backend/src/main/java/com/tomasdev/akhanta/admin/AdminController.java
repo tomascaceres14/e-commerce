@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("/api/v1/admin")
 public class AdminController {
 
     private ArticleService articleService;

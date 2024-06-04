@@ -1,5 +1,12 @@
 *** TAREAS ***
 
+- Backend
+  - Clase User NO debe mapearse a db. Crear clase Customer y Clase Shop que extiendan de User y mapearlas.
+  - NO guardar mas JWT en Mongo.
+  - Guardar solo los revocados en una base de datos en memoria.
+  - Agregar claim a JWT isAccessToken true/false para que Refresh Token no pueda utilizarse para acceder a recursos.
+  - Cambiar lógica de validacion de Tokens. Solo verifica firma, expiracion, rol y si existe en blacklist.
+  
 *** CODIGO
 - Crear tests unitarios.
 - Filtro buscar articulo por nombre

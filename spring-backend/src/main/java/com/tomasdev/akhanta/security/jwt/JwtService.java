@@ -87,6 +87,11 @@ public class JwtService {
 
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
+/*
+    Validacion innecesaria. userEmail NUNCA va a ser nulo si el token lo genero yo. Y si por algun
+    motivo el token se edita manualmente y envia sin correo, tampoco llega acá. Crashea al validar
+    la firma en linea anterior.
+    El contexto nunca se usa ya que la autorizacion pasa por JWT.
 
         String userEmail = extractUserEmail(jwt);
 
@@ -94,10 +99,13 @@ public class JwtService {
         if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() != null) {
             throw new UnauthorizedException("Autorización rechazada.");
         }
-
+*/
+        // Innecesario. Info del usuario ya esta en el token.
+        // TODO reemplazar user con Hashmap con correo y rol.
         TokenUserQuery token = findByTokenWithUser(jwt);
         TokenUserQuery.UserInToken user = token.getUser();
 
+        // TODO cambiar esta validacion. Solo debe validar si existe en tabla 'blacklist' de H2
         // valida si el token no expiro y no esta revocado
         if ((token.isExpired() || token.isRevoked())) {
             throw new UnauthorizedException("Token expirado/revocado.");

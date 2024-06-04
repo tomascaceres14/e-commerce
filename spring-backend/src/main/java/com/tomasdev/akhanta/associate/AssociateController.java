@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/associate")
+@RequestMapping("/api/v1/home/associate")
 @AllArgsConstructor
 public class AssociateController {
 

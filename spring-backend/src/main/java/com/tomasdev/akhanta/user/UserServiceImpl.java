@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         savedUser.setCartId(new ObjectId(cartService.createNewCart(savedUser.getUserId())));
 
         log.info("[ Registering user email: {} ]", savedUser.getEmail());
-        return savedUser;
+        return repository.save(savedUser);
     }
 
 }
