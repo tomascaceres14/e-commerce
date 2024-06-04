@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -15,7 +16,9 @@ public class User {
     private String userId;
     private String firstName;
     private String lastName;
+    @Indexed(unique = true)
     private String username;
+    @Indexed(unique = true)
     private String email;
     private String cellphone_number;
     private Integer active;

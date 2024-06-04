@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CategoryTagsRepository extends MongoRepository<CategoryTag, String> {
+public interface CategoryRepository extends MongoRepository<Category, String> {
 
-    @Query("{'parentCategory': null}")
-    List<CategoryTag> findAllParentCategories();
+    @Query("{'parentId': null}")
+    List<Category> findAllParentCategories();
 }

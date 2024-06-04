@@ -1,6 +1,6 @@
 package com.tomasdev.akhanta.product;
 
-import com.tomasdev.akhanta.product.categories.CategoryTag;
+import com.tomasdev.akhanta.product.categories.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,7 @@ public class ProductRequestDTO {
     private String description;
     private Integer quantity;
     private Float price;
-    private List<CategoryTag> categories;
+    private List<Category> categories;
     private List<ProductAttribute> attributes;
     private List<String> images;
 

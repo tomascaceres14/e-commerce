@@ -2,14 +2,14 @@ package com.tomasdev.akhanta.admin;
 
 import com.tomasdev.akhanta.article.Article;
 import com.tomasdev.akhanta.associate.Associate;
-import com.tomasdev.akhanta.product.categories.CategoryTag;
+import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.article.ArticleRequestDTO;
 import com.tomasdev.akhanta.associate.AssociateRequestDTO;
 import com.tomasdev.akhanta.product.ProductRequestDTO;
 import com.tomasdev.akhanta.article.ArticleService;
 import com.tomasdev.akhanta.associate.AssociateService;
-import com.tomasdev.akhanta.product.categories.CategoryTagsService;
+import com.tomasdev.akhanta.product.categories.CategoryService;
 import com.tomasdev.akhanta.product.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ public class AdminController {
     private ArticleService articleService;
     private AssociateService associateService;
     private ProductService productService;
-    private CategoryTagsService categoryTagsService;
+    private CategoryService categoryService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -110,27 +110,27 @@ public class AdminController {
     }
 
     @PostMapping("/products/categories")
-    public ResponseEntity<CategoryTag> saveCategoryTag(@RequestBody CategoryTag tag) {
+    public ResponseEntity<Category> saveCategory(@RequestBody Category tag) {
         log.info("[ /admin/products/tags - POST ]");
-        categoryTagsService.saveTag(tag);
+        categoryService.saveCategory(tag);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();
     }
 
     @GetMapping("/products/categories")
-    public ResponseEntity<List<CategoryTag>> findAllCategoryTags() {
+    public ResponseEntity<List<Category>> findAllCategories() {
         log.info("[ /admin/products/tags - GET ]");
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(categoryTagsService.findAllTags());
+                .body(categoryService.findAllCategories());
     }
 
     @GetMapping("/products/categories/{id}")
-    public ResponseEntity<CategoryTag> findCategoryTagById(@RequestParam String id) {
+    public ResponseEntity<Category> findCategoryById(@RequestParam String id) {
         log.info("[ /admin/products/tags - GET ]");
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(categoryTagsService.findTagById(id));
+                .body(categoryService.findCategoryById(id));
     }
 }

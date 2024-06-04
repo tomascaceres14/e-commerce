@@ -13,9 +13,11 @@ public class Product {
     @Id
     private String productId;
     private String title;
+    private String seTitle;
     private String description;
     private Integer stock;
     private Double price;
+    private Float rating;
     private String categoryId;
     private List<ProductAttribute> attributes;
     private List<String> images;
