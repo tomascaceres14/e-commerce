@@ -33,7 +33,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     /**
      * Lista blanca de URIs
      */
-    private final List<String> urlsToSkip = List.of("/api/v1/auth", "/api/v1/home", "/favicon.ico");
+    private final List<String> urlsToSkip = List.of("/api/v1/auth", "/api/v1/home", "/favicon.ico", "/h2-console/");
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
@@ -47,7 +47,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException, UnauthorizedException {
-        log.info("Applying internal jwt filter to {} {}", request.getRequestURI(), request.getMethod());
 
         Authentication auth;
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -60,7 +59,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String jwt = header.substring(7);
 
         try {
-            auth = jwtService.authorizeToken(jwt).orElseThrow();
+            auth = jwtService.authorizeToken(jwt);
         }catch (Exception e) {
             resolver.resolveException(request, response, null, new UnauthorizedException(e.getMessage()));
             return;

@@ -11,6 +11,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -41,11 +42,12 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers("/api/v1/auth/**", "/api/v1/home/**", "/").permitAll()
+                                .requestMatchers("/", "/api/v1/auth/**", "/api/v1/home/**", "/h2-console/**").permitAll()
                                 .requestMatchers("/api/v1/admin/**").hasRole(Roles.ADMIN)
                                 .requestMatchers("/api/v1/user/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
                                 .anyRequest().authenticated()
-                );
+                )
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         return http.build();
     }

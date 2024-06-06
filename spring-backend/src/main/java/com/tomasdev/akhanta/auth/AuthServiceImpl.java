@@ -66,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
      */
     public void signOut(String token) {
         String jwt = token.substring(7);
-        jwtService.deleteToken(jwt);
+        jwtService.revokeToken(jwt);
     }
 
     @Override

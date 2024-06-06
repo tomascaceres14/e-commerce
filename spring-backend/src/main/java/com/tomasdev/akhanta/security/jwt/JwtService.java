@@ -21,9 +21,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
+import java.util.*;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
@@ -32,6 +30,7 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 @Slf4j
 public class JwtService {
     private final TokenRepository repository;
+    private final TokenBlacklistRepository blacklistRepository;
     private final ModelMapper mapper;
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
@@ -83,85 +82,28 @@ public class JwtService {
         return repository.save(new Token(null, token, new ObjectId(userDTO.getUserId()), false, false));
     }
 
-    public Optional<Authentication> authorizeToken(String jwt) throws AuthenticationException {
+    public Authentication authorizeToken(String jwt) throws AuthenticationException {
         log.info("Authorizing token {}", jwt);
 
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
-/*
-    Validacion innecesaria. userEmail NUNCA va a ser nulo si el token lo genero yo. Y si por algun
-    motivo el token se edita manualmente y envia sin correo, tampoco llega acá. Crashea al validar
-    la firma en linea anterior.
-    El contexto nunca se usa ya que la autorizacion pasa por JWT.
 
-        String userEmail = extractUserEmail(jwt);
+        Map<String, String> user = new HashMap<>();
+        user.put("email", extractClaim(jwt, "email"));
+        user.put("role", extractClaim(jwt, "role"));
 
-        // si el correo es nulo o el contexto tiene algo retorno nada
-        if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() != null) {
-            throw new UnauthorizedException("Autorización rechazada.");
-        }
-*/
-        // Innecesario. Info del usuario ya esta en el token.
-        TokenUserQuery token = findByTokenWithUser(jwt);
-        // TODO reemplazar user con Hashmap con correo y rol.
-        TokenUserQuery.UserInToken user = token.getUser();
-
-        // TODO cambiar esta validacion. Solo debe validar si existe en tabla 'blacklist' de H2
-        // valida si el token no expiro y no esta revocado
-        if ((token.isExpired() || token.isRevoked())) {
+        if (blacklistRepository.existsByToken(jwt)) {
             throw new UnauthorizedException("Token expirado/revocado.");
         }
 
         HashSet<SimpleGrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
+        roles.add(new SimpleGrantedAuthority(STR."ROLE_\{user.get("role")}")); //rol
 
-        // Quitar optional
-        return Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, roles));
+        return new UsernamePasswordAuthenticationToken(user, jwt, roles);
     }
 
-    // TODO borrar al pingo
-    public TokenUserQuery findByTokenWithUser(String token) {
-        LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("users") // Nombre de la colección de usuarios
-                .localField("userId")
-                .foreignField("_id")
-                .as("user");
-
-        Aggregation aggregation = newAggregation(
-                match(Criteria.where("token").is(token)),
-                lookupOperation,
-                unwind("user")
-        );
-
-        ProjectionOperation projectStage = Aggregation.project()
-                .and("token").as("token")
-                .and("user.username").as("username")
-                .and("user.email").as("email")
-                .and("expired").as("expired")
-                .and("revoked").as("revoked");
-
-        AggregationResults<TokenUserQuery> results = mongoTemplate.aggregate(aggregation, "tokens", TokenUserQuery.class);
-
-        if (results.getMappedResults().isEmpty()) {
-            throw new ResourceNotFoundException("Token no existente."); // No se encontraron resultados
-        }
-
-        return results.getMappedResults().getFirst(); // Devuelve el primer resultado
-    }
-
-    // TODO cambiar deleteToken por revokeToken. Cambiar lógica. Debe agregar el token a la tabla de blacklist.
-    public void deleteToken(String jwt) {
-        Token token = repository.findTokenByToken(jwt);
-
-        if (token == null) {
-            throw new ResourceNotFoundException("Token no existente.");
-        }
-
-        token.setRevoked(true);
-        token.setExpired(true);
-
-        repository.save(token);
+    public void revokeToken(String jwt) {
+        blacklistRepository.save(new TokenBlacklist(jwt));
         SecurityContextHolder.clearContext();
     }
-
 }
