@@ -7,12 +7,10 @@ import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.security.Roles;
 import com.tomasdev.akhanta.cart.CartService;
 import com.tomasdev.akhanta.auth.ChangePasswordDTO;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePassword(ChangePasswordDTO passwordDTO, String jwt) {
 
-        String email = JwtService.extractClaimWithBearer(jwt, "email");
+        String email = JwtService.extractClaim(jwt, "email");
         User user = findByEmail(email);
 
         if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), user.getPassword())) {

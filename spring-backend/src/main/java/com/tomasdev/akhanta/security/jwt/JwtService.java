@@ -4,13 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
 import com.tomasdev.akhanta.user.User;
-import com.tomasdev.akhanta.user.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.types.ObjectId;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -33,10 +29,6 @@ public class JwtService {
     private long refreshTokenExpiration;
 
     public static String extractClaim(String jwt, String claim) {
-        return JWT.decode(jwt).getClaim(claim).asString();
-    }
-
-    public static String extractClaimWithBearer(String jwt, String claim) {
         return JWT.decode(jwt.substring(7)).getClaim(claim).asString();
     }
 
@@ -73,7 +65,7 @@ public class JwtService {
         log.info("Authorizing token {}", jwt);
 
         // valida firma y expiración
-        JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt);
+        JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt.substring(7));
 
         Map<String, String> user = new HashMap<>();
         user.put("email", extractClaim(jwt, "email"));

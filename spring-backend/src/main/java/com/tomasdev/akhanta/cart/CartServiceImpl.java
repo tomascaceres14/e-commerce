@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
     }
 
     public Cart findCartById(String jwt) {
-        String id = JwtService.extractClaimWithBearer(jwt, "cartId");
+        String id = JwtService.extractClaim(jwt, "cartId");
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Carrito id \{id} no encontrado"));
     }
 

@@ -49,14 +49,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException, UnauthorizedException {
 
         Authentication auth;
-        String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+        String jwt = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (header == null || !header.startsWith("Bearer ")) {
+        if (jwt == null || !jwt.startsWith("Bearer ")) {
             resolver.resolveException(request, response, null, new UnauthorizedException("Cabecera no válida. Inicie sesión e intente nuevamente."));
             return;
         }
 
-        String jwt = header.substring(7);
+        // revisar q no funciona
+        if (Boolean.parseBoolean(JwtService.extractClaim(jwt, "isRefresh"))) {
+            throw new UnauthorizedException("Token inválido. Intente nuevamente.");
+        }
 
         try {
             auth = jwtService.authorizeToken(jwt);

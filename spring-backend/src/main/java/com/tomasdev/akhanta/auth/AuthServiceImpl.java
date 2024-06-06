@@ -61,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     public JwtResponseDTO refreshAccessToken(String refreshToken) {
-        String userEmail = JwtService.extractClaimWithBearer(refreshToken, "email");
+        String userEmail = JwtService.extractClaim(refreshToken, "email");
 
         User user = userService.findByEmail(userEmail);
         String accessToken = jwtService.buildAccessToken(user);
