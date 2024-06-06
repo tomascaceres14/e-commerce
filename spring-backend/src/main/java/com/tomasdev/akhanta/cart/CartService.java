@@ -6,10 +6,10 @@ public interface CartService {
 
     String createNewCart(String userId);
 
-    void addItemToCart(CartItemDTO cartItem, HttpServletRequest request);
-    void removeItemFromCart(String productId, boolean unit, HttpServletRequest request);
+    void addItemToCart(CartItemDTO cartItem, String jwt);
+    void removeItemFromCart(String productId, boolean unit, String jwt);
 
-    void clearCart(HttpServletRequest request);
+    void clearCart(String jwt);
 
-    Cart findCartById(HttpServletRequest request);
+    Cart findCartById(String jwt);
 }

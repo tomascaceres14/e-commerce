@@ -36,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity<JwtResponseDTO> refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        return ResponseEntity.ok(service.refreshToken(request, response));
+    public ResponseEntity<JwtResponseDTO> refreshAccessToken(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String refreshToken) {
+        return ResponseEntity.ok(service.refreshAccessToken(refreshToken));
     }
 }

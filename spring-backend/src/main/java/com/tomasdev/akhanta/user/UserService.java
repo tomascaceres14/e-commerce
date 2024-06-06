@@ -7,5 +7,5 @@ public interface UserService {
 
     User registerUser(UserDTO req);
     User findByEmail(String email);
-    void changePassword(ChangePasswordDTO passwordDTO, HttpServletRequest request);
+    void changePassword(ChangePasswordDTO passwordDTO, String jwt);
 }

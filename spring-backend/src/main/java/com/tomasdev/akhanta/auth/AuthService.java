@@ -9,7 +9,7 @@ public interface AuthService {
 
     JwtResponseDTO register(UserDTO userDTO);
     JwtResponseDTO logIn(UserCredentialsDTO userCredentialsDTO);
-    JwtResponseDTO refreshToken(HttpServletRequest request, HttpServletResponse response);
+    JwtResponseDTO refreshAccessToken(String refreshToken);
     void signOut(String jwt);
 
 

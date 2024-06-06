@@ -25,18 +25,41 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final CartService cartService;
     private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public User registerUser(UserDTO userDTO) {
+
+        if (!userDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+            throw new WrongCredentialsException("Ingrese una dirección de correo válida");
+        }
+
+        User user = mapper.map(userDTO, User.class);
+
+        if (user.getUserId() != null || repository.findByEmail(user.getEmail()).isPresent()) {
+            throw new UserExistsException();
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        user.setRole(Roles.CUSTOMER);
+        user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
+        User savedUser = repository.save(user);
+        savedUser.setCartId(new ObjectId(cartService.createNewCart(savedUser.getUserId())));
+
+        log.info("[ Registering user email: {} ]", savedUser.getEmail());
+        return repository.save(savedUser);
+    }
+
     @Override
     public User findByEmail(String email) {
         return repository.findByEmail(email).orElseThrow(WrongCredentialsException::new);
     }
 
     @Override
-    public void changePassword(ChangePasswordDTO passwordDTO, HttpServletRequest request) {
+    public void changePassword(ChangePasswordDTO passwordDTO, String jwt) {
 
-        String email = JwtService.extractUserEmail(
-                request.getHeader(HttpHeaders.AUTHORIZATION)
-                        .substring(7));
-
+        String email = JwtService.extractUserEmail(jwt);
         User user = findByEmail(email);
 
         if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), user.getPassword())) {
@@ -51,30 +74,4 @@ public class UserServiceImpl implements UserService {
 
         repository.save(user);
     }
-
-    @Override
-    public User registerUser(UserDTO userDTO) {
-
-        if (!userDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
-            throw new WrongCredentialsException("Ingrese una dirección de correo válida");
-        }
-
-        User user = mapper.map(userDTO, User.class);
-
-        if (user.getUserId() != null || repository.findByEmail(user.getEmail()).isPresent()) {
-           throw new UserExistsException();
-        }
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        user.setRole(Roles.CUSTOMER);
-        user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
-        User savedUser = repository.save(user);
-        savedUser.setCartId(new ObjectId(cartService.createNewCart(savedUser.getUserId())));
-
-        log.info("[ Registering user email: {} ]", savedUser.getEmail());
-        return repository.save(savedUser);
-    }
-
 }

@@ -2,7 +2,6 @@ package com.tomasdev.akhanta.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
 import com.tomasdev.akhanta.user.User;
 import com.tomasdev.akhanta.user.UserDTO;
@@ -12,8 +11,6 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.*;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -22,8 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 @Component
 @RequiredArgsConstructor
@@ -35,7 +30,7 @@ public class JwtService {
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
     @Value("${application.security.jwt.expiration}")
-    private long jwtExpiration;
+    private long accessTokenExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshTokenExpiration;
     private final MongoTemplate mongoTemplate;
@@ -56,30 +51,34 @@ public class JwtService {
         return JWT.decode(token).getExpiresAt().before(new Date());
     }
 
-    public Token generateAccessToken(User user) {
-        return buildToken(mapper.map(user, UserDTO.class), jwtExpiration);
-    }
 
-    public Token generateRefreshToken(User user) {
-        return buildToken(mapper.map(user, UserDTO.class), refreshTokenExpiration);
-    }
-    // TODO cambiar parámetro userDTO por hashmap con información específica.
-    // Es mas engorroso pero permite flexibilidad para crear diferentes tokens con diferentes claims.
-    public Token buildToken(UserDTO userDTO, long expirationTime) {
-
+    public String buildToken(Map<String, Object> claims, long expirationTime) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        String token = JWT.create()
-                .withClaim("userId", userDTO.getUserId())
-                .withClaim("lastname", userDTO.getLastName())
-                .withClaim("numberCellPhone", String.valueOf(userDTO.getCellphone_number()))
-                .withClaim("email", userDTO.getEmail())
-                .withClaim("role", userDTO.getRole())
-                .withClaim("cart", userDTO.getCartId().toString())
+        return JWT.create()
+                .withPayload(claims)
                 .withIssuedAt(new Date(System.currentTimeMillis()))
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
                 .sign(algorithm);
+    }
 
-        return repository.save(new Token(null, token, new ObjectId(userDTO.getUserId()), false, false));
+    public String buildAccessToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getUserId());
+        claims.put("username", user.getLastName());
+        claims.put("email", user.getEmail());
+        claims.put("role", user.getRole());
+        claims.put("cartId", user.getCartId().toString());
+        claims.put("isRefresh", false);
+
+        return  buildToken(claims, accessTokenExpiration);
+    }
+
+    public String buildRefreshToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("isRefresh", true);
+        claims.put("userId", user.getUserId());
+
+        return buildToken(claims, refreshTokenExpiration);
     }
 
     public Authentication authorizeToken(String jwt) throws AuthenticationException {
