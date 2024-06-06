@@ -15,6 +15,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Filtro que valida si la peticion tiene la cabezera de Autorizacion
@@ -24,16 +25,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final HandlerExceptionResolver resolver;
+    private final List<String> urlsToSkip = List.of("/api/v1/auth", "/api/v1/home", "/favicon.ico", "/h2-console");
 
     public JwtAuthFilter(JwtService jwtService, @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
         this.jwtService = jwtService;
         this.resolver = resolver;
     }
 
-    /**
-     * Lista blanca de URIs
-     */
-    private final List<String> urlsToSkip = List.of("/api/v1/auth", "/api/v1/home", "/favicon.ico", "/h2-console");
 
     /**
      * Verifica si a la URI no se le debe aplicar el filtro
@@ -51,14 +49,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         Authentication auth;
         String jwt = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (jwt == null || !jwt.startsWith("Bearer ")) {
+        if (jwt == null || !jwt.startsWith("Bearer ") || JwtService.extractClaim(jwt, "isRefresh").equals("true")) {
             resolver.resolveException(request, response, null, new UnauthorizedException("Cabecera no válida. Inicie sesión e intente nuevamente."));
             return;
-        }
-
-        // revisar q no funciona
-        if (Boolean.parseBoolean(JwtService.extractClaim(jwt, "isRefresh"))) {
-            throw new UnauthorizedException("Token inválido. Intente nuevamente.");
         }
 
         try {
