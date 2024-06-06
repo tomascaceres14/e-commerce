@@ -64,7 +64,8 @@ public class JwtService {
     public Token generateRefreshToken(User user) {
         return buildToken(mapper.map(user, UserDTO.class), refreshTokenExpiration);
     }
-
+    // TODO cambiar parámetro userDTO por hashmap con información específica.
+    // Es mas engorroso pero permite flexibilidad para crear diferentes tokens con diferentes claims.
     public Token buildToken(UserDTO userDTO, long expirationTime) {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
@@ -101,8 +102,8 @@ public class JwtService {
         }
 */
         // Innecesario. Info del usuario ya esta en el token.
-        // TODO reemplazar user con Hashmap con correo y rol.
         TokenUserQuery token = findByTokenWithUser(jwt);
+        // TODO reemplazar user con Hashmap con correo y rol.
         TokenUserQuery.UserInToken user = token.getUser();
 
         // TODO cambiar esta validacion. Solo debe validar si existe en tabla 'blacklist' de H2
@@ -111,12 +112,14 @@ public class JwtService {
             throw new UnauthorizedException("Token expirado/revocado.");
         }
 
-        HashSet<SimpleGrantedAuthority> rolesAndAuthorities = new HashSet<>();
-        rolesAndAuthorities.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
+        HashSet<SimpleGrantedAuthority> roles = new HashSet<>();
+        roles.add(new SimpleGrantedAuthority(STR."ROLE_\{user.getRole()}")); //rol
 
-        return Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, rolesAndAuthorities));
+        // Quitar optional
+        return Optional.of(new UsernamePasswordAuthenticationToken(user, jwt, roles));
     }
 
+    // TODO borrar al pingo
     public TokenUserQuery findByTokenWithUser(String token) {
         LookupOperation lookupOperation = LookupOperation.newLookup()
                 .from("users") // Nombre de la colección de usuarios
@@ -146,6 +149,7 @@ public class JwtService {
         return results.getMappedResults().getFirst(); // Devuelve el primer resultado
     }
 
+    // TODO cambiar deleteToken por revokeToken. Cambiar lógica. Debe agregar el token a la tabla de blacklist.
     public void deleteToken(String jwt) {
         Token token = repository.findTokenByToken(jwt);
 
