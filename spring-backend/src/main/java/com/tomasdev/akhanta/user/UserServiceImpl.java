@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePassword(ChangePasswordDTO passwordDTO, String jwt) {
 
-        String email = JwtService.extractUserEmail(jwt);
+        String email = JwtService.extractClaimWithBearer(jwt, "email");
         User user = findByEmail(email);
 
         if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), user.getPassword())) {

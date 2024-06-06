@@ -24,33 +24,21 @@ import java.util.*;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtService {
-    private final TokenRepository repository;
     private final TokenBlacklistRepository blacklistRepository;
-    private final ModelMapper mapper;
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
     @Value("${application.security.jwt.expiration}")
     private long accessTokenExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshTokenExpiration;
-    private final MongoTemplate mongoTemplate;
 
-    public static String extractUserEmail(String jwt) {
-        return JWT.decode(jwt).getClaim("email").asString();
-    }
     public static String extractClaim(String jwt, String claim) {
         return JWT.decode(jwt).getClaim(claim).asString();
     }
 
-    public boolean isTokenValid(String token, User user) {
-        final String username = extractUserEmail(token);
-        return username.equals(user.getEmail()) && !isTokenExpired(token);
+    public static String extractClaimWithBearer(String jwt, String claim) {
+        return JWT.decode(jwt.substring(7)).getClaim(claim).asString();
     }
-
-    public boolean isTokenExpired(String token) {
-        return JWT.decode(token).getExpiresAt().before(new Date());
-    }
-
 
     public String buildToken(Map<String, Object> claims, long expirationTime) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);

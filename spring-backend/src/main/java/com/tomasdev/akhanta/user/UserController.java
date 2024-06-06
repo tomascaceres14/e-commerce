@@ -19,7 +19,8 @@ public class UserController {
     private final CartService cartService;
 
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO passwordDTO, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO passwordDTO,
+                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.changePassword(passwordDTO, jwt);
         return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();
     }
@@ -30,7 +31,8 @@ public class UserController {
     }
 
     @PostMapping("/cart")
-    public ResponseEntity<?> addItemToCart(@RequestBody CartItemDTO cartItem, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+    public ResponseEntity<?> addItemToCart(@RequestBody CartItemDTO cartItem,
+                                           @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         cartService.addItemToCart(cartItem, jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
