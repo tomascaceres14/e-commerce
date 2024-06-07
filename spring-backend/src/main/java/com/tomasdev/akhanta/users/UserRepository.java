@@ -1,6 +1,5 @@
-package com.tomasdev.akhanta.user;
+package com.tomasdev.akhanta.users;
 
-import com.tomasdev.akhanta.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;

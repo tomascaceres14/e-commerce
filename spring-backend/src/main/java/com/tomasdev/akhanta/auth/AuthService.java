@@ -1,14 +1,13 @@
 package com.tomasdev.akhanta.auth;
 
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
-import com.tomasdev.akhanta.user.UserDTO;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import com.tomasdev.akhanta.users.UserDTO;
+import com.tomasdev.akhanta.users.customer.CustomerDTO;
 
 public interface AuthService {
 
-    JwtResponseDTO register(UserDTO userDTO);
-    JwtResponseDTO logIn(UserCredentialsDTO userCredentialsDTO);
+    JwtResponseDTO customerRegister(CustomerDTO customerDTO);
+    JwtResponseDTO customerLogIn(UserCredentialsDTO userCredentialsDTO);
     JwtResponseDTO refreshAccessToken(String refreshToken);
     void signOut(String jwt);
 

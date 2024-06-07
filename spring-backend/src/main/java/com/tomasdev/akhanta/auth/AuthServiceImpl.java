@@ -1,11 +1,12 @@
 package com.tomasdev.akhanta.auth;
 
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
-import com.tomasdev.akhanta.user.User;
+import com.tomasdev.akhanta.users.User;
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
-import com.tomasdev.akhanta.user.UserDTO;
 import com.tomasdev.akhanta.security.jwt.JwtService;
-import com.tomasdev.akhanta.user.UserService;
+import com.tomasdev.akhanta.users.customer.Customer;
+import com.tomasdev.akhanta.users.customer.CustomerDTO;
+import com.tomasdev.akhanta.users.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final UserService userService;
+    private final CustomerService customerService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    public JwtResponseDTO register(UserDTO userDTO) {
+    public JwtResponseDTO customerRegister(CustomerDTO customerDTO) {
 
-        User user = userService.registerUser(userDTO);
+        Customer customer = customerService.registerCustomer(customerDTO);
 
-        String accessToken = jwtService.buildAccessToken(user);
-        String refreshToken = jwtService.buildRefreshToken(user);
+        String accessToken = jwtService.buildCustomerAccessToken(customer);
+        String refreshToken = jwtService.buildRefreshToken(customer);
 
         return new JwtResponseDTO(accessToken, refreshToken);
     }
@@ -37,16 +38,16 @@ public class AuthServiceImpl implements AuthService {
      * @return Dto con el jwt del usuario si las credenciales son validas
      */
     @Override
-    public JwtResponseDTO logIn(UserCredentialsDTO credentials) {
+    public JwtResponseDTO customerLogIn(UserCredentialsDTO credentials) {
 
-        User user = userService.findByEmail(credentials.getEmail());
+        Customer customer = customerService.findByEmail(credentials.getEmail());
 
-        if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(credentials.getPassword(), customer.getPassword())) {
             throw new WrongCredentialsException();
         }
 
-        String accessToken = jwtService.buildAccessToken(user);
-        String refreshToken = jwtService.buildRefreshToken(user);
+        String accessToken = jwtService.buildCustomerAccessToken(customer);
+        String refreshToken = jwtService.buildRefreshToken(customer);
 
         return new JwtResponseDTO(accessToken, refreshToken);
     }
@@ -62,9 +63,9 @@ public class AuthServiceImpl implements AuthService {
     public JwtResponseDTO refreshAccessToken(String refreshToken) {
         String userEmail = JwtService.extractClaim(refreshToken, "email");
 
-        User user = userService.findByEmail(userEmail);
-        String accessToken = jwtService.buildAccessToken(user);
-        String newRefreshToken = jwtService.buildRefreshToken(user);
+        Customer customer = customerService.findByEmail(userEmail);
+        String accessToken = jwtService.buildCustomerAccessToken(customer);
+        String newRefreshToken = jwtService.buildRefreshToken(customer);
 
         return new JwtResponseDTO(accessToken, newRefreshToken);
     }

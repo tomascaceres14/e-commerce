@@ -17,13 +17,13 @@ public class Cart {
     private Date updatedAt;
     private List<CartItem> items;
     private Double payAmount;
-    private String userId;
+    private String customerId;
 
-    public Cart(String userId) {
+    public Cart(String customerId) {
         this.payAmount = 0.0;
         this.updatedAt = new Date();
         this.items = new ArrayList<>();
-        this.userId = userId;
+        this.customerId = customerId;
     }
 
     public void addItemToCart(CartItem item) {

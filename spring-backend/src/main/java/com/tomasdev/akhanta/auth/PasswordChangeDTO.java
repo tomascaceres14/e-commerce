@@ -3,7 +3,7 @@ package com.tomasdev.akhanta.auth;
 import lombok.Data;
 
 @Data
-public class ChangePasswordDTO {
+public class PasswordChangeDTO {
 
     private String currentPassword;
     private String repeatedPassword;

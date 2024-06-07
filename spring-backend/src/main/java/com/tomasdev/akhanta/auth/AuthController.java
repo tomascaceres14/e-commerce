@@ -1,9 +1,8 @@
 package com.tomasdev.akhanta.auth;
 
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
-import com.tomasdev.akhanta.user.UserDTO;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import com.tomasdev.akhanta.users.UserDTO;
+import com.tomasdev.akhanta.users.customer.CustomerDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -18,15 +17,20 @@ public class AuthController {
 
     private final AuthService service;
 
-    @PostMapping("/register")
-    public ResponseEntity<JwtResponseDTO> register(@RequestBody UserDTO userDTO) {
+    @PostMapping("/customer/register")
+    public ResponseEntity<JwtResponseDTO> customerRegister(@RequestBody CustomerDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.register(userDTO));
+                .body(service.customerRegister(userDTO));
     }
 
-    @PostMapping(path = "/login")
-    public ResponseEntity<JwtResponseDTO> logIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
-        return ResponseEntity.ok(service.logIn(userCredentialsDTO));
+    @PostMapping(path = "/customer/login")
+    public ResponseEntity<JwtResponseDTO> customerLogIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
+        return ResponseEntity.ok(service.customerLogIn(userCredentialsDTO));
+    }
+
+    @PostMapping(path = "/shop/login")
+    public ResponseEntity<JwtResponseDTO> shopLogIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
+        return ResponseEntity.ok(service.customerLogIn(userCredentialsDTO));
     }
 
     @PostMapping(path = "/logout")

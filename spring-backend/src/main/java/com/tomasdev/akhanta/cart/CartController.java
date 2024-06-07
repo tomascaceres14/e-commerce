@@ -1,9 +1,6 @@
-package com.tomasdev.akhanta.user;
+package com.tomasdev.akhanta.cart;
 
-import com.tomasdev.akhanta.cart.Cart;
-import com.tomasdev.akhanta.cart.CartItemDTO;
-import com.tomasdev.akhanta.cart.CartService;
-import com.tomasdev.akhanta.auth.ChangePasswordDTO;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
@@ -11,35 +8,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/customers/cart")
 @RequiredArgsConstructor
-public class UserController {
+public class CartController {
 
-    private final UserService service;
-    private final CartService cartService;
-
-    @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO passwordDTO,
-                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        service.changePassword(passwordDTO, jwt);
-        return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();
-    }
+    private final CartService service;
 
     @GetMapping("/cart")
     public ResponseEntity<Cart> findCartById(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        return ResponseEntity.ok(cartService.findCartById(jwt));
+        return ResponseEntity.ok(service.findCartById(jwt));
     }
 
     @PostMapping("/cart")
     public ResponseEntity<?> addItemToCart(@RequestBody CartItemDTO cartItem,
                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        cartService.addItemToCart(cartItem, jwt);
+        service.addItemToCart(cartItem, jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
     @DeleteMapping("/cart")
     public ResponseEntity<?> clearCart(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        cartService.clearCart(jwt);
+        service.clearCart(jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
@@ -47,8 +36,7 @@ public class UserController {
     public ResponseEntity<?> removeItemFromCart(@PathVariable String productId,
                                                 @RequestParam(defaultValue = "false") boolean unit,
                                                 @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        cartService.removeItemFromCart(productId, unit, jwt);
+        service.removeItemFromCart(productId, unit, jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
-
 }

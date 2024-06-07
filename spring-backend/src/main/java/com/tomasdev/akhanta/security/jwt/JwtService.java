@@ -3,7 +3,8 @@ package com.tomasdev.akhanta.security.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
-import com.tomasdev.akhanta.user.User;
+import com.tomasdev.akhanta.users.User;
+import com.tomasdev.akhanta.users.customer.Customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,22 +42,21 @@ public class JwtService {
                 .sign(algorithm);
     }
 
-    public String buildAccessToken(User user) {
+    public String buildCustomerAccessToken(Customer customer) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getUserId());
-        claims.put("username", user.getLastName());
-        claims.put("email", user.getEmail());
-        claims.put("role", user.getRole());
-        claims.put("cartId", user.getCartId().toString());
+        claims.put("customerId", customer.getCustomerId());
+        claims.put("username", customer.getUsername());
+        claims.put("role", customer.getRole());
+        claims.put("cartId", customer.getCartId());
         claims.put("isRefresh", "false");
 
         return  buildToken(claims, accessTokenExpiration);
     }
 
-    public String buildRefreshToken(User user) {
+    public String buildRefreshToken(User customer) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("isRefresh", "true");
-        claims.put("email", user.getEmail());
+        claims.put("email", customer.getEmail());
 
         return buildToken(claims, refreshTokenExpiration);
     }

@@ -1,16 +1,11 @@
-package com.tomasdev.akhanta.user;
+package com.tomasdev.akhanta.users;
 
 import com.tomasdev.akhanta.exceptions.ServiceException;
-import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.security.jwt.JwtService;
-import com.tomasdev.akhanta.security.Roles;
-import com.tomasdev.akhanta.cart.CartService;
-import com.tomasdev.akhanta.auth.ChangePasswordDTO;
+import com.tomasdev.akhanta.auth.PasswordChangeDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.types.ObjectId;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +14,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final ModelMapper mapper;
     private final UserRepository repository;
-    private final CartService cartService;
     private final PasswordEncoder passwordEncoder;
 
+    /*
     @Override
     public User registerUser(UserDTO userDTO) {
 
@@ -32,21 +26,27 @@ public class UserServiceImpl implements UserService {
             throw new WrongCredentialsException("Ingrese una dirección de correo válida");
         }
 
-        User user = mapper.map(userDTO, User.class);
+        User customer = mapper.map(userDTO, User.class);
 
-        if (user.getUserId() != null || repository.findByEmail(user.getEmail()).isPresent()) {
+        if (customer.getUserId() != null || repository.findByEmail(customer.getEmail()).isPresent()) {
             throw new UserExistsException();
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        user.setRole(Roles.CUSTOMER);
-        user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
-        User savedUser = repository.save(user);
-        savedUser.setCartId(new ObjectId(cartService.createNewCart(savedUser.getUserId())));
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customer.setActive(1);
+        customer.setRole(Roles.CUSTOMER);
+        customer.setUsername(STR."\{customer.getFirstName()} \{customer.getLastName()}");
+        User savedCustomer = repository.save(customer);
+        savedCustomer.setCartId(new ObjectId(cartService.createNewCart(savedCustomer.getUserId())));
 
-        log.info("[ Registering user email: {} ]", savedUser.getEmail());
-        return repository.save(savedUser);
+        log.info("[ Registering customer email: {} ]", savedCustomer.getEmail());
+        return repository.save(savedCustomer);
+    }
+     */
+
+    @Override
+    public User registerUser(UserDTO req) {
+        return null;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(ChangePasswordDTO passwordDTO, String jwt) {
+    public void changePassword(PasswordChangeDTO passwordDTO, String jwt) {
 
         String email = JwtService.extractClaim(jwt, "email");
-        User user = findByEmail(email);
+        User customer = findByEmail(email);
 
-        if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), customer.getPassword())) {
              throw new WrongCredentialsException("Contraseña incorrecta.");
         }
 
@@ -68,8 +68,8 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("Las contraseñas no coinciden");
         }
 
-        user.setPassword(passwordEncoder.encode(passwordDTO.getNewPassword()));
+        customer.setPassword(passwordEncoder.encode(passwordDTO.getNewPassword()));
 
-        repository.save(user);
+        repository.save(customer);
     }
 }
