@@ -56,7 +56,7 @@ public class JwtService {
     public String buildRefreshToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("isRefresh", "true");
-        claims.put("userId", user.getUserId());
+        claims.put("email", user.getEmail());
 
         return buildToken(claims, refreshTokenExpiration);
     }
