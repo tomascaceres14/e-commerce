@@ -49,7 +49,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         Authentication auth;
         String jwt = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (jwt == null || !jwt.startsWith("Bearer ") || JwtService.extractClaim(jwt, "isRefresh").equals("true")) {
+        if (jwt == null || JwtService.extractClaim(jwt, "isRefresh").equals("true")) {
             resolver.resolveException(request, response, null, new UnauthorizedException("Cabecera no válida. Inicie sesión e intente nuevamente."));
             return;
         }

@@ -56,8 +56,7 @@ public class AuthServiceImpl implements AuthService {
      * @param token Token a eliminar
      */
     public void signOut(String token) {
-        String jwt = token.substring(7);
-        jwtService.revokeToken(jwt);
+        jwtService.revokeToken(token);
     }
 
     public JwtResponseDTO refreshAccessToken(String refreshToken) {

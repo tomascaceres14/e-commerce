@@ -48,7 +48,7 @@ public class JwtService {
         claims.put("email", user.getEmail());
         claims.put("role", user.getRole());
         claims.put("cartId", user.getCartId().toString());
-        claims.put("isRefresh", false);
+        claims.put("isRefresh", "false");
 
         return  buildToken(claims, accessTokenExpiration);
     }
@@ -67,13 +67,13 @@ public class JwtService {
         // valida firma y expiración
         JWT.require(Algorithm.HMAC256(secretKey)).build().verify(jwt.substring(7));
 
-        Map<String, String> user = new HashMap<>();
-        user.put("email", extractClaim(jwt, "email"));
-        user.put("role", extractClaim(jwt, "role"));
-
         if (blacklistRepository.existsByToken(jwt)) {
             throw new UnauthorizedException("Token expirado/revocado.");
         }
+
+        Map<String, String> user = new HashMap<>();
+        user.put("email", extractClaim(jwt, "email"));
+        user.put("role", extractClaim(jwt, "role"));
 
         HashSet<SimpleGrantedAuthority> roles = new HashSet<>();
         roles.add(new SimpleGrantedAuthority(STR."ROLE_\{user.get("role")}")); //rol
@@ -82,7 +82,7 @@ public class JwtService {
     }
 
     public void revokeToken(String jwt) {
-        blacklistRepository.save(new TokenBlacklist(jwt));
+        blacklistRepository.save(new TokenBlacklist(null, jwt));
         SecurityContextHolder.clearContext();
     }
 }
