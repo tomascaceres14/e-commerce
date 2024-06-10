@@ -72,6 +72,12 @@ public class JwtService {
         return buildToken(claims, refreshTokenExpiration);
     }
 
+    public JwtResponseDTO grantAccess(User user) {
+
+
+        return new JwtResponseDTO("", "");
+    }
+
     public Authentication authorizeToken(String jwt) throws AuthenticationException {
         log.info("Authorizing token {}", jwt);
 

@@ -19,7 +19,12 @@ public class AuthController {
     @PostMapping("/customer/register")
     public ResponseEntity<JwtResponseDTO> customerRegister(@RequestBody CustomerRegisterDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.customerRegister(userDTO));
+                .body(service.registerCustomer(userDTO));
+    }
+
+    @PostMapping(path = "/{role}/login")
+    public ResponseEntity<JwtResponseDTO> logIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
+        return ResponseEntity.ok(service.customerLogIn(userCredentialsDTO));
     }
 
     @PostMapping(path = "/customer/login")

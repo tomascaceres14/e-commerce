@@ -42,7 +42,7 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers("/", "/api/v1/auth/**", "/api/v1/home/**", "/h2-console/**").permitAll()
+                                .requestMatchers("/test/**", "/api/v1/auth/**", "/api/v1/home/**", "/h2-console/**").permitAll()
                                 .requestMatchers("/api/v1/admin/**").hasRole(Roles.ADMIN)
                                 .requestMatchers("/api/v1/users/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
                                 .requestMatchers("/api/v1/customers/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)

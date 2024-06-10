@@ -1,6 +1,5 @@
 package com.tomasdev.akhanta.home;
 
-import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
 import com.tomasdev.akhanta.users.shop.ShopService;
 import lombok.AllArgsConstructor;

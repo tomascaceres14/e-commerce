@@ -1,12 +1,9 @@
 package com.tomasdev.akhanta.users.shop;
 
-import com.tomasdev.akhanta.auth.PasswordChangeDTO;
 import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
+import com.tomasdev.akhanta.users.IUser;
 
-public interface ShopService {
-    Shop registerShop(ShopRegisterDTO req);
-    Shop findByEmail(String email);
+public interface ShopService extends IUser<Shop, ShopRegisterDTO> {
     HomeShopDTO findBySeName(String name);
-    void changePassword(PasswordChangeDTO passwordDTO, String jwt);
 }

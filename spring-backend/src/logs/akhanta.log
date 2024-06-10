@@ -107,3 +107,988 @@ This generated password is for development use only. Your security configuration
 2024-06-10 12:58:29 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-06-10 12:58:29 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2024-06-10 12:58:29 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-06-10 13:02:30 - [ERROR] - com.tomasdev.akhanta.exceptions.GlobalExceptionHandler - UnauthorizedException - Cabecera no válida. Inicie sesión e intente nuevamente.
+2024-06-10 13:03:00 - [INFO] - com.tomasdev.akhanta.security.jwt.JwtService - Authorizing token Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1JlZnJlc2giOiJmYWxzZSIsInJvbGUiOiJBRE1JTiIsImNhcnRJZCI6IjY2NDM2NjFmMjE1ODgwNjQ0MDBjNzUyNyIsImN1c3RvbWVySWQiOiI2NjFiZTUzNDE5ZWNkNzI0NTkzODZlZDYiLCJ1c2VybmFtZSI6IkFkbWluaXN0cmFkb3IgQ2FjZXJlcyIsImlhdCI6MTcxODAxNzExMSwiZXhwIjoxNzE4MDE3NzExfQ.4cClP4EkesmIhYq_BaggMSJKWqIz1Vv1lzmb08AhzhI
+2024-06-10 13:03:01 - [INFO] - com.tomasdev.akhanta.users.shop.ShopServiceImpl - [ Registering shop email: shop@cambalache.com ]
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.lambda$open$0(SocketStream.java:84)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:84)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Network is unreachable: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:752)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:76)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:104)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	... 4 common frames omitted
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 13:30:22 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 13:30:32 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=59816500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 13:30:32 CEST 2024, lastUpdateTimeNanos=1005299705162200}
+2024-06-10 13:30:32 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 13:30:32 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=60520400, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 13:30:32 CEST 2024, lastUpdateTimeNanos=1005299764637500}
+2024-06-10 13:30:32 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=60245200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 13:30:32 CEST 2024, lastUpdateTimeNanos=1005299764378100}
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-01.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 14:23:05 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 14:23:15 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=88485200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 14:23:14 CEST 2024, lastUpdateTimeNanos=1008462388814900}
+2024-06-10 14:23:15 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=91546200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 14:23:14 CEST 2024, lastUpdateTimeNanos=1008462402656500}
+2024-06-10 14:23:15 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=113405500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 14:23:14 CEST 2024, lastUpdateTimeNanos=1008462424526700}
+2024-06-10 14:23:15 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 14:23:22 - [WARN] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=44m48s945ms86µs400ns).
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readFully(SSLSocketInputRecord.java:472)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decodeInputRecord(SSLSocketInputRecord.java:243)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:181)
+	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1481)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readFully(SSLSocketInputRecord.java:472)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decodeInputRecord(SSLSocketInputRecord.java:243)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:181)
+	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1481)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.lambda$open$0(SocketStream.java:84)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:84)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Network is unreachable: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:752)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:76)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:104)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	... 4 common frames omitted
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 14:39:33 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 14:39:43 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=52413200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 14:39:43 CEST 2024, lastUpdateTimeNanos=1009450212740200}
+2024-06-10 14:39:43 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=55386000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 14:39:43 CEST 2024, lastUpdateTimeNanos=1009450238271400}
+2024-06-10 14:39:43 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 14:39:43 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=50407600, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 14:39:43 CEST 2024, lastUpdateTimeNanos=1009450243382700}
+2024-06-10 14:39:52 - [WARN] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m30s139ms799µs900ns).
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketReadException: Exception receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:730)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:606)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:451)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:404)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:224)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1462)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1068)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:175)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:200)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:739)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:603)
+	... 5 common frames omitted
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.lambda$open$0(SocketStream.java:84)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:84)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Network is unreachable: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:752)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:76)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:104)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	... 4 common frames omitted
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-00.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 16:19:44 - [INFO] - org.mongodb.driver.cluster - Exception in monitor thread while connecting to server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017
+com.mongodb.MongoSocketException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:221)
+	at com.mongodb.internal.connection.ServerAddressWithResolver.getSocketAddresses(ServerAddressWithResolver.java:68)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:100)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:211)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:196)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:156)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.UnknownHostException: Host desconocido (ac-yehvzqq-shard-00-02.a3hcche.mongodb.net)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1816)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1806)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:213)
+	... 7 common frames omitted
+2024-06-10 16:19:54 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=87434000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 16:19:54 CEST 2024, lastUpdateTimeNanos=1015461281244400}
+2024-06-10 16:19:54 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=85002500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 16:19:54 CEST 2024, lastUpdateTimeNanos=1015461293256600}
+2024-06-10 16:19:54 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=84986100, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 16:19:54 CEST 2024, lastUpdateTimeNanos=1015461293256500}
+2024-06-10 16:19:54 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 16:20:03 - [WARN] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h29m40s822ms404µs).
+2024-06-10 17:28:21 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:28:21 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:28:21 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:28:29 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 12924 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:28:29 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 1 JPA repository interface.
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:28:30 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:28:30 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:28:31 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:28:31 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:28:31 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:28:31 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:28:31 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2354 ms
+2024-06-10 17:28:31 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:28:32 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:80798813-6d49-4a6d-94f2-bb463d0f2eaa user=SA
+2024-06-10 17:28:32 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:28:32 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:80798813-6d49-4a6d-94f2-bb463d0f2eaa'
+2024-06-10 17:28:32 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:28:32 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:28:32 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:28:32 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:28:33 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:28:33 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:28:34 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:28:34 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@7f65639e, com.mongodb.Jep395RecordCodecProvider@673fdc28, com.mongodb.KotlinCodecProvider@4cf1ec2]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:28:34 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:28:34 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:28:34 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:28:35 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=402518800, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:28:35 CEST 2024, lastUpdateTimeNanos=1019582431392900}
+2024-06-10 17:28:35 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=402313300, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:28:35 CEST 2024, lastUpdateTimeNanos=1019582431196500}
+2024-06-10 17:28:35 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=402372900, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:28:35 CEST 2024, lastUpdateTimeNanos=1019582431196500}
+2024-06-10 17:28:35 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:28:36 - [WARN] - o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController' defined in file [C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes\com\tomasdev\akhanta\admin\AdminController.class]: Unsatisfied dependency expressed through constructor parameter 4: Error creating bean with name 'authServiceImpl' defined in file [C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes\com\tomasdev\akhanta\auth\AuthServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.tomasdev.akhanta.users.UserService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-06-10 17:28:36 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:28:36 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:28:36 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:28:36 - [INFO] - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2024-06-10 17:28:36 - [INFO] - o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-10 17:28:36 - [ERROR] - o.s.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.tomasdev.akhanta.auth.AuthServiceImpl required a bean of type 'com.tomasdev.akhanta.users.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.tomasdev.akhanta.users.UserService' in your configuration.
+
+2024-06-10 17:28:56 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 15196 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:28:56 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 85 ms. Found 1 JPA repository interface.
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:28:57 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:28:57 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:28:58 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:28:58 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:28:58 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:28:58 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:28:58 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2154 ms
+2024-06-10 17:28:58 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:28:58 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:7c8a1186-0dda-4d45-9834-c6c0fa2d9d9f user=SA
+2024-06-10 17:28:58 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:28:58 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:7c8a1186-0dda-4d45-9834-c6c0fa2d9d9f'
+2024-06-10 17:28:59 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:28:59 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:28:59 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:28:59 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:29:00 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:29:00 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:29:00 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@2c1a0f82, com.mongodb.Jep395RecordCodecProvider@60e5db1d, com.mongodb.KotlinCodecProvider@1f3f0d25]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=392413300, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:29:01 CEST 2024, lastUpdateTimeNanos=1019608805764400}
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=392330000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:29:01 CEST 2024, lastUpdateTimeNanos=1019608805711600}
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=392166200, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:29:01 CEST 2024, lastUpdateTimeNanos=1019608805524200}
+2024-06-10 17:29:01 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:29:02 - [WARN] - o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController' defined in file [C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes\com\tomasdev\akhanta\admin\AdminController.class]: Unsatisfied dependency expressed through constructor parameter 4: Error creating bean with name 'authServiceImpl' defined in file [C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes\com\tomasdev\akhanta\auth\AuthServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.tomasdev.akhanta.users.UserService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-06-10 17:29:02 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:29:02 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:29:02 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:29:02 - [INFO] - org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2024-06-10 17:29:02 - [INFO] - o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-10 17:29:02 - [ERROR] - o.s.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.tomasdev.akhanta.auth.AuthServiceImpl required a bean of type 'com.tomasdev.akhanta.users.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.tomasdev.akhanta.users.UserService' in your configuration.
+
+2024-06-10 17:29:28 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 15588 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:29:28 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 114 ms. Found 1 JPA repository interface.
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:29:29 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:29:29 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:29:30 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:29:30 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:29:30 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:29:30 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:29:30 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2206 ms
+2024-06-10 17:29:30 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:29:31 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:2aaed48e-aaa7-45e6-91c9-49ff3f63c1a0 user=SA
+2024-06-10 17:29:31 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:29:31 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:2aaed48e-aaa7-45e6-91c9-49ff3f63c1a0'
+2024-06-10 17:29:31 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:29:31 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:29:31 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:29:31 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:29:32 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:29:32 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:29:33 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:29:33 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:33 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@49616310, com.mongodb.Jep395RecordCodecProvider@5ee76cf2, com.mongodb.KotlinCodecProvider@6662974a]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:29:33 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:33 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:29:34 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=388379000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:29:33 CEST 2024, lastUpdateTimeNanos=1019640970458700}
+2024-06-10 17:29:34 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=388623100, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:29:33 CEST 2024, lastUpdateTimeNanos=1019640970671800}
+2024-06-10 17:29:34 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=388433700, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:29:33 CEST 2024, lastUpdateTimeNanos=1019640970458700}
+2024-06-10 17:29:34 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:29:34 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 770e7fa8-d1be-444a-b9d3-b15f1da451ab
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-10 17:29:35 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b5afde5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a14a8c1, org.springframework.security.web.context.SecurityContextHolderFilter@676c3745, org.springframework.security.web.header.HeaderWriterFilter@419ac0f5, org.springframework.web.filter.CorsFilter@879f852, org.springframework.security.web.authentication.logout.LogoutFilter@45da40ad, com.tomasdev.akhanta.security.jwt.JwtAuthFilter@17e4beda, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78b20c7f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@128579a6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@693676d, org.springframework.security.web.session.SessionManagementFilter@27959922, org.springframework.security.web.access.ExceptionTranslationFilter@57e6f449, org.springframework.security.web.access.intercept.AuthorizationFilter@2640f5ea]
+2024-06-10 17:29:35 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-06-10 17:29:35 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Started RestApiApplication in 7.393 seconds (process running for 8.292)
+2024-06-10 17:29:56 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-10 17:29:56 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-06-10 17:29:56 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-06-10 17:29:56 - [ERROR] - com.tomasdev.akhanta.exceptions.GlobalExceptionHandler - UnauthorizedException - Cabecera no válida. Inicie sesión e intente nuevamente.
+2024-06-10 17:30:07 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:30:07 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:30:07 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:30:12 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 3764 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:30:12 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123 ms. Found 1 JPA repository interface.
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:30:13 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:30:13 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:30:14 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:30:14 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:30:14 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:30:14 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:30:14 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2221 ms
+2024-06-10 17:30:14 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:30:14 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:9c702b13-d6dc-4def-a443-74e2fbb56ead user=SA
+2024-06-10 17:30:14 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:30:14 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:9c702b13-d6dc-4def-a443-74e2fbb56ead'
+2024-06-10 17:30:15 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:30:15 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:30:15 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:30:15 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:30:16 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:30:16 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:30:17 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:30:17 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:30:17 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@1f3f0d25, com.mongodb.Jep395RecordCodecProvider@32eac39b, com.mongodb.KotlinCodecProvider@4ef0bc5b]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:30:17 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:30:17 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:30:18 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=418666400, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:30:17 CEST 2024, lastUpdateTimeNanos=1019685096379000}
+2024-06-10 17:30:18 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=418696800, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:30:17 CEST 2024, lastUpdateTimeNanos=1019685096377300}
+2024-06-10 17:30:18 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=418775300, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:30:17 CEST 2024, lastUpdateTimeNanos=1019685096455300}
+2024-06-10 17:30:18 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:30:18 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 71602901-c49d-4ab9-bc2d-a7e79b4de1b1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-10 17:30:19 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2fc698a9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4823f3b8, org.springframework.security.web.context.SecurityContextHolderFilter@3110bb19, org.springframework.security.web.header.HeaderWriterFilter@727eae52, org.springframework.web.filter.CorsFilter@85446a, org.springframework.security.web.authentication.logout.LogoutFilter@2140582, com.tomasdev.akhanta.security.jwt.JwtAuthFilter@52a9db63, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18482805, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@84180e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4efb7c99, org.springframework.security.web.session.SessionManagementFilter@4f1cb802, org.springframework.security.web.access.ExceptionTranslationFilter@1a18e18d, org.springframework.security.web.access.intercept.AuthorizationFilter@75225415]
+2024-06-10 17:30:19 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-06-10 17:30:19 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Started RestApiApplication in 7.813 seconds (process running for 8.737)
+2024-06-10 17:30:24 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-10 17:30:24 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-06-10 17:30:24 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-06-10 17:30:24 - [ERROR] - com.tomasdev.akhanta.exceptions.GlobalExceptionHandler - UnauthorizedException - Cabecera no válida. Inicie sesión e intente nuevamente.
+2024-06-10 17:31:09 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:31:09 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:31:09 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:31:14 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 17596 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:31:14 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 142 ms. Found 1 JPA repository interface.
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:31:15 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:31:15 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:31:16 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:31:16 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:31:16 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:31:16 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:31:16 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2184 ms
+2024-06-10 17:31:16 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:31:16 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:ae59cb76-73db-4d4b-9977-ea095480fa3f user=SA
+2024-06-10 17:31:16 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:31:17 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:ae59cb76-73db-4d4b-9977-ea095480fa3f'
+2024-06-10 17:31:17 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:31:17 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:31:17 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:31:17 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:31:18 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:31:18 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:31:18 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:31:19 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:31:19 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@682482ee, com.mongodb.Jep395RecordCodecProvider@261b27db, com.mongodb.KotlinCodecProvider@175745fc]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:31:19 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:31:19 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:31:20 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=364372900, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:31:19 CEST 2024, lastUpdateTimeNanos=1019746881469100}
+2024-06-10 17:31:20 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=364310900, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:31:19 CEST 2024, lastUpdateTimeNanos=1019746881406500}
+2024-06-10 17:31:20 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=363920500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:31:19 CEST 2024, lastUpdateTimeNanos=1019746881406500}
+2024-06-10 17:31:20 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:31:20 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 996ab3b5-6807-4e06-ba9a-0529c2ea45ff
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-10 17:31:20 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b5afde5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a14a8c1, org.springframework.security.web.context.SecurityContextHolderFilter@676c3745, org.springframework.security.web.header.HeaderWriterFilter@419ac0f5, org.springframework.web.filter.CorsFilter@879f852, org.springframework.security.web.authentication.logout.LogoutFilter@45da40ad, com.tomasdev.akhanta.security.jwt.JwtAuthFilter@2512155e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78b20c7f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@128579a6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@693676d, org.springframework.security.web.session.SessionManagementFilter@27959922, org.springframework.security.web.access.ExceptionTranslationFilter@57e6f449, org.springframework.security.web.access.intercept.AuthorizationFilter@2640f5ea]
+2024-06-10 17:31:21 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-06-10 17:31:21 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Started RestApiApplication in 7.445 seconds (process running for 8.289)
+2024-06-10 17:31:23 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-10 17:31:23 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-06-10 17:31:23 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-06-10 17:31:23 - [ERROR] - com.tomasdev.akhanta.exceptions.GlobalExceptionHandler - UnauthorizedException - Cabecera no válida. Inicie sesión e intente nuevamente.
+2024-06-10 17:31:53 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:31:53 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:31:53 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:31:59 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 936 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:31:59 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 115 ms. Found 1 JPA repository interface.
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:32:00 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:32:00 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:32:01 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:32:01 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:32:01 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:32:01 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:32:01 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2212 ms
+2024-06-10 17:32:01 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:32:02 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:829c71b5-689a-44cf-9629-2210311d6997 user=SA
+2024-06-10 17:32:02 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:32:02 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:829c71b5-689a-44cf-9629-2210311d6997'
+2024-06-10 17:32:02 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:32:02 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:32:02 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:32:02 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:32:03 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:32:03 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:32:03 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:32:04 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:04 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@4e7b89b6, com.mongodb.Jep395RecordCodecProvider@7f65639e, com.mongodb.KotlinCodecProvider@673fdc28]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:32:04 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:04 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:05 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=400134300, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:32:04 CEST 2024, lastUpdateTimeNanos=1019791867923500}
+2024-06-10 17:32:05 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=400140100, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:32:04 CEST 2024, lastUpdateTimeNanos=1019791867923500}
+2024-06-10 17:32:05 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=400339300, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:32:04 CEST 2024, lastUpdateTimeNanos=1019791868117900}
+2024-06-10 17:32:05 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:32:05 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f4bcfba8-d3e2-4dd2-8af2-49b3cceadce9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-10 17:32:05 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2771e501, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a7abd4, org.springframework.security.web.context.SecurityContextHolderFilter@3c62bae5, org.springframework.security.web.header.HeaderWriterFilter@2f053ff3, org.springframework.web.filter.CorsFilter@3846ba32, org.springframework.security.web.authentication.logout.LogoutFilter@199549a5, com.tomasdev.akhanta.security.jwt.JwtAuthFilter@1e9a10e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a18e18d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b628249, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40a32c25, org.springframework.security.web.session.SessionManagementFilter@ba77dc6, org.springframework.security.web.access.ExceptionTranslationFilter@1925b113, org.springframework.security.web.access.intercept.AuthorizationFilter@11f6a083]
+2024-06-10 17:32:06 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-06-10 17:32:06 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Started RestApiApplication in 7.284 seconds (process running for 8.122)
+2024-06-10 17:32:07 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-10 17:32:07 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-06-10 17:32:07 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-06-10 17:32:43 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:32:43 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 17:32:43 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-06-10 17:32:48 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Starting RestApiApplication using Java 22 with PID 12956 (C:\Users\tomia\Desktop\code\e-commerce\spring-backend\target\classes started by tomia in C:\Users\tomia\Desktop\code\e-commerce\spring-backend)
+2024-06-10 17:32:48 - [INFO] - com.tomasdev.akhanta.RestApiApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.article.ArticleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.associate.AssociateRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.cart.CartRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.categories.CategoryRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.product.ProductRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.customer.CustomerRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.users.shop.ShopRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 98 ms. Found 1 JPA repository interface.
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-10 17:32:49 - [INFO] - o.s.d.r.config.RepositoryConfigurationExtensionSupport - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.tomasdev.akhanta.security.jwt.TokenBlacklistRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2024-06-10 17:32:49 - [INFO] - o.s.d.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 8 MongoDB repository interfaces.
+2024-06-10 17:32:50 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-06-10 17:32:50 - [INFO] - org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-06-10 17:32:50 - [INFO] - org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-06-10 17:32:50 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-06-10 17:32:50 - [INFO] - o.s.b.w.s.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2144 ms
+2024-06-10 17:32:50 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-06-10 17:32:50 - [INFO] - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:4613af4a-3069-4b77-82d6-5f08f6a67b9f user=SA
+2024-06-10 17:32:50 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-06-10 17:32:50 - [INFO] - o.s.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:4613af4a-3069-4b77-82d6-5f08f6a67b9f'
+2024-06-10 17:32:51 - [INFO] - org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-10 17:32:51 - [INFO] - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-10 17:32:51 - [INFO] - org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-06-10 17:32:51 - [INFO] - o.s.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-10 17:32:52 - [INFO] - o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-10 17:32:52 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 17:32:52 - [WARN] - o.s.b.a.o.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.client - MongoClient with metadata {"application": {"name": "akhanta-test"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/22+36-2370"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='tomascaceres', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@4cf1ec2, com.mongodb.Jep395RecordCodecProvider@16eb01d4, com.mongodb.KotlinCodecProvider@4246f904]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=akhanta-test.a3hcche.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-wl8l0e-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='akhanta-test', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Adding discovered server ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 to client view of cluster
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=387293000, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az3'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=666353c558ba93608bfefd3f, counter=5}, lastWriteDate=Mon Jun 10 17:32:53 CEST 2024, lastUpdateTimeNanos=1019840771702700}
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=387238500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az2'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=88, topologyVersion=TopologyVersion{processId=66635277574b5ec4851870ff, counter=5}, lastWriteDate=Mon Jun 10 17:32:53 CEST 2024, lastUpdateTimeNanos=1019840771702600}
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=387482500, setName='atlas-wl8l0e-shard-0', canonicalAddress=ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017, hosts=[ac-yehvzqq-shard-00-00.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-01.a3hcche.mongodb.net:27017, ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017], passives=[], arbiters=[], primary='ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='euc1-az1'}, Tag{name='diskState', value='READY'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='EU_CENTRAL_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=7fffffff0000000000000271, setVersion=88, topologyVersion=TopologyVersion{processId=666351a70ff82a9b51744828, counter=9}, lastWriteDate=Mon Jun 10 17:32:53 CEST 2024, lastUpdateTimeNanos=1019840771887300}
+2024-06-10 17:32:53 - [INFO] - org.mongodb.driver.cluster - Discovered replica set primary ac-yehvzqq-shard-00-02.a3hcche.mongodb.net:27017 with max election id 7fffffff0000000000000271 and max set version 88
+2024-06-10 17:32:54 - [WARN] - o.s.b.a.s.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: de71413b-b8b8-43e6-be14-7e0ac1c3a4df
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-10 17:32:54 - [INFO] - o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2c64e2d0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45da40ad, org.springframework.security.web.context.SecurityContextHolderFilter@2ab4c4e, org.springframework.security.web.header.HeaderWriterFilter@730c9287, org.springframework.web.filter.CorsFilter@11f6a083, org.springframework.security.web.authentication.logout.LogoutFilter@84180e2, com.tomasdev.akhanta.security.jwt.JwtAuthFilter@2a9f7572, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ba77dc6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@14f05ca0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3bc00359, org.springframework.security.web.session.SessionManagementFilter@3a649f9a, org.springframework.security.web.access.ExceptionTranslationFilter@40d1e561, org.springframework.security.web.access.intercept.AuthorizationFilter@5697f801]
+2024-06-10 17:32:55 - [INFO] - o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-06-10 17:32:55 - [INFO] - com.tomasdev.akhanta.RestApiApplication - Started RestApiApplication in 7.401 seconds (process running for 8.265)
+2024-06-10 17:32:58 - [INFO] - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-10 17:32:58 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-06-10 17:32:58 - [INFO] - org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-06-10 18:15:59 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-10 18:15:59 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-10 18:15:59 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

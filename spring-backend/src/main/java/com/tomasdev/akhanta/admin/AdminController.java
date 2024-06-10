@@ -138,8 +138,8 @@ public class AdminController {
                 .body(categoryService.findCategoryById(id));
     }
 
-    @PostMapping(path = "/shop/register")
+    @PostMapping(path = "/shops/register")
     public ResponseEntity<JwtResponseDTO> shopRegister(@RequestBody @Valid ShopRegisterDTO shopDTO) {
-        return ResponseEntity.ok(authService.shopRegister(shopDTO));
+        return ResponseEntity.ok(authService.registerShop(shopDTO));
     }
 }

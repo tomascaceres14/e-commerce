@@ -25,7 +25,7 @@ public class ShopServiceImpl implements ShopService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Shop registerShop(ShopRegisterDTO shopDTO) {
+    public Shop register(ShopRegisterDTO shopDTO) {
 
         if (!shopDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {

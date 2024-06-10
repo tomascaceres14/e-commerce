@@ -6,8 +6,11 @@ import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 
 public interface AuthService {
 
-    JwtResponseDTO customerRegister(CustomerRegisterDTO customerDTO);
-    JwtResponseDTO shopRegister(ShopRegisterDTO shopDTO);
+    JwtResponseDTO registerCustomer(CustomerRegisterDTO customerDTO);
+    JwtResponseDTO registerShop(ShopRegisterDTO shopDTO);
+
+    JwtResponseDTO logIn(UserCredentialsDTO credentials, String role);
+
     JwtResponseDTO customerLogIn(UserCredentialsDTO userCredentialsDTO);
     JwtResponseDTO refreshAccessToken(String refreshToken);
     void signOut(String jwt);
