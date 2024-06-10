@@ -1,6 +1,8 @@
-package com.tomasdev.akhanta.product;
+package com.tomasdev.akhanta.home;
 
 
+import com.tomasdev.akhanta.product.Product;
+import com.tomasdev.akhanta.product.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/home/products")
 @AllArgsConstructor
-public class ProductController {
+public class HomeProductController {
 
     private ProductService productService;
 

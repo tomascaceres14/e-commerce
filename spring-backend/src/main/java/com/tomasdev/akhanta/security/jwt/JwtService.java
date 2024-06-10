@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
 import com.tomasdev.akhanta.users.User;
 import com.tomasdev.akhanta.users.customer.Customer;
+import com.tomasdev.akhanta.users.shop.Shop;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,13 +51,23 @@ public class JwtService {
         claims.put("cartId", customer.getCartId());
         claims.put("isRefresh", "false");
 
-        return  buildToken(claims, accessTokenExpiration);
+        return buildToken(claims, accessTokenExpiration);
     }
 
-    public String buildRefreshToken(User customer) {
+    public String buildShopAccessToken(Shop shop) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("shopId", shop.getShopId());
+        claims.put("shopName", shop.getName());
+        claims.put("role", shop.getRole());
+        claims.put("isRefresh", "false");
+
+        return buildToken(claims, accessTokenExpiration);
+    }
+
+    public String buildRefreshToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("isRefresh", "true");
-        claims.put("email", customer.getEmail());
+        claims.put("email", user.getEmail());
 
         return buildToken(claims, refreshTokenExpiration);
     }

@@ -1,8 +1,8 @@
 package com.tomasdev.akhanta.users.customer;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import com.tomasdev.akhanta.cart.CartService;
-import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.security.Roles;
@@ -19,12 +19,12 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
 
     private final ModelMapper mapper;
-    private final CustomerRepository repository;
     private final CartService cartService;
+    private final CustomerRepository repository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Customer registerCustomer(CustomerDTO customerDTO) {
+    public Customer registerCustomer(CustomerRegisterDTO customerDTO) {
 
         if (!customerDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        customer.setActive(1);
+        customer.setStatus(1);
         customer.setRole(Roles.CUSTOMER);
         customer.setUsername(STR."\{customer.getFirstName()} \{customer.getLastName()}");
         Customer savedCustomer = repository.save(customer);

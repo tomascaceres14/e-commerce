@@ -2,6 +2,7 @@ package com.tomasdev.akhanta.admin;
 
 import com.tomasdev.akhanta.article.Article;
 import com.tomasdev.akhanta.associate.Associate;
+import com.tomasdev.akhanta.auth.AuthService;
 import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.article.ArticleRequestDTO;
@@ -11,6 +12,8 @@ import com.tomasdev.akhanta.article.ArticleService;
 import com.tomasdev.akhanta.associate.AssociateService;
 import com.tomasdev.akhanta.product.categories.CategoryService;
 import com.tomasdev.akhanta.product.ProductService;
+import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
+import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +34,7 @@ public class AdminController {
     private AssociateService associateService;
     private ProductService productService;
     private CategoryService categoryService;
+    private AuthService authService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -132,5 +136,10 @@ public class AdminController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryService.findCategoryById(id));
+    }
+
+    @PostMapping(path = "/shop/register")
+    public ResponseEntity<JwtResponseDTO> shopRegister(@RequestBody @Valid ShopRegisterDTO shopDTO) {
+        return ResponseEntity.ok(authService.shopRegister(shopDTO));
     }
 }

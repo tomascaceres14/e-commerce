@@ -7,7 +7,7 @@ public class User {
 
     private String email;
     private String password;
-    private Integer active;
+    private Integer status;
     private String role;
     private Address address;
 

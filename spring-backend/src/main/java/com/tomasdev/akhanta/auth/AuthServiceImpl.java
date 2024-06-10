@@ -1,12 +1,14 @@
 package com.tomasdev.akhanta.auth;
 
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
-import com.tomasdev.akhanta.users.User;
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
 import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.users.customer.Customer;
-import com.tomasdev.akhanta.users.customer.CustomerDTO;
+import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import com.tomasdev.akhanta.users.customer.CustomerService;
+import com.tomasdev.akhanta.users.shop.Shop;
+import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
+import com.tomasdev.akhanta.users.shop.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,15 +21,27 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     private final CustomerService customerService;
+    private final ShopService shopService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    public JwtResponseDTO customerRegister(CustomerDTO customerDTO) {
+    public JwtResponseDTO customerRegister(CustomerRegisterDTO customerDTO) {
 
         Customer customer = customerService.registerCustomer(customerDTO);
 
         String accessToken = jwtService.buildCustomerAccessToken(customer);
         String refreshToken = jwtService.buildRefreshToken(customer);
+
+        return new JwtResponseDTO(accessToken, refreshToken);
+    }
+
+    @Override
+    public JwtResponseDTO shopRegister(ShopRegisterDTO shopDTO) {
+
+        Shop shop = shopService.registerShop(shopDTO);
+
+        String accessToken = jwtService.buildShopAccessToken(shop);
+        String refreshToken = jwtService.buildRefreshToken(shop);
 
         return new JwtResponseDTO(accessToken, refreshToken);
     }
