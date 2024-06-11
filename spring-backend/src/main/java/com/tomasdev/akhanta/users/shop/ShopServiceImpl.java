@@ -12,6 +12,10 @@ import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +27,7 @@ public class ShopServiceImpl implements ShopService {
     private final ModelMapper mapper;
     private final ShopRepository repository;
     private final PasswordEncoder passwordEncoder;
+    private final MongoTemplate mongoTemplate;
 
     @Override
     public Shop register(ShopRegisterDTO shopDTO) {
@@ -77,4 +82,18 @@ public class ShopServiceImpl implements ShopService {
                 () -> new ResourceNotFoundException("Shop no encontrado."));
         return mapper.map(shop, HomeShopDTO.class);
     }
+
+    @Override
+    public Shop findById(String id) {
+        return repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Shop no encontrado."));
+    }
+
+    @Override
+    public void addProductById(String id, String productId) {
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = new Update().push("products", productId);
+        mongoTemplate.updateFirst(query, update, Shop.class);
+    }
+
 }

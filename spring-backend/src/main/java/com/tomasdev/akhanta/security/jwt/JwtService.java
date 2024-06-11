@@ -45,7 +45,7 @@ public class JwtService {
 
     public String buildCustomerAccessToken(Customer customer) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", customer.getCustomerId());
+        claims.put("customerId", customer.getCustomerId());
         claims.put("role", customer.getRole());
         claims.put("username", customer.getUsername());
         claims.put("cartId", customer.getCartId());
@@ -56,7 +56,7 @@ public class JwtService {
 
     public String buildShopAccessToken(Shop shop) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", shop.getShopId());
+        claims.put("shopId", shop.getShopId());
         claims.put("role", shop.getRole());
         claims.put("shopName", shop.getName());
         claims.put("isRefresh", "false");

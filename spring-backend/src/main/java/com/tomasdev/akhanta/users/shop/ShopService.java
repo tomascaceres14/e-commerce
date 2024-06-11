@@ -6,4 +6,6 @@ import com.tomasdev.akhanta.users.IUser;
 
 public interface ShopService extends IUser<Shop, ShopRegisterDTO> {
     HomeShopDTO findBySeName(String name);
+    Shop findById(String id);
+    void addProductById(String id, String productId);
 }

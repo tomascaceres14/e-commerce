@@ -6,7 +6,7 @@ import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.article.ArticleRequestDTO;
 import com.tomasdev.akhanta.associate.AssociateRequestDTO;
-import com.tomasdev.akhanta.product.createProductDTO;
+import com.tomasdev.akhanta.product.CreateProductDTO;
 import com.tomasdev.akhanta.article.ArticleService;
 import com.tomasdev.akhanta.associate.AssociateService;
 import com.tomasdev.akhanta.product.categories.CategoryService;
@@ -29,7 +29,6 @@ public class AdminController {
 
     private ArticleService articleService;
     private AssociateService associateService;
-    private ProductService productService;
     private CategoryService categoryService;
 
     @PostMapping("/articles")
@@ -83,30 +82,6 @@ public class AdminController {
         log.info("[ /admin/associates/id - DELETE ]");
         associateService.deleteAssociateById(id);
         return ResponseEntity.ok(STR."Asociado id \{id} eliminado.");
-    }
-
-    @PostMapping("/products")
-    public ResponseEntity<Product> saveProducts(@Valid @RequestPart createProductDTO product,
-                                                @RequestPart(required = false) List<MultipartFile> images) {
-        log.info("[ /admin/products - POST ]");
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(productService.saveProduct(product, images));
-    }
-
-    @PutMapping("/products/{id}")
-    public ResponseEntity<Product> updateProductById(@PathVariable String id,
-                                                         @RequestPart(required = false) createProductDTO product) {
-        log.info("[ /admin/products/id - PUT ]");
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(productService.updateProductById(id, product));
-    }
-
-    @DeleteMapping("/products/{id}")
-    public ResponseEntity<String> deleteProductById(@PathVariable String id) {
-        log.info("[ /admin/products/id - DELETE ]");
-        productService.deleteProductById(id);
-        return ResponseEntity.ok(STR."Producto id \{id} eliminado.");
     }
 
     @PostMapping("/products/categories")

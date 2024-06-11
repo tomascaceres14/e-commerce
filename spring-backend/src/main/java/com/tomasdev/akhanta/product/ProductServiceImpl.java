@@ -3,12 +3,15 @@ package com.tomasdev.akhanta.product;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.images.AmazonS3Service;
+import com.tomasdev.akhanta.security.jwt.JwtService;
+import com.tomasdev.akhanta.users.shop.Shop;
+import com.tomasdev.akhanta.users.shop.ShopService;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
@@ -20,8 +23,8 @@ public class ProductServiceImpl implements ProductService {
 
     private final ModelMapper mapper;
     private final AmazonS3Service s3Service;
+    private final ShopService shopService;
     private final ProductRepository repository;
-    private final MongoTemplate template;
 
     @Override
     public Page<Product> findAllProducts(int page) {
@@ -30,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveProduct(createProductDTO productDTO, List<MultipartFile> images) {
+    public Product saveProduct(CreateProductDTO productDTO, List<MultipartFile> images, String jwt) {
         Product product = mapper.map(productDTO, Product.class);
         List<String> imagesUrl = new ArrayList<>();
 
@@ -44,17 +47,23 @@ public class ProductServiceImpl implements ProductService {
         }
 
         product.setSeTitle(StringUtils.normalizeToSearch(product.getTitle()));
+        product.setStatus(1);
+        product.setShopId(JwtService.extractClaim(jwt, "shopId"));
+        Product savedProduct = repository.save(product);
 
-        return repository.save(product);
+        shopService.addProductById(product.getShopId(), savedProduct.getProductId());
+
+        return savedProduct;
     }
 
     @Override
     public Product findProductById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Producto id \{id} no encontrado"));
+        return repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException(STR."Producto id \{id} no encontrado"));
     }
 
     @Override
-    public Product updateProductById(String id, createProductDTO product) {
+    public Product updateProductById(String id, CreateProductDTO product) {
         Product productDB = findProductById(id);
 
         mapper.map(product, productDB);

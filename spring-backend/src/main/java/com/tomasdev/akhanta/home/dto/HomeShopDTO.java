@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class HomeShopDTO {
 
+    private String shopId;
     private String name;
     private String description;
     private String primaryColor;

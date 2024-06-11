@@ -1,16 +1,11 @@
 package com.tomasdev.akhanta.product;
 
-import com.tomasdev.akhanta.product.categories.Category;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Getter @Setter
-@AllArgsConstructor
-public class createProductDTO {
-
+@Data
+public class CreateProductDTO {
     private String productId;
     private String title;
     private String description;
@@ -18,5 +13,4 @@ public class createProductDTO {
     private Double price;
     private String categoryId;
     private List<ProductAttribute> attributes;
-
 }

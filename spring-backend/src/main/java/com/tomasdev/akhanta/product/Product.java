@@ -2,6 +2,7 @@ package com.tomasdev.akhanta.product;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Product {
     @Id
     private String productId;
     private String title;
+    @Indexed
     private String seTitle;
     private String description;
     private Integer stock;
