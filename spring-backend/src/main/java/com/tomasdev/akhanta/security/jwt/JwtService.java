@@ -45,9 +45,9 @@ public class JwtService {
 
     public String buildCustomerAccessToken(Customer customer) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("customerId", customer.getCustomerId());
-        claims.put("username", customer.getUsername());
+        claims.put("id", customer.getCustomerId());
         claims.put("role", customer.getRole());
+        claims.put("username", customer.getUsername());
         claims.put("cartId", customer.getCartId());
         claims.put("isRefresh", "false");
 
@@ -56,9 +56,9 @@ public class JwtService {
 
     public String buildShopAccessToken(Shop shop) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("shopId", shop.getShopId());
-        claims.put("shopName", shop.getName());
+        claims.put("id", shop.getShopId());
         claims.put("role", shop.getRole());
+        claims.put("shopName", shop.getName());
         claims.put("isRefresh", "false");
 
         return buildToken(claims, accessTokenExpiration);
@@ -66,16 +66,25 @@ public class JwtService {
 
     public String buildRefreshToken(User user) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("id", user.getRole());
+        claims.put("role", user.getRole());
         claims.put("isRefresh", "true");
-        claims.put("email", user.getEmail());
 
         return buildToken(claims, refreshTokenExpiration);
     }
 
-    public JwtResponseDTO grantAccess(User user) {
+    public JwtResponseDTO grantAccess(User user, String role) {
 
+        String accessToken;
 
-        return new JwtResponseDTO("", "");
+        switch (role) {
+            case "CUSTOMER" -> accessToken = buildCustomerAccessToken((Customer) user);
+            case "SHOP" -> accessToken = buildShopAccessToken((Shop) user);
+            default -> throw new UnauthorizedException("Rol inexistente");
+        }
+
+        String refreshToken = buildRefreshToken(user);
+        return new JwtResponseDTO(accessToken, refreshToken);
     }
 
     public Authentication authorizeToken(String jwt) throws AuthenticationException {

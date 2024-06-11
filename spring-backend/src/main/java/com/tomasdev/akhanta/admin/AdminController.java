@@ -2,18 +2,15 @@ package com.tomasdev.akhanta.admin;
 
 import com.tomasdev.akhanta.article.Article;
 import com.tomasdev.akhanta.associate.Associate;
-import com.tomasdev.akhanta.auth.AuthService;
 import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.article.ArticleRequestDTO;
 import com.tomasdev.akhanta.associate.AssociateRequestDTO;
-import com.tomasdev.akhanta.product.ProductRequestDTO;
+import com.tomasdev.akhanta.product.createProductDTO;
 import com.tomasdev.akhanta.article.ArticleService;
 import com.tomasdev.akhanta.associate.AssociateService;
 import com.tomasdev.akhanta.product.categories.CategoryService;
 import com.tomasdev.akhanta.product.ProductService;
-import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
-import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +31,6 @@ public class AdminController {
     private AssociateService associateService;
     private ProductService productService;
     private CategoryService categoryService;
-    private AuthService authService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -90,7 +86,7 @@ public class AdminController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Product> saveProducts(@Valid @RequestPart ProductRequestDTO product,
+    public ResponseEntity<Product> saveProducts(@Valid @RequestPart createProductDTO product,
                                                 @RequestPart(required = false) List<MultipartFile> images) {
         log.info("[ /admin/products - POST ]");
         return ResponseEntity
@@ -100,7 +96,7 @@ public class AdminController {
 
     @PutMapping("/products/{id}")
     public ResponseEntity<Product> updateProductById(@PathVariable String id,
-                                                         @RequestPart(required = false) ProductRequestDTO product) {
+                                                         @RequestPart(required = false) createProductDTO product) {
         log.info("[ /admin/products/id - PUT ]");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productService.updateProductById(id, product));
@@ -138,8 +134,4 @@ public class AdminController {
                 .body(categoryService.findCategoryById(id));
     }
 
-    @PostMapping(path = "/shops/register")
-    public ResponseEntity<JwtResponseDTO> shopRegister(@RequestBody @Valid ShopRegisterDTO shopDTO) {
-        return ResponseEntity.ok(authService.registerShop(shopDTO));
-    }
 }

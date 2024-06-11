@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.auth;
 
+import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
 import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import jakarta.validation.Valid;
@@ -16,21 +17,28 @@ public class AuthController {
 
     private final AuthService service;
 
-    @PostMapping("/customer/register")
+    @PostMapping("/customers/register")
     public ResponseEntity<JwtResponseDTO> customerRegister(@RequestBody CustomerRegisterDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(service.registerCustomer(userDTO));
     }
 
-    @PostMapping(path = "/{role}/login")
-    public ResponseEntity<JwtResponseDTO> logIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
-        return ResponseEntity.ok(service.customerLogIn(userCredentialsDTO));
+    @PostMapping(path = "/shops/register")
+    public ResponseEntity<JwtResponseDTO> shopRegister(@RequestBody @Valid ShopRegisterDTO shopDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.registerShop(shopDTO));
     }
 
-    @PostMapping(path = "/customer/login")
-    public ResponseEntity<JwtResponseDTO> customerLogIn(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO) {
-        return ResponseEntity.ok(service.customerLogIn(userCredentialsDTO));
+    @PostMapping(path = "/customers/login")
+    public ResponseEntity<JwtResponseDTO> customerLogIn(@RequestBody @Valid LogInCredentialsDTO credentials) {
+        return ResponseEntity.ok(service.logIn(credentials, "CUSTOMER"));
     }
+
+    @PostMapping(path = "/shops/login")
+    public ResponseEntity<JwtResponseDTO> shopLogIn(@RequestBody @Valid LogInCredentialsDTO credentials) {
+        return ResponseEntity.ok(service.logIn(credentials, "SHOP"));
+    }
+
 
     @PostMapping(path = "/logout")
     public ResponseEntity<String> logOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {

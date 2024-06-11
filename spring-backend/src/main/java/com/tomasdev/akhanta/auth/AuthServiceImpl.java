@@ -1,6 +1,6 @@
 package com.tomasdev.akhanta.auth;
 
-import com.tomasdev.akhanta.exceptions.ServiceException;
+import com.tomasdev.akhanta.auth.dto.UserRegisterDTO;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
 import com.tomasdev.akhanta.security.jwt.JwtService;
@@ -16,56 +16,40 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- * Servicio encargado del logueo de un usuario
- */
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserService userService;
+    private final CustomerService customerService;
+    private final ShopService shopService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
     public JwtResponseDTO registerCustomer(CustomerRegisterDTO customerDTO) {
-
         Customer customer = customerService.register(customerDTO);
-
-        String accessToken = jwtService.buildCustomerAccessToken(customer);
-        String refreshToken = jwtService.buildRefreshToken(customer);
-
-        return new JwtResponseDTO(accessToken, refreshToken);
+        return jwtService.grantAccess(customer, customer.getRole());
     }
 
     @Override
     public JwtResponseDTO registerShop(ShopRegisterDTO shopDTO) {
-
         Shop shop = shopService.register(shopDTO);
-
-        String accessToken = jwtService.buildShopAccessToken(shop);
-        String refreshToken = jwtService.buildRefreshToken(shop);
-
-        return new JwtResponseDTO(accessToken, refreshToken);
+        return jwtService.grantAccess(shop, shop.getRole());
     }
 
-    @Override
-    public JwtResponseDTO logIn(UserCredentialsDTO credentials, String role) {
-        User user = userService.findUserByEmailAndRol(credentials.getEmail(), role);
+    public JwtResponseDTO logIn(LogInCredentialsDTO credentials, String role) {
+
+        User user = userService.findUserByEmailAndRole(credentials.getEmail(), role);
 
         if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
             throw new WrongCredentialsException();
         }
 
-        return jwtService.grantAccess(user);
+        return jwtService.grantAccess(user, role);
     }
 
-    /**
-     * Devuelve un dto con el jwt de acceso y de refresco del usuario dadas unas credenciales
-     * @param credentials Credenciales de acceso
-     * @return Dto con el jwt del usuario si las credenciales son validas
-     */
     @Override
-    public JwtResponseDTO customerLogIn(UserCredentialsDTO credentials) {
+    public JwtResponseDTO customerLogIn(LogInCredentialsDTO credentials) {
 
         Customer customer = customerService.findByEmail(credentials.getEmail());
 
@@ -73,28 +57,19 @@ public class AuthServiceImpl implements AuthService {
             throw new WrongCredentialsException();
         }
 
-        String accessToken = jwtService.buildCustomerAccessToken(customer);
-        String refreshToken = jwtService.buildRefreshToken(customer);
-
-        return new JwtResponseDTO(accessToken, refreshToken);
+        return jwtService.grantAccess(customer, customer.getRole());
     }
 
-    /**
-     * Cierra la sesión eliminando de la lista blanca el token ingresado
-     * @param token Token a eliminar
-     */
     public void signOut(String token) {
         jwtService.revokeToken(token);
     }
 
     public JwtResponseDTO refreshAccessToken(String refreshToken) {
-        String userEmail = JwtService.extractClaim(refreshToken, "email");
+
+        String userId = JwtService.extractClaim(refreshToken, "id");
         String role = JwtService.extractClaim(refreshToken, "role");
+        User user = userService.findUserByIdAndRole(userId, role);
 
-        User user = userService.findUserByEmailAndRol(userEmail, role);
-        String accessToken = jwtService.buildCustomerAccessToken(user);
-        String newRefreshToken = jwtService.buildRefreshToken(user);
-
-        return new JwtResponseDTO(accessToken, newRefreshToken);
+        return jwtService.grantAccess(user, role);
     }
 }

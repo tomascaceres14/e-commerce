@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.users.shop;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
-import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
+import com.tomasdev.akhanta.home.dto.HomeShopDTO;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +17,13 @@ public class ShopController {
 
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody PasswordChangeDTO passwordDTO,
+                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+        service.changePassword(passwordDTO, jwt);
+        return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();
+    }
+
+    @PostMapping("/products")
+    public ResponseEntity<?> createProduct(@RequestBody PasswordChangeDTO passwordDTO,
                                             @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.changePassword(passwordDTO, jwt);
         return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();

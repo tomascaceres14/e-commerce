@@ -42,15 +42,14 @@ public class ShopServiceImpl implements ShopService {
         shop.setStatus(1);
         shop.setRole(Roles.SHOP);
         shop.setSeName(StringUtils.normalizeToSearch(shop.getName()));
-        Shop savedShop = repository.save(shop);
 
-        log.info("[ Registering shop email: {} ]", savedShop.getEmail());
-        return savedShop;
+        log.info("[ Registering shop email: {} ]", shopDTO.getEmail());
+        return repository.save(shop);
     }
 
     @Override
     public Shop findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(WrongCredentialsException::new);
+        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Shop \{email} no existe."));
     }
 
     @Override

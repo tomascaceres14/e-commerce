@@ -3,6 +3,7 @@ package com.tomasdev.akhanta.product;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.images.AmazonS3Service;
+import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveProduct(ProductRequestDTO productDTO, List<MultipartFile> images) {
+    public Product saveProduct(createProductDTO productDTO, List<MultipartFile> images) {
         Product product = mapper.map(productDTO, Product.class);
         List<String> imagesUrl = new ArrayList<>();
 
@@ -42,6 +43,8 @@ public class ProductServiceImpl implements ProductService {
             product.setImages(imagesUrl);
         }
 
+        product.setSeTitle(StringUtils.normalizeToSearch(product.getTitle()));
+
         return repository.save(product);
     }
 
@@ -51,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProductById(String id, ProductRequestDTO product) {
+    public Product updateProductById(String id, createProductDTO product) {
         Product productDB = findProductById(id);
 
         mapper.map(product, productDB);

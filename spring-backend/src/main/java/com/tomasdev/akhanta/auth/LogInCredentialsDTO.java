@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class UserCredentialsDTO {
+public class LogInCredentialsDTO {
 
     @NotBlank(message = "Ingrese su correo electrónico")
     private String email;

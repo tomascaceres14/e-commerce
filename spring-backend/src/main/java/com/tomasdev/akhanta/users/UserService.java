@@ -1,7 +1,6 @@
 package com.tomasdev.akhanta.users;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -16,14 +15,28 @@ public class UserService {
 
     private MongoTemplate mongoTemplate;
 
-    public User findUserByEmailAndRol(String email, String rol) {
-        MatchOperation matchStage = Aggregation.match(Criteria.where("email").is(email).and("role").is(rol));
+    public User findUserByEmailAndRole(String email, String role) {
+        MatchOperation matchStage = Aggregation.match(Criteria.where("email").is(email).and("role").is(role));
         UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
 
         Aggregation aggregation = Aggregation.newAggregation(
                 matchStage,
                 unionWithShops,
-                Aggregation.match(Criteria.where("email").is(email).and("role").is(rol))
+                Aggregation.match(Criteria.where("email").is(email).and("role").is(role))
+        );
+
+        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
+        return results.getUniqueMappedResult();
+    }
+
+    public User findUserByIdAndRole(String id, String role) {
+        MatchOperation matchStage = Aggregation.match(Criteria.where("_id").is(id).and("role").is(role));
+        UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
+
+        Aggregation aggregation = Aggregation.newAggregation(
+                matchStage,
+                unionWithShops,
+                Aggregation.match(Criteria.where("_id").is(id).and("role").is(role))
         );
 
         AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);

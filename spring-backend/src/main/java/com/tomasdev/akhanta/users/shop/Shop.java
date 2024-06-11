@@ -28,7 +28,5 @@ public class Shop extends User {
     private String tertiaryColor;
     private String profileImageUrl;
     private String bannerImageUrl;
-    @DocumentReference
-    private List<Product> products;
 
 }

@@ -12,6 +12,6 @@ public class TestController {
     private final UserService userService;
     @GetMapping
     public Object test(@RequestParam String data, @RequestParam String data2) {
-        return userService.findUserByEmailAndRol(data, data2);
+        return userService.findUserByEmailAndRole(data, data2);
     }
 }

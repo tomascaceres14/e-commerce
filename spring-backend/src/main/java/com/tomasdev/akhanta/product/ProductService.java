@@ -8,8 +8,8 @@ import java.util.List;
 public interface ProductService {
 
     Page<Product> findAllProducts(int page);
-    Product saveProduct(ProductRequestDTO productDTO, List<MultipartFile> images);
-    Product updateProductById(String id, ProductRequestDTO product);
+    Product saveProduct(createProductDTO productDTO, List<MultipartFile> images);
+    Product updateProductById(String id, createProductDTO product);
     Product findProductById(String id);
     Page<Product> filterProducts(String name, String categoryId, int page);
     String deleteProductById(String id);

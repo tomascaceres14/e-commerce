@@ -9,15 +9,14 @@ import java.util.List;
 
 @Getter @Setter
 @AllArgsConstructor
-public class ProductRequestDTO {
+public class createProductDTO {
 
     private String productId;
     private String title;
     private String description;
-    private Integer quantity;
-    private Float price;
-    private List<Category> categories;
+    private Integer stock;
+    private Double price;
+    private String categoryId;
     private List<ProductAttribute> attributes;
-    private List<String> images;
 
 }
