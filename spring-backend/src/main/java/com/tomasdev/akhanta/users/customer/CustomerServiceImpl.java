@@ -3,6 +3,7 @@ package com.tomasdev.akhanta.users.customer;
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
 import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import com.tomasdev.akhanta.cart.CartService;
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.security.Roles;
@@ -50,7 +51,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(WrongCredentialsException::new);
+        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Cliente '\{email}' no existe."));
+    }
+
+    @Override
+    public Customer findById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Cliente '\{id}' no existe."));
     }
 
     @Override

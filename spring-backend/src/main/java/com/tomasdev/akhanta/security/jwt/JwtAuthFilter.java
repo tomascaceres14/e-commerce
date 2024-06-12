@@ -17,9 +17,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Filtro que valida si la peticion tiene la cabezera de Autorizacion
- */
 @Slf4j
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -32,10 +29,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         this.resolver = resolver;
     }
 
-
-    /**
-     * Verifica si a la URI no se le debe aplicar el filtro
-     */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         if (request.getRequestURI().equals("/")) return true;

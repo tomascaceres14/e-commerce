@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/api/v1/admin/**").hasRole(Roles.ADMIN)
                                 .requestMatchers("/api/v1/users/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
                                 .requestMatchers("/api/v1/customers/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
+                                .requestMatchers("/api/v1/orders/**").hasAnyRole(Roles.ADMIN, Roles.CUSTOMER)
                                 .requestMatchers("/api/v1/shops/**").hasAnyRole(Roles.ADMIN, Roles.SHOP)
                                 .anyRequest().authenticated()
                 )

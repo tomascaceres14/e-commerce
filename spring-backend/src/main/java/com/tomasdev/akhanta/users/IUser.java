@@ -6,6 +6,7 @@ public interface IUser<T, U> {
 
     T register(U req);
     T findByEmail(String email);
+    T findById(String id);
     void changePassword(PasswordChangeDTO passwordDTO, String jwt);
 
 }

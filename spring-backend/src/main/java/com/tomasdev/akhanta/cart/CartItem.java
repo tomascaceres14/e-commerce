@@ -11,7 +11,8 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class CartItem {
     private String productId;
+    private String shopId;
     private String name;
     private Integer quantity;
-    private Double price;
+    private Double itemPrice;
 }

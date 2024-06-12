@@ -14,25 +14,25 @@ public class CartController {
 
     private final CartService service;
 
-    @GetMapping("/cart")
+    @GetMapping
     public ResponseEntity<Cart> findCartById(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         return ResponseEntity.ok(service.findCartById(jwt));
     }
 
-    @PostMapping("/cart")
+    @PostMapping
     public ResponseEntity<?> addItemToCart(@RequestBody CartItemDTO cartItem,
                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.addItemToCart(cartItem, jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
-    @DeleteMapping("/cart")
+    @DeleteMapping
     public ResponseEntity<?> clearCart(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.clearCart(jwt);
         return ResponseEntity.status(HttpStatus.SC_OK).build();
     }
 
-    @DeleteMapping("/cart/{productId}")
+    @DeleteMapping("/{productId}")
     public ResponseEntity<?> removeItemFromCart(@PathVariable String productId,
                                                 @RequestParam(defaultValue = "false") boolean unit,
                                                 @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {

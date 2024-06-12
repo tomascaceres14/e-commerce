@@ -56,7 +56,12 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Shop \{email} no existe."));
+        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Shop '\{email}' no existe."));
+    }
+
+    @Override
+    public Shop findById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Shop '\{id}' no existe."));
     }
 
     @Override

@@ -33,8 +33,9 @@ public class CartServiceImpl implements CartService {
         CartItem item = mapper.map(cartItemDTO, CartItem.class);
         Product product = productService.findProductById(cartItemDTO.getProductId());
 
-        item.setPrice(product.getPrice());
+        item.setItemPrice(product.getPrice());
         item.setName(product.getTitle());
+        item.setShopId(product.getShopId());
 
         cart.addItemToCart(item);
         repository.save(cart);

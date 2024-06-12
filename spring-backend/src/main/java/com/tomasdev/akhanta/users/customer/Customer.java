@@ -20,6 +20,5 @@ public class Customer extends User {
     private String username;
     private String phoneNumber;
     private String cartId;
-    private List<String> ordersList;
 
 }

@@ -9,18 +9,19 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Document( value = "users_carts")
+@Document( value = "customers_carts")
 public class Cart {
 
     @Id
     private String cartId;
-    private Date updatedAt;
     private List<CartItem> items;
-    private Double payAmount;
+    private Double totalPrice;
     private String customerId;
+    private Date orderedAt;
+    private Date updatedAt;
 
     public Cart(String customerId) {
-        this.payAmount = 0.0;
+        this.totalPrice = 0.0;
         this.updatedAt = new Date();
         this.items = new ArrayList<>();
         this.customerId = customerId;
@@ -41,7 +42,7 @@ public class Cart {
             items.add(item);
         }
 
-        payAmount += item.getPrice() * item.getQuantity();
+        totalPrice += item.getItemPrice() * item.getQuantity();
         updatedAt = new Date();
     }
 
@@ -53,10 +54,10 @@ public class Cart {
 
             if (item.getProductId().equals(productId)) {
                 if (unit && item.getQuantity() > 1) {
-                    payAmount -= item.getPrice();
+                    totalPrice -= item.getItemPrice();
                     item.setQuantity(item.getQuantity()-1);
                 } else {
-                    payAmount -= (item.getPrice() * item.getQuantity());
+                    totalPrice -= (item.getItemPrice() * item.getQuantity());
                     items.remove(i);
                 }
                 break;
@@ -69,7 +70,7 @@ public class Cart {
 
     public void clearCart() {
         items.clear();
-        payAmount = 0.0;
+        totalPrice = 0.0;
         updatedAt = new Date();
     }
 }
