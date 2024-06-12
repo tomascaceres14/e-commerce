@@ -11,7 +11,9 @@ import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.query.Page;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -84,9 +86,9 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Shop findById(String id) {
-        return repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Shop no encontrado."));
+    public HomeShopDTO findAllShops(int page) {
+        PageRequest pageable = PageRequest.of(page, 15);
+        return mapper.map(repository.findAll(pageable), HomeShopDTO.class);
     }
 
     @Override

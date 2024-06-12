@@ -23,7 +23,7 @@ public class Product {
     private List<ProductAttribute> attributes;
     private List<String> images;
     private Integer status;
-    private Float rating;
+    private Double rating;
     private String shopId;
 
 }

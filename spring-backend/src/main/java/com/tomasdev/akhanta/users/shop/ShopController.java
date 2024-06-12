@@ -1,11 +1,9 @@
 package com.tomasdev.akhanta.users.shop;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
-import com.tomasdev.akhanta.home.dto.HomeShopDTO;
 import com.tomasdev.akhanta.product.CreateProductDTO;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
-import com.tomasdev.akhanta.security.jwt.JwtService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +24,7 @@ public class ShopController {
     private final ShopService service;
     private final ProductService productService;
 
-    @PostMapping("/change-password")
+    @PostMapping("/password")
     public ResponseEntity<?> changePassword(@RequestBody PasswordChangeDTO passwordDTO,
                                             @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.changePassword(passwordDTO, jwt);

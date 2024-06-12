@@ -30,5 +30,6 @@ public class Shop extends User {
     private String bannerImageUrl;
     @DocumentReference
     private List<Product> products;
+    private Double rating;
 
 }

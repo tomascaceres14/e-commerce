@@ -14,11 +14,10 @@ public class CustomerController {
 
     private final CustomerService service;
 
-    @PostMapping("/change-password")
+    @PostMapping("/password")
     public ResponseEntity<?> changePassword(@RequestBody PasswordChangeDTO passwordDTO,
                                             @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         service.changePassword(passwordDTO, jwt);
         return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();
     }
-
 }

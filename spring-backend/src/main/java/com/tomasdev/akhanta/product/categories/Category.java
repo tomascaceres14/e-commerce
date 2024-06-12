@@ -11,11 +11,11 @@ import java.util.List;
 @Document(collection = "products_categories")
 public class Category {
     @Id
-    private String id;
+    private String categoryId;
     private String name;
     private String parentId;
     @Indexed(unique = true)
     private String node;
     private List<String> path;
-
+    private String imageUrl;
 }
