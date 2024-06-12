@@ -21,7 +21,9 @@ public class ShopOrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ShopOrder>> findAllOrders(@RequestParam(required = false, defaultValue = "0") Integer page,
+    public ResponseEntity<List<ShopOrder>> findAllOrders(@RequestParam(required = false) String customerId,
+                                                         @RequestParam(required = false) String shopId,
+                                                         @RequestParam(required = false, defaultValue = "0") Integer page,
                                                          @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         return ResponseEntity.ok(service.findAllOrders(page));
     }
