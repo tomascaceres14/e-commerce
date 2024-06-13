@@ -8,6 +8,8 @@ import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.users.customer.Customer;
 import com.tomasdev.akhanta.users.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -79,7 +81,10 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
-    public List<ShopOrder> findAllOrders(Integer page) {
-        return null;
+    public Page<ShopOrder> findAllOrdersByCustomer(String jwt, String shopId, Integer page) {
+        PageRequest pageable = PageRequest.of(page, 10);
+        String customerId = JwtService.extractClaim(jwt, "customerId");
+
+        return repository.findAllFiltered(customerId, shopId, pageable);
     }
 }

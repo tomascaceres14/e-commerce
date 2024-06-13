@@ -78,7 +78,7 @@ public class JwtService {
         String accessToken;
 
         switch (role) {
-            case "CUSTOMER" -> accessToken = buildCustomerAccessToken((Customer) user);
+            case "CUSTOMER", "ADMIN" -> accessToken = buildCustomerAccessToken((Customer) user);
             case "SHOP" -> accessToken = buildShopAccessToken((Shop) user);
             default -> throw new UnauthorizedException("Rol inexistente");
         }

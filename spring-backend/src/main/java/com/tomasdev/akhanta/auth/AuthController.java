@@ -39,6 +39,10 @@ public class AuthController {
         return ResponseEntity.ok(service.logIn(credentials, "SHOP"));
     }
 
+    @PostMapping(path = "/admin/login")
+    public ResponseEntity<JwtResponseDTO> adminLogIn(@RequestBody @Valid LogInCredentialsDTO credentials) {
+        return ResponseEntity.ok(service.adminLogIn(credentials));
+    }
 
     @PostMapping(path = "/logout")
     public ResponseEntity<String> logOut(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {

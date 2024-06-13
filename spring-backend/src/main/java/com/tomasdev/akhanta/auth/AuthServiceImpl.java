@@ -49,15 +49,15 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public JwtResponseDTO customerLogIn(LogInCredentialsDTO credentials) {
+    public JwtResponseDTO adminLogIn(LogInCredentialsDTO credentials) {
 
-        Customer customer = customerService.findByEmail(credentials.getEmail());
+        Customer adminUser = customerService.findByEmail(credentials.getEmail());
 
-        if (!passwordEncoder.matches(credentials.getPassword(), customer.getPassword())) {
+        if (!passwordEncoder.matches(credentials.getPassword(), adminUser.getPassword())) {
             throw new WrongCredentialsException();
         }
 
-        return jwtService.grantAccess(customer, customer.getRole());
+        return jwtService.grantAccess(adminUser, adminUser.getRole());
     }
 
     public void signOut(String token) {
