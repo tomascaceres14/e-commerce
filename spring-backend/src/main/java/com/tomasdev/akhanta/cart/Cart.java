@@ -17,7 +17,7 @@ public class Cart {
     private List<CartItem> items;
     private Double totalPrice;
     private String customerId;
-    private Date orderedAt;
+    private Date createdAt;
     private Date updatedAt;
 
     public Cart(String customerId) {

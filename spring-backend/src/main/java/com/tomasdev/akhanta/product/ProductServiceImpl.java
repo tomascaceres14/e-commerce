@@ -4,15 +4,16 @@ import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.images.AmazonS3Service;
 import com.tomasdev.akhanta.security.jwt.JwtService;
-import com.tomasdev.akhanta.users.shop.Shop;
 import com.tomasdev.akhanta.users.shop.ShopService;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,13 @@ public class ProductServiceImpl implements ProductService {
 
         repository.deleteById(id);
         return STR."Producto id \{id} eliminado.";
+    }
+
+    @Override
+    public void removeStockById(String productId, Integer quantity) {
+        Product product = findProductById(productId);
+        product.setStock(product.getStock() - quantity);
+        repository.save(product);
     }
 
     @Override

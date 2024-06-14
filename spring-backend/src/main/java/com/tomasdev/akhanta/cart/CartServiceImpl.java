@@ -1,6 +1,7 @@
 package com.tomasdev.akhanta.cart;
 
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
+import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
 import com.tomasdev.akhanta.security.jwt.JwtService;
@@ -32,6 +33,10 @@ public class CartServiceImpl implements CartService {
 
         CartItem item = mapper.map(cartItemDTO, CartItem.class);
         Product product = productService.findProductById(cartItemDTO.getProductId());
+
+        if (cartItemDTO.getQuantity() > product.getStock()) {
+            throw new ServiceException("Stock insuficiente.");
+        }
 
         item.setItemPrice(product.getPrice());
         item.setName(product.getTitle());

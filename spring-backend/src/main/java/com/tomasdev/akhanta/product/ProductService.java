@@ -13,4 +13,6 @@ public interface ProductService {
     Product findProductById(String id);
     Page<Product> filterProducts(String name, String categoryId, int page);
     String deleteProductById(String id);
+
+    void removeStockById(String productId, Integer quantity);
 }

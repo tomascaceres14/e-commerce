@@ -1,6 +1,5 @@
 package com.tomasdev.akhanta.orders;
 
-import com.tomasdev.akhanta.cart.Cart;
 import com.tomasdev.akhanta.cart.CartItem;
 import com.tomasdev.akhanta.users.Address;
 import lombok.Data;

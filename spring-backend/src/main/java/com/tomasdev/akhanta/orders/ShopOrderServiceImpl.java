@@ -4,6 +4,7 @@ import com.tomasdev.akhanta.cart.Cart;
 import com.tomasdev.akhanta.cart.CartItem;
 import com.tomasdev.akhanta.cart.CartService;
 import com.tomasdev.akhanta.exceptions.ServiceException;
+import com.tomasdev.akhanta.product.ProductService;
 import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.users.customer.Customer;
 import com.tomasdev.akhanta.users.customer.CustomerService;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class ShopOrderServiceImpl implements ShopOrderService {
 
     private final CartService cartService;
+    private final ProductService productService;
     private final CustomerService customerService;
     private final ShopOrderRepository repository;
 
@@ -63,7 +65,6 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         List<ShopOrder> orders = new ArrayList<>();
         itemsByShop.forEach((k, v) -> {
             Double totalPrice = totalPricePerShop(itemsByShop, k);
-
             ShopOrder order = new ShopOrder(
                             cart.getCustomerId(),
                             k, v,
@@ -72,12 +73,25 @@ public class ShopOrderServiceImpl implements ShopOrderService {
                             "CASH",
                             "REGULAR");
 
+            v.forEach( i -> {
+                productService.removeStockById(i.getProductId(), i.getQuantity());
+            });
+
             repository.save(order);
             orders.add(order);
         });
 
         cartService.clearCart(jwt);
         return orders;
+    }
+
+    @Override
+    public Page<ShopOrder> findAllOrdersByShop(String jwt, String customerId, Integer page) {
+        PageRequest pageable = PageRequest.of(page, 10);
+        String shopId = JwtService.extractClaim(jwt, "shopId");
+        System.out.println("SHOPID" + shopId);
+        System.out.println("customerid" + customerId);
+        return repository.findAllFiltered(customerId, shopId, pageable);
     }
 
     @Override

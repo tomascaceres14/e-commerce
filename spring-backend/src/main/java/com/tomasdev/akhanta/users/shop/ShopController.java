@@ -1,6 +1,8 @@
 package com.tomasdev.akhanta.users.shop;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.tomasdev.akhanta.orders.ShopOrder;
+import com.tomasdev.akhanta.orders.ShopOrderService;
 import com.tomasdev.akhanta.product.CreateProductDTO;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
@@ -8,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,7 @@ public class ShopController {
 
     private final ShopService service;
     private final ProductService productService;
+    private final ShopOrderService orderService;
 
     @PostMapping("/password")
     public ResponseEntity<?> changePassword(@RequestBody PasswordChangeDTO passwordDTO,
@@ -57,4 +61,10 @@ public class ShopController {
         return ResponseEntity.ok(STR."Producto id \{id} eliminado.");
     }
 
+    @GetMapping("/orders")
+    public ResponseEntity<Page<ShopOrder>> findAllOrders(@RequestParam(required = false, defaultValue = "") String customerId,
+                                                         @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                         @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+        return ResponseEntity.ok(orderService.findAllOrdersByShop(jwt, customerId, page));
+    }
 }
