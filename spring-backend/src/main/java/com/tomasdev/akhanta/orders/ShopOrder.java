@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Document(collection = "shops_orders")
+@Document(collection = "orders")
 public class ShopOrder {
 
     @Id

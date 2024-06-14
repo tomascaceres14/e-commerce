@@ -89,8 +89,6 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     public Page<ShopOrder> findAllOrdersByShop(String jwt, String customerId, Integer page) {
         PageRequest pageable = PageRequest.of(page, 10);
         String shopId = JwtService.extractClaim(jwt, "shopId");
-        System.out.println("SHOPID" + shopId);
-        System.out.println("customerid" + customerId);
         return repository.findAllFiltered(customerId, shopId, pageable);
     }
 
