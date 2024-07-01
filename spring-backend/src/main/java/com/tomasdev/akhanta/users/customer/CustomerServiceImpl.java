@@ -11,6 +11,8 @@ import com.tomasdev.akhanta.security.jwt.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findById(String id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Cliente '\{id}' no existe."));
+    }
+
+    @Override
+    public Page<Customer> findAll(Integer page, Integer size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        repository.deleteById(id);
     }
 
     @Override

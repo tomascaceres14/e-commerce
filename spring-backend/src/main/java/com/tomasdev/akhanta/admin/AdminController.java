@@ -1,19 +1,18 @@
 package com.tomasdev.akhanta.admin;
 
 import com.tomasdev.akhanta.article.Article;
-import com.tomasdev.akhanta.associate.Associate;
-import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.Product;
-import com.tomasdev.akhanta.article.ArticleRequestDTO;
-import com.tomasdev.akhanta.associate.AssociateRequestDTO;
-import com.tomasdev.akhanta.product.CreateProductDTO;
-import com.tomasdev.akhanta.article.ArticleService;
-import com.tomasdev.akhanta.associate.AssociateService;
-import com.tomasdev.akhanta.product.categories.CategoryService;
 import com.tomasdev.akhanta.product.ProductService;
+import com.tomasdev.akhanta.product.categories.Category;
+import com.tomasdev.akhanta.article.ArticleRequestDTO;
+import com.tomasdev.akhanta.article.ArticleService;
+import com.tomasdev.akhanta.product.categories.CategoryService;
+import com.tomasdev.akhanta.users.customer.Customer;
+import com.tomasdev.akhanta.users.customer.CustomerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,9 @@ import java.util.List;
 public class AdminController {
 
     private ArticleService articleService;
-    private AssociateService associateService;
     private CategoryService categoryService;
+    private final CustomerService customerService;
+    private final ProductService productService;
 
     @PostMapping("/articles")
     public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
@@ -50,43 +50,39 @@ public class AdminController {
                 .body(articleService.updateArticleById(id, article, image));
     }
 
-    @DeleteMapping("/articles/{id}")
-    public ResponseEntity<String> deleteArticleById(@PathVariable String id) {
+    @GetMapping("/customers")
+    public ResponseEntity<Page<Customer>> findAllCustomers(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                           @RequestParam(required = false, defaultValue = "10") Integer size) {
+        return ResponseEntity.ok().body(customerService.findAll(page, size));
+    }
+
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity<String> deleteCustomerById(@PathVariable String id) {
         log.info("[ /admin/articles/id - DELETE ]");
-        articleService.deleteArticleById(id);
-        return ResponseEntity.ok(STR."Articulo id \{id} eliminado.");
+        customerService.deleteById(id);
+        return ResponseEntity.ok(STR."Cliente id \{id} eliminado.");
     }
 
-    @PostMapping("/associates")
-    public ResponseEntity<Associate> saveAssociate(@Valid @RequestPart AssociateRequestDTO associate,
-                                            @RequestPart MultipartFile profile,
-                                            @RequestPart MultipartFile banner) {
-        log.info("[ /admin/associates - POST ]");
+    @GetMapping("/products")
+    public ResponseEntity<Page<Product>> findAllProducts(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                         @RequestParam(required = false, defaultValue = "10") Integer size) {
+        log.info("[ /admin/products/categories - GET ]");
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(associateService.saveAssociate(associate, profile, banner));
+                .status(HttpStatus.OK)
+                .body(productService.findAllProducts(page, size));
     }
 
-    @PutMapping("/associates/{id}")
-    public ResponseEntity<Associate> updateAssociateById(@PathVariable String id,
-                                                  @RequestPart(required = false) AssociateRequestDTO associate,
-                                                  @RequestPart(required = false) MultipartFile profile,
-                                                  @RequestPart(required = false) MultipartFile banner) {
-        log.info("[ /admin/associates/id - PUT ]");
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(associateService.updateAssociateById(id, associate, profile, banner));
-    }
-
-    @DeleteMapping("/associates/{id}")
-    public ResponseEntity<String> deleteAssociatesById(@PathVariable String id) {
-        log.info("[ /admin/associates/id - DELETE ]");
-        associateService.deleteAssociateById(id);
-        return ResponseEntity.ok(STR."Asociado id \{id} eliminado.");
+    @GetMapping("/products/categories/{id}")
+    public ResponseEntity<Category> findProductById(@RequestParam String id) {
+        log.info("[ /admin/products/categories - GET ]");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(categoryService.findCategoryById(id));
     }
 
     @PostMapping("/products/categories")
     public ResponseEntity<Category> saveCategory(@RequestBody Category tag) {
-        log.info("[ /admin/products/tags - POST ]");
+        log.info("[ /admin/products/categories - POST ]");
         categoryService.saveCategory(tag);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -95,7 +91,7 @@ public class AdminController {
 
     @GetMapping("/products/categories")
     public ResponseEntity<List<Category>> findAllCategories() {
-        log.info("[ /admin/products/tags - GET ]");
+        log.info("[ /admin/products/categories - GET ]");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryService.findAllCategories());
@@ -103,10 +99,11 @@ public class AdminController {
 
     @GetMapping("/products/categories/{id}")
     public ResponseEntity<Category> findCategoryById(@RequestParam String id) {
-        log.info("[ /admin/products/tags - GET ]");
+        log.info("[ /admin/products/categories - GET ]");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryService.findCategoryById(id));
     }
+
 
 }

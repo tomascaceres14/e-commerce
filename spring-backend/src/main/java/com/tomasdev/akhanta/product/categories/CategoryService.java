@@ -7,5 +7,6 @@ public interface CategoryService {
     List<Category> findAllCategories();
     void saveCategory(Category category);
     Category findCategoryById(String id);
+
     void deleteCategoryById(String id);
 }
