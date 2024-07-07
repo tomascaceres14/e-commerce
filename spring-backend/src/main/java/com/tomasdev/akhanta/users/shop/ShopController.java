@@ -57,8 +57,7 @@ public class ShopController {
     @DeleteMapping("/products/{id}")
     public ResponseEntity<String> deleteProductById(@PathVariable String id) {
         log.info("[ /admin/products/id - DELETE ]");
-        productService.deleteProductById(id);
-        return ResponseEntity.ok(STR."Producto id \{id} eliminado.");
+        return ResponseEntity.ok(productService.deleteProductById(id));
     }
 
     @GetMapping("/orders")

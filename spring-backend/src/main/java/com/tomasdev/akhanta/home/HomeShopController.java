@@ -3,6 +3,7 @@ package com.tomasdev.akhanta.home;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
 import com.tomasdev.akhanta.users.shop.ShopService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,9 @@ public class HomeShopController {
     private final ShopService shopService;
 
     @GetMapping
-    public ResponseEntity<HomeShopDTO> findAllShops(@RequestParam(required = false, defaultValue = "0") int page) {
-        return ResponseEntity.ok(shopService.findAllShops(page));
+    public ResponseEntity<Page<HomeShopDTO>> findAllShops(@RequestParam(required = false, defaultValue = "0") int page,
+                                                          @RequestParam(required = false, defaultValue = "0") int size) {
+        return ResponseEntity.ok(shopService.findAllShops(page, size));
     }
 
     @GetMapping("/{seName}")

@@ -1,22 +1,23 @@
 package com.tomasdev.akhanta.admin;
 
-import com.tomasdev.akhanta.article.Article;
+
+import com.tomasdev.akhanta.home.dto.HomeShopDTO;
+import com.tomasdev.akhanta.orders.ShopOrder;
+import com.tomasdev.akhanta.orders.ShopOrderService;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
 import com.tomasdev.akhanta.product.categories.Category;
-import com.tomasdev.akhanta.article.ArticleRequestDTO;
-import com.tomasdev.akhanta.article.ArticleService;
 import com.tomasdev.akhanta.product.categories.CategoryService;
 import com.tomasdev.akhanta.users.customer.Customer;
 import com.tomasdev.akhanta.users.customer.CustomerService;
-import jakarta.validation.Valid;
+import com.tomasdev.akhanta.users.shop.ShopService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,29 +27,13 @@ import java.util.List;
 @RequestMapping("/api/v1/admin")
 public class AdminController {
 
-    private ArticleService articleService;
     private CategoryService categoryService;
     private final CustomerService customerService;
     private final ProductService productService;
+    private final ShopService shopService;
+    private final ShopOrderService orderService;
 
-    @PostMapping("/articles")
-    public ResponseEntity<Article> saveArticle(@Valid @RequestPart ArticleRequestDTO article,
-                                        @RequestPart MultipartFile image) {
-        log.info("[ /admin/articles - POST ]");
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(articleService.saveArticle(article, image));
-    }
-
-    @PutMapping("/articles/{id}")
-    public ResponseEntity<Article> updateArticleById(@PathVariable String id,
-                                              @RequestPart(required = false) ArticleRequestDTO article,
-                                              @RequestPart(required = false) MultipartFile image) {
-        log.info("[ /admin/articles/id - PUT ]");
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(articleService.updateArticleById(id, article, image));
-    }
+    /* -- CUSTOMERS -- */
 
     @GetMapping("/customers")
     public ResponseEntity<Page<Customer>> findAllCustomers(@RequestParam(required = false, defaultValue = "0") Integer page,
@@ -56,12 +41,28 @@ public class AdminController {
         return ResponseEntity.ok().body(customerService.findAll(page, size));
     }
 
+    // TODO El objetivo no es eliminarlos, sino cambiarlos a un estado de inhabilitado. De momento queda asi hasta que se implementen estados.
     @DeleteMapping("/customers/{id}")
     public ResponseEntity<String> deleteCustomerById(@PathVariable String id) {
         log.info("[ /admin/articles/id - DELETE ]");
         customerService.deleteById(id);
         return ResponseEntity.ok(STR."Cliente id \{id} eliminado.");
     }
+
+    /* --  SHOPS -- */
+
+    @GetMapping("/shops")
+    public ResponseEntity<Page<HomeShopDTO>> findAllShops(@RequestParam(required = false, defaultValue = "0") int page,
+                                                          @RequestParam(required = false, defaultValue = "10") int size) {
+        return ResponseEntity.ok(shopService.findAllShops(page, size));
+    }
+
+    @GetMapping("/shops/{seName}")
+    public ResponseEntity<HomeShopDTO> findShopBySeName(@PathVariable String seName) {
+        return ResponseEntity.ok(shopService.findBySeName(seName));
+    }
+
+    /* -- PRODUCTS -- */
 
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> findAllProducts(@RequestParam(required = false, defaultValue = "0") Integer page,
@@ -72,7 +73,7 @@ public class AdminController {
                 .body(productService.findAllProducts(page, size));
     }
 
-    @GetMapping("/products/categories/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<Category> findProductById(@RequestParam String id) {
         log.info("[ /admin/products/categories - GET ]");
         return ResponseEntity
@@ -80,10 +81,12 @@ public class AdminController {
                 .body(categoryService.findCategoryById(id));
     }
 
+    /* -- CATEGORIES -- */
+
     @PostMapping("/products/categories")
-    public ResponseEntity<Category> saveCategory(@RequestBody Category tag) {
+    public ResponseEntity<Category> saveCategory(@RequestBody Category categor) {
         log.info("[ /admin/products/categories - POST ]");
-        categoryService.saveCategory(tag);
+        categoryService.saveCategory(categor);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();
@@ -98,12 +101,35 @@ public class AdminController {
     }
 
     @GetMapping("/products/categories/{id}")
-    public ResponseEntity<Category> findCategoryById(@RequestParam String id) {
+    public ResponseEntity<Category> findCategoryById(@PathVariable String id) {
         log.info("[ /admin/products/categories - GET ]");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryService.findCategoryById(id));
     }
 
+    /* -- ORDERS -- */
+    @GetMapping("/shops/orders")
+    public ResponseEntity<Page<ShopOrder>> findAllOrdersByShop(@RequestParam(required = false, defaultValue = "") String customerId,
+                                                         @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                         @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+        return ResponseEntity.ok(orderService.findAllOrdersByShop(jwt, customerId, page));
+    }
+
+    @GetMapping("/customers/orders")
+    public ResponseEntity<Page<ShopOrder>> findAllOrdersByCustomer(@RequestParam(required = false, defaultValue = "") String shopId,
+                                                         @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                         @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
+        return ResponseEntity.ok(orderService.findAllOrdersByCustomer(jwt, shopId, page));
+    }
+
+    @DeleteMapping("/orders/{id}")
+    public ResponseEntity<String> deleteOrderById(@PathVariable String id) {
+        log.info("[ /admin/orders/id - DELETE ]");
+        return ResponseEntity.ok(orderService.deleteOrderById(id));
+    }
+
+
+    /* -- SERVICES -- */
 
 }

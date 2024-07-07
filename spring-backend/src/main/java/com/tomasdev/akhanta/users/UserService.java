@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.users;
 
+import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -26,6 +27,8 @@ public class UserService {
         );
 
         AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
+        if (results.getMappedResults().isEmpty()) throw new ResourceNotFoundException("Usuario");
+
         return results.getUniqueMappedResult();
     }
 

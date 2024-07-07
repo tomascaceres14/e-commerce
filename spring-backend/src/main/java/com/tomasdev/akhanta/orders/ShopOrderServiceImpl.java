@@ -99,4 +99,10 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
         return repository.findAllFiltered(customerId, shopId, pageable);
     }
+
+    @Override
+    public String deleteOrderById(String id) {
+        repository.deleteById(id);
+        return STR."Orden id \{id} eliminada";
+    }
 }

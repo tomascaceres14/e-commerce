@@ -11,8 +11,9 @@ import com.tomasdev.akhanta.security.jwt.JwtService;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.query.Page;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -20,6 +21,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -56,12 +59,23 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Shop '\{email}' no existe."));
+        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Shop"));
     }
 
     @Override
     public Shop findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Shop '\{id}' no existe."));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Shop"));
+    }
+
+    @Override
+    public Page<Shop> findAll(Integer page, Integer size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        repository.deleteById(id);
     }
 
     @Override
@@ -86,14 +100,20 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public HomeShopDTO findBySeName(String seName) {
         Shop shop = repository.findBySeName(seName).orElseThrow(
-                () -> new ResourceNotFoundException("Shop no encontrado."));
+                () -> new ResourceNotFoundException("Shop"));
         return mapper.map(shop, HomeShopDTO.class);
     }
 
     @Override
-    public HomeShopDTO findAllShops(int page) {
-        PageRequest pageable = PageRequest.of(page, 15);
-        return mapper.map(repository.findAll(pageable), HomeShopDTO.class);
+    public Page<HomeShopDTO> findAllShops(int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        Page<Shop> shopsPage = repository.findAll(pageable);
+
+        List<HomeShopDTO> homeShopDTOS = shopsPage.getContent()
+                                            .stream()
+                                            .map(shop -> mapper.map(shop, HomeShopDTO.class))
+                                            .toList();
+        return new PageImpl<>(homeShopDTOS, PageRequest.of(page, 15), shopsPage.getTotalElements());
     }
 
     @Override

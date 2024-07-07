@@ -21,9 +21,14 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ResourceNotFoundException.class, ServiceException.class, WrongCredentialsException.class, UserExistsException.class})
-    public ProblemDetail badRequestException(RuntimeException exception) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ProblemDetail resourceNotFoundException(RuntimeException exception) {
+        log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
+    }
 
+    @ExceptionHandler({ServiceException.class, WrongCredentialsException.class, UserExistsException.class})
+    public ProblemDetail badRequestException(RuntimeException exception) {
         log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
@@ -40,7 +45,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({InvalidContentTypeException.class})
     public ProblemDetail multipartMissingException(InvalidContentTypeException exception) {
         log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
-        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "multipart/form-data missing. Check entity attached.");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "file missing. Check entity attached.");
     }
 
     @ExceptionHandler({UnauthorizedException.class, AuthenticationException.class, JWTVerificationException.class})
