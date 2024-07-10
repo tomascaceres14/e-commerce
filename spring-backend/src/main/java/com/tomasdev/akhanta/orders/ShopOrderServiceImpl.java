@@ -86,6 +86,12 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
+    public Page<ShopOrder> filterOrders(String customerId, String shopId, int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return repository.findAllFiltered(customerId, shopId, pageable);
+    }
+
+    @Override
     public Page<ShopOrder> findAllOrdersByShop(String jwt, String customerId, Integer page) {
         PageRequest pageable = PageRequest.of(page, 10);
         String shopId = JwtService.extractClaim(jwt, "shopId");

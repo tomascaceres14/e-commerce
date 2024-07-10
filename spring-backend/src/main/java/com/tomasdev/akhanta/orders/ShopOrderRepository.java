@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShopOrderRepository extends MongoRepository<ShopOrder, String>, PagingAndSortingRepository<ShopOrder, String> {
 
-    @Query("{customerId: {'$regex':?0,'$options':'i'}, shopId: {'$regex':?1,'$options':'i'}}")
+    @Query("{ 'customerId': ?0, 'shopId': ?1 }")
     Page<ShopOrder> findAllFiltered(String customerId, String shopId, Pageable pageable);
 }

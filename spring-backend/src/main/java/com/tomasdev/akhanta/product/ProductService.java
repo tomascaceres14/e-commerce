@@ -12,8 +12,7 @@ public interface ProductService {
     Product saveProduct(CreateProductDTO productDTO, List<MultipartFile> images, String shopId);
     Product updateProductById(String id, CreateProductDTO product);
     Product findProductById(String id);
-    Page<Product> filterProducts(String name, String categoryId, int page);
+    Page<Product> filterProducts(String name, String categoryId,  int page, int size);
     String deleteProductById(String id);
-
     void removeStockById(String productId, Integer quantity);
 }

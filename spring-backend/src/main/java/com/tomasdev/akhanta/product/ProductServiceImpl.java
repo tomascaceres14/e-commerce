@@ -77,10 +77,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public String deleteProductById(String id) {
         Product product = mapper.map(findProductById(id), Product.class);
+        List<String> images = product.getImages();
 
-        product.getImages().forEach(image -> {
-            s3Service.delete("productos", s3Service.getImageKeyFromUrl(image));
-        });
+        if (images != null) {
+            product.getImages().forEach(image -> {
+                s3Service.delete("productos", s3Service.getImageKeyFromUrl(image));
+            });
+        }
 
         repository.deleteById(id);
         return STR."Producto id \{id} eliminado.";
@@ -94,8 +97,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> filterProducts(String name, String categoryId, int page) {
-        PageRequest pageable = PageRequest.of(page, 10);
+    public Page<Product> filterProducts(String name, String categoryId, int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);
         return repository.filterAllProducts(name, categoryId, pageable);
     }
 

@@ -29,8 +29,9 @@ public class HomeProductController {
     public ResponseEntity<Page<Product>> findAllProductsFiltered(
             @RequestParam(required = false, defaultValue = "") String categoryId,
             @RequestParam(required = false, defaultValue = "") String name,
-            @RequestParam(required = false, defaultValue = "0") Integer page) {
-        return ResponseEntity.ok().body(productService.filterProducts(name, categoryId, page));
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "10") Integer size) {
+        return ResponseEntity.ok().body(productService.filterProducts(name, categoryId, page, size));
     }
 
     @GetMapping("/categories")
