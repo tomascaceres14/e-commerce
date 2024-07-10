@@ -11,6 +11,7 @@ public interface IUser<T, U> {
 
     Page<T> findAll(Integer page, Integer size);
 
+    Integer updateStatusById(String id, Integer status);
     void deleteById(String id);
 
     void changePassword(PasswordChangeDTO passwordDTO, String jwt);

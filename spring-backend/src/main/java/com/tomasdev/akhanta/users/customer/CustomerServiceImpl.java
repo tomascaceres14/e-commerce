@@ -68,6 +68,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Integer updateStatusById(String id, Integer status) {
+        return repository.findAndUpdateStatusByCustomerId(id, status);
+    }
+
+    @Override
     public void deleteById(String id) {
         repository.deleteById(id);
     }

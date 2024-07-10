@@ -38,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category updateById(String id, Category category) {
         Category categoryDB = findCategoryById(id);
         mapper.map(category, categoryDB);
-        return repository.save(categoryDB);
+        return repository.save(category);
     }
 
     @Override

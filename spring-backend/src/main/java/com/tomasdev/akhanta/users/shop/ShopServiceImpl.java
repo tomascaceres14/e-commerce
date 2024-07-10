@@ -74,6 +74,11 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    public Integer updateStatusById(String id, Integer status) {
+        return null;
+    }
+
+    @Override
     public void deleteById(String id) {
         repository.deleteById(id);
     }

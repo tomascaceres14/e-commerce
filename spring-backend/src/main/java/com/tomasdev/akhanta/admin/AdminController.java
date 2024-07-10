@@ -41,6 +41,18 @@ public class AdminController {
         return ResponseEntity.ok().body(customerService.findAll(page, size));
     }
 
+    @GetMapping("/customers/{email}")
+    public ResponseEntity<Customer> findCustomerByEmail(@PathVariable String email) {
+        log.info("[ /admin/customers - GET ]");
+        return ResponseEntity.ok().body(customerService.findByEmail(email));
+    }
+
+    @PutMapping("/customers/{id}/status")
+    public ResponseEntity<Integer> setCustomerStatus(@PathVariable String id) {
+        log.info("[ /admin/customers/{id}/status - PUT ]");
+        return ResponseEntity.ok().body(customerService.updateStatusById(id, 10));
+    }
+
     // TODO El objetivo no es eliminarlos, sino cambiarlos a un estado de inhabilitado. De momento queda asi hasta que se implementen estados.
     @DeleteMapping("/customers/{id}")
     public ResponseEntity<String> deleteCustomerById(@PathVariable String id) {
