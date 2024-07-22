@@ -10,7 +10,6 @@ import com.tomasdev.akhanta.security.Roles;
 import com.tomasdev.akhanta.security.jwt.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(Roles.CUSTOMER);
         user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
         User savedUser = repository.save(user);
-        savedUser.setCartId(new ObjectId(cartService.createNewCart(savedUser.getId())));
+        savedUser.setCartId(cartService.createNewCart(savedUser.getId()));
 
         log.info("[ Registering user email: {} ]", savedUser.getEmail());
         return repository.save(savedUser);
@@ -111,7 +110,7 @@ public class UserServiceImpl implements UserService {
 //        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
 //        if (results.getMappedResults().isEmpty()) throw new ResourceNotFoundException("Usuario");
 
-        return repository.findUserByEmailAndRole(email, role);
+        return repository.findUserByEmailAndRole(email, role).orElseThrow(WrongCredentialsException::new);
     }
 
     @Override
