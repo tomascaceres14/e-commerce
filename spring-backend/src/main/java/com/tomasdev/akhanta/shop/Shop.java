@@ -1,7 +1,6 @@
-package com.tomasdev.akhanta.users.shop;
+package com.tomasdev.akhanta.shop;
 
 import com.tomasdev.akhanta.product.Product;
-import com.tomasdev.akhanta.users.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -14,10 +13,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Document(collection = "shops")
-public class Shop extends User {
+public class Shop {
 
     @Id
-    private String shopId;
+    private String id;
     @Indexed(unique = true)
     private String name;
     @Indexed(unique = true)
@@ -31,5 +30,6 @@ public class Shop extends User {
     @DocumentReference
     private List<Product> products;
     private Double rating;
+    private String ownerId;
 
 }

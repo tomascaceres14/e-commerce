@@ -7,9 +7,9 @@ import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
 import com.tomasdev.akhanta.product.categories.Category;
 import com.tomasdev.akhanta.product.categories.CategoryService;
-import com.tomasdev.akhanta.users.customer.Customer;
-import com.tomasdev.akhanta.users.customer.CustomerService;
-import com.tomasdev.akhanta.users.shop.ShopService;
+import com.tomasdev.akhanta.users.User;
+import com.tomasdev.akhanta.users.UserService;
+import com.tomasdev.akhanta.shop.ShopService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -26,37 +26,37 @@ import java.util.List;
 public class AdminController {
 
     private final CategoryService categoryService;
-    private final CustomerService customerService;
+    private final UserService userService;
     private final ProductService productService;
     private final ShopService shopService;
     private final ShopOrderService orderService;
 
-    /* -- CUSTOMERS -- */
+    /* -- USERS -- */
 
     @GetMapping("/customers")
-    public ResponseEntity<Page<Customer>> findAllCustomers(@RequestParam(required = false, defaultValue = "0") Integer page,
-                                                           @RequestParam(required = false, defaultValue = "10") Integer size) {
+    public ResponseEntity<Page<User>> findAllCustomers(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                       @RequestParam(required = false, defaultValue = "10") Integer size) {
         log.info("[ /admin/customers - GET ]");
-        return ResponseEntity.ok().body(customerService.findAll(page, size));
+        return ResponseEntity.ok().body(userService.findAll(page, size));
     }
 
     @GetMapping("/customers/{email}")
-    public ResponseEntity<Customer> findCustomerByEmail(@PathVariable String email) {
+    public ResponseEntity<User> findCustomerByEmail(@PathVariable String email) {
         log.info("[ /admin/customers - GET ]");
-        return ResponseEntity.ok().body(customerService.findByEmail(email));
+        return ResponseEntity.ok().body(userService.findByEmail(email));
     }
 
     @PutMapping("/customers/{id}/status")
     public ResponseEntity<Integer> setCustomerStatus(@PathVariable String id) {
         log.info("[ /admin/customers/{id}/status - PUT ]");
-        return ResponseEntity.ok().body(customerService.updateStatusById(id, 10));
+        return ResponseEntity.ok().body(userService.updateStatusById(id, 10));
     }
 
     // TODO El objetivo no es eliminarlos, sino cambiarlos a un estado de inhabilitado. De momento queda asi hasta que se implementen estados.
     @DeleteMapping("/customers/{id}")
     public ResponseEntity<String> deleteCustomerById(@PathVariable String id) {
         log.info("[ /admin/customers/{id} - DELETE ]");
-        customerService.deleteById(id);
+        userService.deleteById(id);
         return ResponseEntity.ok(STR."Cliente id \{id} eliminado.");
     }
 

@@ -20,15 +20,15 @@ public class AuthController {
     @PostMapping("/customers/register")
     public ResponseEntity<JwtResponseDTO> customerRegister(@RequestBody CustomerRegisterDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.registerCustomer(userDTO));
+                .body(service.register(userDTO));
     }
-
+    /*
     @PostMapping(path = "/shops/register")
     public ResponseEntity<JwtResponseDTO> shopRegister(@RequestBody @Valid ShopRegisterDTO shopDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(service.registerShop(shopDTO));
     }
-
+*/
     @PostMapping(path = "/customers/login")
     public ResponseEntity<JwtResponseDTO> customerLogIn(@RequestBody @Valid LogInCredentialsDTO credentials) {
         return ResponseEntity.ok(service.logIn(credentials, "CUSTOMER"));

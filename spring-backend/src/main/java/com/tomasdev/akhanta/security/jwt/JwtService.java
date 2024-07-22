@@ -4,8 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
 import com.tomasdev.akhanta.users.User;
-import com.tomasdev.akhanta.users.customer.Customer;
-import com.tomasdev.akhanta.users.shop.Shop;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,28 +41,18 @@ public class JwtService {
                 .sign(algorithm);
     }
 
-    public String buildCustomerAccessToken(Customer customer) {
+    public String buildUserAccessToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("customerId", customer.getCustomerId());
-        claims.put("role", customer.getRole());
-        claims.put("username", customer.getUsername());
-        claims.put("cartId", customer.getCartId());
+        claims.put("userId", user.getId());
+        claims.put("role", user.getRole());
+        claims.put("username", user.getUsername());
+        claims.put("cartId", user.getCartId());
         claims.put("isRefresh", "false");
 
         return buildToken(claims, accessTokenExpiration);
     }
 
-    public String buildShopAccessToken(Shop shop) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("shopId", shop.getShopId());
-        claims.put("role", shop.getRole());
-        claims.put("shopName", shop.getName());
-        claims.put("isRefresh", "false");
-
-        return buildToken(claims, accessTokenExpiration);
-    }
-
-    public String buildRefreshToken(User user) {
+    public String buildRefreshToken(com.tomasdev.akhanta.users.User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", user.getRole());
         claims.put("role", user.getRole());
@@ -73,16 +61,8 @@ public class JwtService {
         return buildToken(claims, refreshTokenExpiration);
     }
 
-    public JwtResponseDTO grantAccess(User user, String role) {
-
-        String accessToken;
-
-        switch (role) {
-            case "CUSTOMER", "ADMIN" -> accessToken = buildCustomerAccessToken((Customer) user);
-            case "SHOP" -> accessToken = buildShopAccessToken((Shop) user);
-            default -> throw new UnauthorizedException("Rol inexistente");
-        }
-
+    public JwtResponseDTO grantAccess(com.tomasdev.akhanta.users.User user) {
+        String accessToken = buildUserAccessToken((User) user);
         String refreshToken = buildRefreshToken(user);
         return new JwtResponseDTO(accessToken, refreshToken);
     }

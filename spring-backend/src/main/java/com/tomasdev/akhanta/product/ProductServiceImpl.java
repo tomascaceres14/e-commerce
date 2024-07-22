@@ -4,7 +4,7 @@ import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.images.AmazonS3Service;
 import com.tomasdev.akhanta.security.jwt.JwtService;
-import com.tomasdev.akhanta.users.shop.ShopService;
+import com.tomasdev.akhanta.shop.ShopService;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

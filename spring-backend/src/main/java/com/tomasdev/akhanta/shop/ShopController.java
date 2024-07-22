@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.users.shop;
+package com.tomasdev.akhanta.shop;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
 import com.tomasdev.akhanta.orders.ShopOrder;
@@ -24,16 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopController {
 
-    private final ShopService service;
     private final ProductService productService;
     private final ShopOrderService orderService;
-
-    @PostMapping("/password")
-    public ResponseEntity<?> changePassword(@RequestBody PasswordChangeDTO passwordDTO,
-                                            @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
-        service.changePassword(passwordDTO, jwt);
-        return ResponseEntity.status(HttpStatus.SC_RESET_CONTENT).build();
-    }
 
     @PostMapping("/products")
     public ResponseEntity<Product> saveProducts(@Valid @RequestPart CreateProductDTO product,

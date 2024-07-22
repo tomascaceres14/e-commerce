@@ -1,8 +1,9 @@
-package com.tomasdev.akhanta.users.customer;
+package com.tomasdev.akhanta.users;
 
 import com.tomasdev.akhanta.auth.PasswordChangeDTO;
 import com.tomasdev.akhanta.orders.ShopOrder;
 import com.tomasdev.akhanta.orders.ShopOrderService;
+import com.tomasdev.akhanta.users.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.springframework.data.domain.Page;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customers")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-public class CustomerController {
+public class UserController {
 
-    private final CustomerService service;
+    private final UserService service;
     private final ShopOrderService orderService;
 
     @PostMapping("/password")

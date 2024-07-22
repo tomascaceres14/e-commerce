@@ -6,8 +6,8 @@ import com.tomasdev.akhanta.cart.CartService;
 import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.product.ProductService;
 import com.tomasdev.akhanta.security.jwt.JwtService;
-import com.tomasdev.akhanta.users.customer.Customer;
-import com.tomasdev.akhanta.users.customer.CustomerService;
+import com.tomasdev.akhanta.users.User;
+import com.tomasdev.akhanta.users.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +24,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
     private final CartService cartService;
     private final ProductService productService;
-    private final CustomerService customerService;
+    private final UserService customerService;
     private final ShopOrderRepository repository;
 
     public Map<String, List<CartItem>> groupItemsByShopId(List<CartItem> items) {
@@ -58,7 +58,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
             throw new ServiceException("El carrito está vacío.");
         }
 
-        Customer customer = customerService.findById(JwtService.extractClaim(jwt, "customerId"));
+        User user = customerService.findById(JwtService.extractClaim(jwt, "customerId"));
         System.out.println(cart);
         Map<String, List<CartItem>> itemsByShop = groupItemsByShopId(cart.getItems());
 
@@ -69,7 +69,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
                             cart.getCustomerId(),
                             k, v,
                             totalPrice,
-                            customer.getAddress(),
+                            user.getAddress(),
                             "CASH",
                             "REGULAR");
 

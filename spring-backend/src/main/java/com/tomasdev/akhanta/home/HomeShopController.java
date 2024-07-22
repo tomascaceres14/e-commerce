@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.home;
 
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
-import com.tomasdev.akhanta.users.shop.ShopService;
+import com.tomasdev.akhanta.shop.ShopService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

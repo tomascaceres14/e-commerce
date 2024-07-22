@@ -1,48 +1,22 @@
 package com.tomasdev.akhanta.users;
 
-import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
-import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.MatchOperation;
-import org.springframework.data.mongodb.core.aggregation.UnionWithOperation;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.stereotype.Service;
+import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
+import org.springframework.data.domain.Page;
 
-@Service
-@AllArgsConstructor
-public class UserService {
+public interface UserService {
 
-    private MongoTemplate mongoTemplate;
+    User register(CustomerRegisterDTO req);
+    User findByEmail(String email);
+    User findById(String id);
 
-    public User findUserByEmailAndRole(String email, String role) {
-        MatchOperation matchStage = Aggregation.match(Criteria.where("email").is(email).and("role").is(role));
-        UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
+    Page<User> findAll(Integer page, Integer size);
 
-        Aggregation aggregation = Aggregation.newAggregation(
-                matchStage,
-                unionWithShops,
-                Aggregation.match(Criteria.where("email").is(email).and("role").is(role))
-        );
+    Integer updateStatusById(String id, Integer status);
+    void deleteById(String id);
 
-        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
-        if (results.getMappedResults().isEmpty()) throw new ResourceNotFoundException("Usuario");
+    void changePassword(PasswordChangeDTO passwordDTO, String jwt);
 
-        return results.getUniqueMappedResult();
-    }
-
-    public User findUserByIdAndRole(String id, String role) {
-        MatchOperation matchStage = Aggregation.match(Criteria.where("_id").is(id).and("role").is(role));
-        UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
-
-        Aggregation aggregation = Aggregation.newAggregation(
-                matchStage,
-                unionWithShops,
-                Aggregation.match(Criteria.where("_id").is(id).and("role").is(role))
-        );
-
-        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
-        return results.getUniqueMappedResult();
-    }
+    User findUserByEmailAndRole(String email, String role);
+    User findUserByIdAndRole(String id, String role);
 }
