@@ -44,7 +44,7 @@ public class JwtService {
     public String buildUserAccessToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
-        claims.put("role", user.getRole());
+        claims.put("role", user.getRoles());
         claims.put("username", user.getUsername());
         claims.put("cartId", user.getCartId());
         claims.put("isRefresh", "false");
@@ -54,8 +54,8 @@ public class JwtService {
 
     public String buildRefreshToken(com.tomasdev.akhanta.users.User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", user.getRole());
-        claims.put("role", user.getRole());
+        claims.put("id", user.getId());
+        claims.put("role", user.getRoles());
         claims.put("isRefresh", "true");
 
         return buildToken(claims, refreshTokenExpiration);

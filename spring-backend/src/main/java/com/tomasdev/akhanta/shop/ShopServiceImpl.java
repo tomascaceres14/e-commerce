@@ -2,6 +2,10 @@ package com.tomasdev.akhanta.shop;
 
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
+import com.tomasdev.akhanta.shop.dto.CreateShopDTO;
+import com.tomasdev.akhanta.users.User;
+import com.tomasdev.akhanta.users.UserRepository;
+import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -23,12 +27,13 @@ public class ShopServiceImpl implements ShopService {
 
     private final ModelMapper mapper;
     private final ShopRepository repository;
+    private final UserRepository userRepository;
     private final MongoTemplate mongoTemplate;
 
     @Override
     public HomeShopDTO findBySeName(String seName) {
         Shop shop = repository.findBySeName(seName).orElseThrow(
-                () -> new ResourceNotFoundException("Shop"));
+                () -> new ResourceNotFoundException("Shop no encontrado."));
         return mapper.map(shop, HomeShopDTO.class);
     }
 
@@ -42,6 +47,18 @@ public class ShopServiceImpl implements ShopService {
                                             .map(shop -> mapper.map(shop, HomeShopDTO.class))
                                             .toList();
         return new PageImpl<>(homeShopDTOS, PageRequest.of(page, 15), shopsPage.getTotalElements());
+    }
+
+    @Override
+    public Shop saveShop(CreateShopDTO shop) {
+        Shop newShop = mapper.map(shop, Shop.class);
+        newShop.setSeName(StringUtils.normalizeToSearch(newShop.getName()));
+
+        if (!userRepository.existsById(newShop.getOwnerId())) {
+            throw new ResourceNotFoundException(STR."Usuario id \{newShop.getOwnerId()} no existe");
+        }
+
+        return repository.save(newShop);
     }
 
     @Override

@@ -1,15 +1,15 @@
 package com.tomasdev.akhanta.shop;
 
-import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.amazonaws.Response;
 import com.tomasdev.akhanta.orders.ShopOrder;
 import com.tomasdev.akhanta.orders.ShopOrderService;
 import com.tomasdev.akhanta.product.CreateProductDTO;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
+import com.tomasdev.akhanta.shop.dto.CreateShopDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +24,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopController {
 
+    private final ShopService service;
     private final ProductService productService;
     private final ShopOrderService orderService;
+
+    @PostMapping
+    public ResponseEntity<Shop> createShop(@RequestBody CreateShopDTO shopDTO) {
+        return ResponseEntity.ok(service.saveShop(shopDTO));
+    }
 
     @PostMapping("/products")
     public ResponseEntity<Product> saveProducts(@Valid @RequestPart CreateProductDTO product,

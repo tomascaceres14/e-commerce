@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setStatus(1);
-        user.setRole(Roles.CUSTOMER);
+        user.addRole(Roles.USER);
         user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
         User savedUser = repository.save(user);
         savedUser.setCartId(cartService.createNewCart(savedUser.getId()));
@@ -53,12 +53,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(STR."Cliente '\{email}' no existe."));
+        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
     }
 
     @Override
     public User findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(STR."Cliente '\{id}' no existe."));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
     }
 
     @Override

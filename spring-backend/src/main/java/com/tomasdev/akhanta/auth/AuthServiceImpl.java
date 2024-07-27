@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
 
     public JwtResponseDTO logIn(LogInCredentialsDTO credentials, String role) {
 
-        com.tomasdev.akhanta.users.User user = userService.findUserByEmailAndRole(credentials.getEmail(), role);
+        User user = userService.findUserByEmailAndRole(credentials.getEmail(), role);
 
         if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
             throw new WrongCredentialsException();
@@ -54,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
 
         String userId = JwtService.extractClaim(refreshToken, "id");
         String role = JwtService.extractClaim(refreshToken, "role");
-        com.tomasdev.akhanta.users.User user = userService.findUserByIdAndRole(userId, role);
+        User user = userService.findUserByIdAndRole(userId, role);
 
         return jwtService.grantAccess(user);
     }

@@ -1023,3 +1023,6 @@ java.lang.NullPointerException: Cannot invoke "com.tomasdev.akhanta.users.User.g
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
 2024-07-22 17:04:36 - [ERROR] - com.tomasdev.akhanta.exceptions.GlobalExceptionHandler - InsufficientAuthenticationException - Full authentication is required to access this resource
+2024-07-22 17:09:41 - [INFO] - o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-22 17:09:41 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-22 17:09:41 - [INFO] - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
