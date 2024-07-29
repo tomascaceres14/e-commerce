@@ -16,6 +16,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -74,12 +76,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer updateRoleById(String id, String role) {
+
+        if (!Roles.getRoles().contains(role)) {
+            throw new ResourceNotFoundException("Rol no encontrado");
+        }
+
         return repository.findAndUpdateRoleById(id, role);
     }
 
     @Override
-    public void deleteById(String id) {
-        repository.deleteById(id);
+    public Integer updateShopIdById(String id, String shopId) {
+        return repository.findAndUpdateShopIdById(id, shopId);
     }
 
     @Override

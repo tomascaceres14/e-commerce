@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Document( value = "customers_carts")
+@Document( value = "users_carts")
 public class Cart {
 
     @Id

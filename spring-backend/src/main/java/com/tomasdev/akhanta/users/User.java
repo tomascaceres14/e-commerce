@@ -20,6 +20,7 @@ public class User {
     private String username;
     private String phoneNumber;
     private String cartId;
+    private String shopId;
 
 }
 

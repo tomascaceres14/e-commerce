@@ -2,8 +2,12 @@ package com.tomasdev.akhanta.shop;
 
 import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
+import com.tomasdev.akhanta.exceptions.ServiceException;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
+import com.tomasdev.akhanta.users.User;
 import com.tomasdev.akhanta.users.UserRepository;
+import com.tomasdev.akhanta.users.UserService;
+import com.tomasdev.akhanta.users.UserServiceImpl;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,14 +54,19 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop saveShop(ShopRegisterDTO shop) {
-        Shop newShop = mapper.map(shop, Shop.class);
-        newShop.setSeName(StringUtils.normalizeToSearch(newShop.getName()));
 
-        if (!userRepository.existsById(newShop.getOwnerId())) {
-            throw new ResourceNotFoundException(STR."Usuario id \{newShop.getOwnerId()} no existe");
+        Shop shopBD = mapper.map(shop, Shop.class);
+        shopBD.setSeName(StringUtils.normalizeToSearch(shopBD.getName()));
+
+        shopBD = repository.save(shopBD);
+
+        Integer transactionSatus = userRepository.findAndUpdateShopIdById(shopBD.getOwnerId(), shopBD.getId());
+
+        if (transactionSatus == 0) {
+            throw new ServiceException("Actualizar shop de usuario. Estado de transacción: 0");
         }
 
-        return repository.save(newShop);
+        return shopBD;
     }
 
     @Override
