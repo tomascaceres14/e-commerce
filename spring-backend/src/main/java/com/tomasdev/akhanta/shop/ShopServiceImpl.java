@@ -1,9 +1,8 @@
 package com.tomasdev.akhanta.shop;
 
+import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
-import com.tomasdev.akhanta.shop.dto.CreateShopDTO;
-import com.tomasdev.akhanta.users.User;
 import com.tomasdev.akhanta.users.UserRepository;
 import com.tomasdev.akhanta.utils.StringUtils;
 import lombok.AllArgsConstructor;
@@ -50,7 +49,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Shop saveShop(CreateShopDTO shop) {
+    public Shop saveShop(ShopRegisterDTO shop) {
         Shop newShop = mapper.map(shop, Shop.class);
         newShop.setSeName(StringUtils.normalizeToSearch(newShop.getName()));
 

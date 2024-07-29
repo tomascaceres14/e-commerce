@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.admin;
 
+import com.tomasdev.akhanta.admin.dto.PatchRole;
 import com.tomasdev.akhanta.home.dto.HomeShopDTO;
 import com.tomasdev.akhanta.orders.ShopOrder;
 import com.tomasdev.akhanta.orders.ShopOrderService;
@@ -46,18 +47,16 @@ public class AdminController {
         return ResponseEntity.ok().body(userService.findByEmail(email));
     }
 
-    @PutMapping("/customers/{id}/status")
+    @PatchMapping("/customers/{id}/status")
     public ResponseEntity<Integer> setCustomerStatus(@PathVariable String id) {
-        log.info("[ /admin/customers/{id}/status - PUT ]");
+        log.info("[ /admin/customers/{id}/status - PATCH ]");
         return ResponseEntity.ok().body(userService.updateStatusById(id, 10));
     }
 
-    // TODO El objetivo no es eliminarlos, sino cambiarlos a un estado de inhabilitado. De momento queda asi hasta que se implementen estados.
-    @DeleteMapping("/customers/{id}")
-    public ResponseEntity<String> deleteCustomerById(@PathVariable String id) {
-        log.info("[ /admin/customers/{id} - DELETE ]");
-        userService.deleteById(id);
-        return ResponseEntity.ok(STR."Cliente id \{id} eliminado.");
+    @PatchMapping("/customers/{id}/role")
+    public ResponseEntity<Integer> updateRoleById(@PathVariable String id, @RequestBody PatchRole roleDTO) {
+        log.info("[ /admin/customers/{id}/role - PATCH ]");
+        return ResponseEntity.ok().body(userService.updateRoleById(id, roleDTO.getRole()));
     }
 
     /* --  SHOPS -- */

@@ -1,12 +1,11 @@
 package com.tomasdev.akhanta.shop;
 
-import com.amazonaws.Response;
+import com.tomasdev.akhanta.auth.dto.ShopRegisterDTO;
 import com.tomasdev.akhanta.orders.ShopOrder;
 import com.tomasdev.akhanta.orders.ShopOrderService;
 import com.tomasdev.akhanta.product.CreateProductDTO;
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
-import com.tomasdev.akhanta.shop.dto.CreateShopDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +28,12 @@ public class ShopController {
     private final ShopOrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Shop> createShop(@RequestBody CreateShopDTO shopDTO) {
+    public ResponseEntity<Shop> saveShop(@RequestBody ShopRegisterDTO shopDTO) {
         return ResponseEntity.ok(service.saveShop(shopDTO));
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Product> saveProducts(@Valid @RequestPart CreateProductDTO product,
+    public ResponseEntity<Product> saveProduct(@Valid @RequestPart CreateProductDTO product,
                                                 @RequestPart(required = false) List<MultipartFile> images,
                                                 @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         log.info("[ /admin/products - POST ]");
@@ -59,7 +58,7 @@ public class ShopController {
     }
 
     @GetMapping("/orders")
-    public ResponseEntity<Page<ShopOrder>> findAllOrders(@RequestParam(required = false, defaultValue = "") String customerId,
+    public ResponseEntity<Page<ShopOrder>> findAllOrdersByShop(@RequestParam(required = false, defaultValue = "") String customerId,
                                                          @RequestParam(required = false, defaultValue = "0") Integer page,
                                                          @RequestHeader(name = HttpHeaders.AUTHORIZATION) String jwt) {
         return ResponseEntity.ok(orderService.findAllOrdersByShop(jwt, customerId, page));

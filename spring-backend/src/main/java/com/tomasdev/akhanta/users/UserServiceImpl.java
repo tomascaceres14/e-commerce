@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setStatus(1);
-        user.addRole(Roles.USER);
+        user.setRole(Roles.USER);
         user.setUsername(STR."\{user.getFirstName()} \{user.getLastName()}");
         User savedUser = repository.save(user);
         savedUser.setCartId(cartService.createNewCart(savedUser.getId()));
@@ -73,6 +73,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer updateRoleById(String id, String role) {
+        return repository.findAndUpdateRoleById(id, role);
+    }
+
+    @Override
     public void deleteById(String id) {
         repository.deleteById(id);
     }
@@ -94,37 +99,5 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(passwordDTO.getNewPassword()));
 
         repository.save(user);
-    }
-
-    @Override
-    public User findUserByEmailAndRole(String email, String role) {
-//        MatchOperation matchStage = Aggregation.match(Criteria.where("email").is(email).and("role").is(role));
-//        UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
-//
-//        Aggregation aggregation = Aggregation.newAggregation(
-//                matchStage,
-//                unionWithShops,
-//                Aggregation.match(Criteria.where("email").is(email).and("role").is(role))
-//        );
-//
-//        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
-//        if (results.getMappedResults().isEmpty()) throw new ResourceNotFoundException("Usuario");
-
-        return repository.findUserByEmailAndRole(email, role).orElseThrow(WrongCredentialsException::new);
-    }
-
-    @Override
-    public User findUserByIdAndRole(String id, String role) {
-//        MatchOperation matchStage = Aggregation.match(Criteria.where("_id").is(id).and("role").is(role));
-//        UnionWithOperation unionWithShops = UnionWithOperation.unionWith("shops");
-//
-//        Aggregation aggregation = Aggregation.newAggregation(
-//                matchStage,
-//                unionWithShops,
-//                Aggregation.match(Criteria.where("_id").is(id).and("role").is(role))
-//        );
-//
-//        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, "customers", User.class);
-        return repository.findUserByIdAndRole(id, role);
     }
 }

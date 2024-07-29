@@ -1,15 +1,15 @@
 package com.tomasdev.akhanta.auth.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Data
-public class ShopRegisterDTO extends UserRegisterDTO {
-
-    @NotBlank(message = "El nombre del shop es obligatorio.")
+public class ShopRegisterDTO {
     private String name;
-
+    private String description;
+    private String primaryColor;
+    private String secondaryColor;
+    private String tertiaryColor;
+    private String profileImageUrl;
+    private String bannerImageUrl;
+    private String ownerId;
 }

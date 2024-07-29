@@ -15,7 +15,6 @@ public interface UserRepository extends MongoRepository<User, String>, PagingAnd
     @Update("{ $set : { 'status': ?1 } }")
     Integer findAndUpdateStatusById(String email, Integer status);
 
-    Optional<User> findUserByEmailAndRole(String email, String role);
-    User findUserByIdAndRole(String id, String role);
-
+    @Update("{ $set : { 'role': ?1 } }")
+    Integer findAndUpdateRoleById(String id, String role);
 }

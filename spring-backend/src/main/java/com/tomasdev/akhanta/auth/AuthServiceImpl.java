@@ -18,32 +18,20 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    public JwtResponseDTO register(CustomerRegisterDTO customerDTO) {
+    public JwtResponseDTO registerUser(CustomerRegisterDTO customerDTO) {
         User user = userService.register(customerDTO);
         return jwtService.grantAccess(user);
     }
 
-    public JwtResponseDTO logIn(LogInCredentialsDTO credentials, String role) {
+    public JwtResponseDTO logIn(LogInCredentialsDTO credentials) {
 
-        User user = userService.findUserByEmailAndRole(credentials.getEmail(), role);
+        User user = userService.findByEmail(credentials.getEmail());
 
         if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
             throw new WrongCredentialsException();
         }
 
         return jwtService.grantAccess(user);
-    }
-
-    @Override
-    public JwtResponseDTO adminLogIn(LogInCredentialsDTO credentials) {
-
-        User adminUser = userService.findByEmail(credentials.getEmail());
-
-        if (!passwordEncoder.matches(credentials.getPassword(), adminUser.getPassword())) {
-            throw new WrongCredentialsException();
-        }
-
-        return jwtService.grantAccess(adminUser);
     }
 
     public void signOut(String token) {
@@ -53,8 +41,7 @@ public class AuthServiceImpl implements AuthService {
     public JwtResponseDTO refreshAccessToken(String refreshToken) {
 
         String userId = JwtService.extractClaim(refreshToken, "id");
-        String role = JwtService.extractClaim(refreshToken, "role");
-        User user = userService.findUserByIdAndRole(userId, role);
+        User user = userService.findById(userId);
 
         return jwtService.grantAccess(user);
     }

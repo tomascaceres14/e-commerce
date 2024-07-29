@@ -44,7 +44,7 @@ public class JwtService {
     public String buildUserAccessToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
-        claims.put("role", user.getRoles());
+        claims.put("role", user.getRole());
         claims.put("username", user.getUsername());
         claims.put("cartId", user.getCartId());
         claims.put("isRefresh", "false");
@@ -55,14 +55,14 @@ public class JwtService {
     public String buildRefreshToken(com.tomasdev.akhanta.users.User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", user.getId());
-        claims.put("role", user.getRoles());
+        claims.put("role", user.getRole());
         claims.put("isRefresh", "true");
 
         return buildToken(claims, refreshTokenExpiration);
     }
 
-    public JwtResponseDTO grantAccess(com.tomasdev.akhanta.users.User user) {
-        String accessToken = buildUserAccessToken((User) user);
+    public JwtResponseDTO grantAccess(User user) {
+        String accessToken = buildUserAccessToken(user);
         String refreshToken = buildRefreshToken(user);
         return new JwtResponseDTO(accessToken, refreshToken);
     }
