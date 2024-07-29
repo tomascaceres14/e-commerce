@@ -47,7 +47,7 @@ public class JwtService {
         claims.put("role", user.getRole());
         claims.put("username", user.getUsername());
         claims.put("cartId", user.getCartId());
-        claims.put("shopId", user.getCartId());
+        claims.put("shopId", user.getShopId());
         claims.put("isRefresh", "false");
 
         return buildToken(claims, accessTokenExpiration);

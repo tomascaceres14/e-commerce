@@ -12,6 +12,5 @@ public interface UserService {
     Page<User> findAll(Integer page, Integer size);
     Integer updateStatusById(String id, Integer status);
     Integer updateRoleById(String id, String role);
-    Integer updateShopIdById(String id, String shopId);
     void changePassword(PasswordChangeDTO passwordDTO, String jwt);
 }

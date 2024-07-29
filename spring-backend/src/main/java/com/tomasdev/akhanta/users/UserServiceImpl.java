@@ -85,11 +85,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updateShopIdById(String id, String shopId) {
-        return repository.findAndUpdateShopIdById(id, shopId);
-    }
-
-    @Override
     public void changePassword(PasswordChangeDTO passwordDTO, String jwt) {
 
         String email = JwtService.extractClaim(jwt, "email");
