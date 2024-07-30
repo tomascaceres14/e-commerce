@@ -1,9 +1,8 @@
 package com.tomasdev.akhanta.users;
 
-import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.tomasdev.akhanta.auth.dto.PasswordChangeDTO;
 import com.tomasdev.akhanta.orders.ShopOrder;
 import com.tomasdev.akhanta.orders.ShopOrderService;
-import com.tomasdev.akhanta.users.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
 import org.springframework.data.domain.Page;

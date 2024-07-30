@@ -1,5 +1,6 @@
 package com.tomasdev.akhanta.auth;
 
+import com.tomasdev.akhanta.auth.dto.LogInCredentialsDTO;
 import com.tomasdev.akhanta.security.jwt.JwtResponseDTO;
 import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import jakarta.validation.Valid;

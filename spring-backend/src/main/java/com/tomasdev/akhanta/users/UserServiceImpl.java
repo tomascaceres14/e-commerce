@@ -1,10 +1,9 @@
 package com.tomasdev.akhanta.users;
 
-import com.tomasdev.akhanta.auth.PasswordChangeDTO;
+import com.tomasdev.akhanta.auth.dto.PasswordChangeDTO;
 import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;
 import com.tomasdev.akhanta.cart.CartService;
 import com.tomasdev.akhanta.exceptions.ResourceNotFoundException;
-import com.tomasdev.akhanta.exceptions.UserExistsException;
 import com.tomasdev.akhanta.exceptions.WrongCredentialsException;
 import com.tomasdev.akhanta.security.Roles;
 import com.tomasdev.akhanta.security.jwt.JwtService;
@@ -15,8 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.management.relation.Role;
 
 @Service
 @Slf4j
@@ -33,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
         if (!customerDTO.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
-            throw new WrongCredentialsException("Ingrese una dirección de correo válida");
+            throw new WrongCredentialsException("Por favor, ingrese una dirección de correo válida.");
         }
 
         User user = mapper.map(customerDTO, User.class);
@@ -55,12 +52,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
+        return repository.findByEmail(email).orElseThrow(()
+                -> new ResourceNotFoundException("Lo sentimos, usuario no encontrado"));
     }
 
     @Override
     public User findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
+        return repository.findById(id).orElseThrow(()
+                -> new ResourceNotFoundException("Lo sentimos, usuario no encontrado."));
     }
 
     @Override

@@ -36,7 +36,7 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public HomeShopDTO findBySeName(String seName) {
         Shop shop = repository.findBySeName(seName).orElseThrow(
-                () -> new ResourceNotFoundException("Shop no encontrado."));
+                () -> new ResourceNotFoundException("Ups! Shop no encontrado."));
         return mapper.map(shop, HomeShopDTO.class);
     }
 

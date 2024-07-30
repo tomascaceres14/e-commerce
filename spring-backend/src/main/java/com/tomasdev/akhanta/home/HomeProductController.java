@@ -16,8 +16,9 @@ public class HomeProductController {
     private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<Page<Product>> findAllProducts(@RequestParam(required = false, defaultValue = "0") Integer page) {
-        return ResponseEntity.ok().body(productService.findAllProducts(page));
+    public ResponseEntity<Page<Product>> findAllProducts(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                         @RequestParam(required = false, defaultValue = "1") Integer size) {
+        return ResponseEntity.ok().body(productService.findAllProducts(page, size));
     }
 
     @GetMapping("{id}")

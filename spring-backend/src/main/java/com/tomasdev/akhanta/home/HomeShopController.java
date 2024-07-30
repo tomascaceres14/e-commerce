@@ -16,7 +16,7 @@ public class HomeShopController {
 
     @GetMapping
     public ResponseEntity<Page<HomeShopDTO>> findAllShops(@RequestParam(required = false, defaultValue = "0") int page,
-                                                          @RequestParam(required = false, defaultValue = "0") int size) {
+                                                          @RequestParam(required = false, defaultValue = "1") int size) {
         return ResponseEntity.ok(shopService.findAllShops(page, size));
     }
 

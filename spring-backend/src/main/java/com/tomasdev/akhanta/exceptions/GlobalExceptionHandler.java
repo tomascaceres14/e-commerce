@@ -1,6 +1,8 @@
 package com.tomasdev.akhanta.exceptions;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.tomasdev.akhanta.exceptions.dto.ErrorResponseDTO;
+import com.tomasdev.akhanta.users.UserExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.impl.InvalidContentTypeException;
 import org.springframework.http.*;
@@ -27,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
     }
 
-    @ExceptionHandler({ServiceException.class, WrongCredentialsException.class, UserExistsException.class})
+    @ExceptionHandler({ServiceException.class, WrongCredentialsException.class, UserExistsException.class, IllegalArgumentException.class})
     public ProblemDetail badRequestException(RuntimeException exception) {
         log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
@@ -57,6 +59,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({AccessDeniedException.class})
     public ProblemDetail accessDeniedException(RuntimeException exception) {
         log.error("{} - {}", exception.getClass().getSimpleName(), exception.getMessage());
-        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Acceso denegado. No posee los permisos necesarios.");
     }
 }

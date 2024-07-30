@@ -1,20 +1,25 @@
 package com.tomasdev.akhanta.auth.dto;
 
+import com.tomasdev.akhanta.users.Address;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class CustomerRegisterDTO extends UserRegisterDTO {
+public class CustomerRegisterDTO {
 
-    @NotBlank(message = "El nombre es obligatorio.")
+    @NotBlank(message = "Por favor, introduzca un nombre.")
     private String firstName;
-    @NotBlank(message = "El apellido es obligatorio.")
+    @NotBlank(message = "Por favor, introduzca un apellido.")
     private String lastName;
-    @NotBlank(message = "Por favor introduzca un nombre de usuario.")
+    @NotBlank(message = "Por favor, introduzca un correo electrónico.")
+    private String email;
+    @NotBlank(message = "Por favor, introduzca una contraseña.")
+    private String password;
+    @NotBlank(message = "Por favor, introduzca un nombre de usuario.")
     private String username;
-    @NotBlank(message = "Por favor introduzca un número telefónico.")
+    @NotBlank(message = "Por favor, introduzca un número telefónico.")
     private String phoneNumber;
-
+    private Address address;
 }

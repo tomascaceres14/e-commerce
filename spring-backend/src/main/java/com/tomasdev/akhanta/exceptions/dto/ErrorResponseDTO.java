@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.exceptions;
+package com.tomasdev.akhanta.exceptions.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

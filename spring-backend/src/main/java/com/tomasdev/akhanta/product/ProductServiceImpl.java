@@ -25,11 +25,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository repository;
 
     @Override
-    public Page<Product> findAllProducts(int page) {
-        return findAllProducts(page, 10);
-    }
-
-    @Override
     public Page<Product> findAllProducts(int page, int size) {
         PageRequest pageable = PageRequest.of(page, size);
         return repository.findAll(pageable);

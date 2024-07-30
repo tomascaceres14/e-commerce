@@ -3,7 +3,7 @@ package com.tomasdev.akhanta.exceptions;
 public class ResourceNotFoundException extends RuntimeException {
 
     public ResourceNotFoundException() {
-        super("Recurso no encontrado.");
+        super("Lo sentimos, recurso no encontrado.");
     }
 
     public ResourceNotFoundException(String message) {

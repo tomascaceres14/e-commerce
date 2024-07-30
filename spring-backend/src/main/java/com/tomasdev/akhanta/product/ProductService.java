@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ProductService {
 
-    Page<Product> findAllProducts(int page);
     Page<Product> findAllProducts(int page, int size);
     Product saveProduct(CreateProductDTO productDTO, List<MultipartFile> images, String shopId);
     Product updateProductById(String id, CreateProductDTO product);
