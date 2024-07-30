@@ -1,12 +1,15 @@
 package com.tomasdev.akhanta.home;
 
-
 import com.tomasdev.akhanta.product.Product;
 import com.tomasdev.akhanta.product.ProductService;
+import com.tomasdev.akhanta.product.categories.Category;
+import com.tomasdev.akhanta.product.categories.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/home/products")
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeProductController {
 
     private ProductService productService;
+    private CategoryService categoryService;
 
     @GetMapping
     public ResponseEntity<Page<Product>> findAllProducts(@RequestParam(required = false, defaultValue = "0") Integer page,
@@ -36,7 +40,7 @@ public class HomeProductController {
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<?> findAllCategories(@RequestParam(required = false, defaultValue = "0") Integer page) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<Category>> findAllCategories(@RequestParam(required = false, defaultValue = "0") Integer page) {
+        return ResponseEntity.ok().body(categoryService.findAllCategories());
     }
 }
