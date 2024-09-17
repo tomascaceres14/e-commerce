@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.users;
+package com.tomasdev.akhanta.user;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

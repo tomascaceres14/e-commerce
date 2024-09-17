@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.users;
+package com.tomasdev.akhanta.user;
 
 import com.tomasdev.akhanta.auth.dto.PasswordChangeDTO;
 import com.tomasdev.akhanta.auth.dto.CustomerRegisterDTO;

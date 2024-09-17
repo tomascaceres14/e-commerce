@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.users;
+package com.tomasdev.akhanta.user;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Update;

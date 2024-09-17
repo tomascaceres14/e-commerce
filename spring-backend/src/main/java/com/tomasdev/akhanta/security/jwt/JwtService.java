@@ -3,7 +3,7 @@ package com.tomasdev.akhanta.security.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.tomasdev.akhanta.exceptions.UnauthorizedException;
-import com.tomasdev.akhanta.users.User;
+import com.tomasdev.akhanta.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,7 +53,7 @@ public class JwtService {
         return buildToken(claims, accessTokenExpiration);
     }
 
-    public String buildRefreshToken(com.tomasdev.akhanta.users.User user) {
+    public String buildRefreshToken(com.tomasdev.akhanta.user.User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", user.getId());
         claims.put("role", user.getRole());
