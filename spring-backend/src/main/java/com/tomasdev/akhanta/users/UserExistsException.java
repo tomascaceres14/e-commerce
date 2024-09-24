@@ -1,4 +1,4 @@
-package com.tomasdev.akhanta.user;
+package com.tomasdev.akhanta.users;
 
 public class UserExistsException extends RuntimeException {
     public UserExistsException() {

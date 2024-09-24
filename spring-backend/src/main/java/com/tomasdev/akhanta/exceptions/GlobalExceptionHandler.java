@@ -2,7 +2,7 @@ package com.tomasdev.akhanta.exceptions;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.tomasdev.akhanta.exceptions.dto.ErrorResponseDTO;
-import com.tomasdev.akhanta.user.UserExistsException;
+import com.tomasdev.akhanta.users.UserExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.impl.InvalidContentTypeException;
 import org.springframework.http.*;

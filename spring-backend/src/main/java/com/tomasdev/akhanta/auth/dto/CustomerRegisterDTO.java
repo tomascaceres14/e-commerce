@@ -1,6 +1,6 @@
 package com.tomasdev.akhanta.auth.dto;
 
-import com.tomasdev.akhanta.user.Address;
+import com.tomasdev.akhanta.users.Address;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

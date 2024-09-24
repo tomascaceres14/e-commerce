@@ -1,7 +1,7 @@
 package com.tomasdev.akhanta.orders;
 
 import com.tomasdev.akhanta.cart.CartItem;
-import com.tomasdev.akhanta.user.Address;
+import com.tomasdev.akhanta.users.Address;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
